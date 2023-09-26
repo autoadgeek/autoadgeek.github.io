@@ -1,0 +1,5851 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="事件作为信息的一种表现形式，其定义为特定的人及物在特定的时间特定的地点相互作用的事实。事件的组成元素包含触发词、事件类型、论元以及论元角色。">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/nlp/nlpex/extraction-event_22Sep08161543208256/">
+
+
+<link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    
+      
+        <title>事件抽取简介 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.d451bc0e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.a5377069.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-HS6FYDNKSV"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-HS6FYDNKSV",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+    <!-- <script async src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>-->
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            广告流程自动化
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              事件抽取简介
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../python/" class="md-tabs__link">
+          
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../html5/" class="md-tabs__link">
+          
+  
+  HTML5/CSS/VUE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ml/matrix/" class="md-tabs__link">
+          
+  
+  机器学习
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
+          
+  
+  数学基础
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../nlp/" class="md-tabs__link">
+          
+  
+  自然语言处理
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          
+  
+  广告程序化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+          
+  
+  网站SEO优化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../rpa/tool-reptile-mobile-method-introduction_21Oct26195529728646/" class="md-tabs__link">
+          
+  
+  自动化与爬虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../quant/" class="md-tabs__link">
+          
+  
+  量化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../medicine/classification_hepatoprotective_drugs_usage/" class="md-tabs__link">
+          
+  
+  其他知识
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  关于
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python 基础教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 语法结构
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-datatypes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 数据类型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-strings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 字符串
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-fstring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python f 字符串
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-lists/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 列表
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 字典
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 集合
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-map/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 映射
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-operators/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 运算符
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-keywords/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 关键字
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-forloop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python for 循环
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-itergener/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 迭代器和生成器
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 列表推导式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-reverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 反转
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 正则表达式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-oop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 面向对象编程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 模块
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 中的软件包
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-exceptions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 异常
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-introspection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 自省
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-lambda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Lambda 函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 日志教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-simplejson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python JSON 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-faker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Faker 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-feedparser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python feedparser 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python bcrypt 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 套接字教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-smtplib/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python smtplib 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-yaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python YAML 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-hashing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 哈希教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-configparser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python ConfigParser 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-argparse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python argparse 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-sqlite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python SQLite 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-cerberus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Cerberus 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pymysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python PyMySQL 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-peewee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Peewee 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pydal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python pyDAL 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pytest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Pytest 单元测试教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BeautifulSoup 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pyquery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python pyquery 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-sympy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SymPy 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pandas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Matplotlib 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-pillow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pillow 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-ftp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python FTP 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Requests 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-arrow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Arrow 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 魔术方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python Uipath Orchestrator Cloud API 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用python算微积分及牛顿迭代求解高阶方程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/py-setuptools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python打包分发工具setuptools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/python-processing-modules-handy-dandy-da_21Apr13181713428312/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用于数据处理的Python工具(Numerizer,Faker,Missingno,emot,Arrow)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用 Python Camelot从 PDF 文件中提取表格
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/ipiprequestsscrapy_downdawn-csdn_21Oct18105139565977/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多ip服务器绑定ip发送请求（requests和scrapy）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../python/pytutorial/workers-threadpoolexecutor-configure_22May22102214296245/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ThreadPoolExecutor 如何选择最大工作线程数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    HTML5/CSS/VUE
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            HTML5/CSS/VUE
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-head/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 头部
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 视频
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-tables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 表格
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html-images/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 图像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_geolocation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 地理定位
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/html_5_webworkers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 Worker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../html5/thinkphp-template-syntax_21Apr18100959778030/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ThinkPHP 模板语法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VUE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VUE资料目录
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NextJS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NextJS资料
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/matrix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习与矩阵,numpy,sklearn等工具
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python – 如何使用 t-SNE 進行降維
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征值分解、奇异值分解、PCA概念
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Numpy中矩阵计算模块linalg的常用函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    深度学习的激活函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    加快Scikit-Learn训练
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征选择,如何丢掉95%的数据并获得95%的准确率
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/pandas/speed-pandas-line-couple-significantly-c_21May12202229315527/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用几行代码显著加快pandas速度的6种方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/pandas/-pandas-joblib_22Apr09101730660571/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 joblib 对 Pandas 数据进行并行处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/pandas/series-example-analysis-forecasting-time_22Apr09120943456879/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    时间序列分析和预测
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/pandas/time-series-determination-analysis-trend_22Apr09135816740900/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    时间序列的趋势判断
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/imblearn-unbalanced-sample-categories-deeling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    imblearn SMOTE算法处理样本类别不平衡
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/rating-gridsearchcv_22Apr25090121978278/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gridSearchCV(网格搜索)的参数、方法及示例
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/recallcompleteness-accuracyaccuracy-valu_22Apr25102517019011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    混淆矩阵、准确率、精确率/查准率、召回率/查全率、F1值、ROC曲线的AUC值
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/basic/xgboost-starter-series-lecture-first_22May06135159845512/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XGBoost介绍
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/xgboost-tutorial-start-easy_22May07104546887754/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XGBoost 使用讲解
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ml/sklearn/technique-nuclear-linearity-inseparable_22Sep11093830253879/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    讲解绘图与支持向量机(support vector machine)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    数学基础
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            数学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    指数分布公式的含义
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTeX 数学公式排版
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    常见概率统计分布及Python实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期望值、方差、协方差、相关系数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    softmax详解
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    最小二乘法多项式曲线拟合及其python实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/loss-cross-entropy-_22Aug21144655921227/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    交叉熵损失函数一
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    损失函数 - 交叉熵损失函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    向量的距离度量
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    协方差、PCA、样本中心化,白化、方差、标准差、BN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    降维基础知识(样本均值、样本方差、中心矩阵)与PCA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何画lda投影结果_线性判别分析(LDA)原理总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    协方差矩阵的几何解释
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    从sympy求最简形矩阵到矩阵的四个子空间及其联系
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    了解卷积
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    向量内积外积的几何意义
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/learning-function-deep-csdn-common-blog-_21Nov09082415645481/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    收集16个激活函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/numpy_21Dec04212656270821/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NumPy数组的四种乘法的使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/-csdn_pandas-_-pandas_21Dec05085221730822/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pandas 数据的归一化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/used-method-data-analytical-commonly-ana_22Mar21153258903810/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据分析常用的9种分析方法-判断分布
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mathbasic/maximum-likelihood-estimation-probabilit_22Aug20181839890939/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    贝叶斯估计、最大似然估计、最大后验概率估计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    自然语言处理
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            自然语言处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自然语言处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/nlp-new-entry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP 新手上路
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP HanNLP 词典分词
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/ml-precision-recall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/keywords_extract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文本关键词提取
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/topicextract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用Python从海量文本抽取主题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/nlp-tookits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nlp常用工具集
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP pattern库 hands on
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于预训练模型的文本摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    开源项目，涵盖 11 类 AI 学习框架、平台
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/nltk-basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自然语言处理工具包之NLTK
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bert-extractive-summarizer 中文文章的抽取式摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    理解NLP中的CNN卷积神经网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    依存分析与依存树 dependency parse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/keywords-auto-extract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关键词与文章相关性, 关键词自动标注与提取
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/website-categorization-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 使用 Google NLP API进行网站分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/automated-web-crawling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 AI 自动执行 Web 爬网
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通过机器学习对网站进行分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TextRank算法简述
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLTK TextRank实现英文关键词提取
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用余弦相似度算法计算文本相似度
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    细数2018年最好的词嵌入和句嵌入技术
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    从头开始多标签文本分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    没有模型训练情况下用BERT做文本分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用 NLP 做文本分析和特征工程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/using-similarity-sentence-bert-word2vec-_21Apr13202631442339/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何使用 BERT 和 Word2Vec 计算句子相似性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/text-similarity-measuring-bert_21May08200617801479/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT用于计算句子文本相似度
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/topic-modeling-interactive-bertopic_21Apr27173610787396/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用BERTopic进行交互式主题建模
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/structured-data-processing-practice20211007/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    结构化数据提取实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/summary-long-extract-bert-article_21Oct23115502660035/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT时代下的摘要提取长文总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csdn-blog-_nlp-summary_miner_zhu-summary_21Oct23175443667734/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP之文章摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gentle-introduction-to-text-summarization_ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于词频计算句子权重的文本自动摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text-task-summarize-incomplete-auto-summ_21Oct24165632331849/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文本自动摘要任务的“不完全”心得总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topic-entity-model-name-recognition-base_21Oct24174759876009/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于主题模型和命名实体识别的自动摘要方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/word-vector-one-hotsvdnnlmword2vecglove_21Oct24183706851403/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    词向量(one-hot/SVD/NNLM/Word2Vec/GloVe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practical-guide-generative-examples_21Oct25174535026003/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP文本摘要实操 - 具有生成示例的实用指南
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/tokenizer-spacy-extract-custom-keywords-_22Jul06185024871770/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    向 spaCy 添加指定分词器(Jieba,CKIP Transformers)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlpinfo/spacy-python-information-extraction_22Jul07203415699453/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Python 和 spaCy 进行信息提取简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    事件抽取简介
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    事件抽取简介
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    大纲：
+  </a>
+  
+    <nav class="md-nav" aria-label="大纲：">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 什么是事件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 知识抽取相关竞赛
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 事件抽取任务的基本做法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-schema" class="md-nav__link">
+    2.1 Schema的制定
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 信息的抽取方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 事件抽取模型的评价
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-schema" class="md-nav__link">
+    2.4 schema的应用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 事件抽取技术有啥用？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 例子
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    广告程序化
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            广告程序化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    围绕SEO开展竞争对手分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shopify独立站的几套选品方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/semantic-search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    什么是语义搜索？它是如何影响SEO的
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/meta-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何编写完美的元描述
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Python 进行 Facebook 抓取和情绪分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instagram 爬虫
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Python 查找关键字类别的搜索量上限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    可视化 100，000 亚马逊产品
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用SimHash进行海量文本去重流程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何把网站提交给搜索引擎
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    动态网站使用 Python 向 Google 自动提交站点地图
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/seo_open_graph_protocol/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO 优化: Open Graph protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/seo_json_ld_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO 优化: 添加 JSON-LD 数据
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    网站SEO优化
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            网站SEO优化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    长尾词优化入网页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/keyword-difficulty/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关键词难度：如何确认你在 Google 获得排名的机会
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何让网站排名进入谷歌首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何搭建一个成功的亚马逊联盟网站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/how-to-start-seo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO每日流量如何从0到10000
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python与SEO 词库完整指南
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python百度下拉框关键词采集
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../affiliate/adsense/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hexo个人next主题博客接入谷歌广告
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    自动化与爬虫
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            自动化与爬虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rpa/tool-reptile-mobile-method-introduction_21Oct26195529728646/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    移动端爬虫工具与方法介绍
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rpa/sharp-reptile-playwright-generation_22Mar16150047139054/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    新一代爬虫工具 -- Playwright
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rpa/thing-grab_23Jun14171058520489/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安卓、苹果的全局代理以及抓包
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    量化
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            量化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/strength-resistance-support-relative-tim_22Mar09144910644904/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RSRS(阻力支撑相对强度)择时策略研究
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/world-stock-select-afraid_22Mar11102617879419/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多因子模型选股,配RSRS择时方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/strong-quantificationhow-onel-find-pytho_22Mar11115955383426/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    利用欧奈尔的RPS寻找强势股
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/regression-model-line-code-author_22Mar16105340028529/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lazy Predict 如何用几行代码运行 40 个回归模型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/_22Mar15205312018057/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    巴菲特的Alpha:利用机器学习量化『股票基本面』
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/correlation-nlpnlu-matrix-vectorspace-da_22Mar16152147921647/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用矢量空间AI NLP / NLU相关矩阵数据集生成阿尔法:股票与周期性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/trading-quantitative-factor-evaluation-s_22Apr25121650255339/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化交易入门——因子的评价体系和IC、IR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/lhr/series-brief-introduction-primer-simple-_22Apr28144022194446/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（二）——简单策略初探
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/lhr/series-primer-investing-capm-risk-quanti_22Apr28145508941654/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（三）——CAPM与风险
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/lhr/series-quantitative-primer-investing-bar_22Apr28150803767664/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（四）——APT与BARRA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/lhr/series-portfolio-construction-primer-bas_22Apr28152227119078/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（五）——基于BARRA的组合构建
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/lhr/technical-factor-series-analysis-primer-_22Apr28154753258404/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（六）——技术性因子分析与遗传算法生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/lhr/trend-stock-series-prediction-primer-bas_22Apr28155928476282/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（七）——基于机器学习的股票走势预测
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/lhr/trend-stock-series-prediction-investing-_22Apr28160755545143/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（八）——基于神经网络的股票走势预测
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/lhr/tabnet-series-investment-entry-quantitat_22Apr28161224255196/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（九）——TabNet解析与使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/time-series-forecasting-moving-methods-b_22May03131956778461/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    时间序列预测基本方法--移动平均（SMA、EMA、WMA）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quant/stocks/trading-indicator-macd-clearly-people-ex_22May03162310791780/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MACD交易指标
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    其他知识
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            其他知识
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../medicine/classification_hepatoprotective_drugs_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    保肝药的分类及其使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/ubuntu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ubuntu系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/ai_ml_testlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI实验平台小技巧
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    工具集合文档
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/tutorial-socks5-android_23Jun14102027281268/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安卓机使用socks5教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/proxy-http-center-socks5-green-availabil_23Jun15205449339580/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    测试socks5 和http 代理IP 的可用性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AIGC教程目录
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+
+
+<script type="text/javascript">
+//September 26, 2023 添加广告 banner
+console.log("ad banner");
+</script>
+<div>
+  <a href="https://www.aijiaolian.chat/midjourney?puid=6056" target="_blank">
+  <img src="/img/onekeyAIGC.jpg" class="img" alt="人工智能一键成图"/>
+  <p style="color:red;font-size:28px;width: 100%;display: block;text-align: center;">AIGC Midjourney 智能一键生成图片</p>
+  </a>
+</div>
+
+
+<h1 id="_1">事件抽取<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">大纲：<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>1. 什么是事件<ul>
+<li>1.1 事件组成元素</li>
+<li>1.2 事件抽取</li>
+<li>1.3 知识抽取相关竞赛</li>
+</ul>
+</li>
+<li>2. 事件抽取任务的基本做法<ul>
+<li>2.1 Schema的制定</li>
+<li>2.2 信息的抽取方法</li>
+<li>2.3 事件抽取模型的评价</li>
+</ul>
+</li>
+<li>3. 事件抽取技术有啥用？</li>
+<li>4. 例子</li>
+</ul>
+<h3 id="1"><strong>1. 什么是事件</strong><a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>“事件”指在特定的时空下，由一个或多个角色（事件主体）参与的，围绕某个主题开展的一系列活动。</p>
+<p><strong>1.1 事件组成元素</strong></p>
+<p>组成事件的各元素包括: 触发词、事件类型、论元及论元角色。</p>
+<ul>
+<li><strong>事件触发词/trigger</strong> ：表示事件发生的核心词，多为动词或名词；</li>
+<li><strong>事件类型/event type</strong> ：ACE2005 定义了8种事件类型和33种子类型。其中，大多数事件抽取均采用33 种事件类型。 事件识别是基于词的34 类( 33类事件类型+None) 多元分类任务，角色分类是基于词对的36 类( 35 类角色类型+None) 多元分类任务；</li>
+<li><strong>事件论元/事件要素/argument</strong> ：事件的参与者，主要由实体、值、时间组成。值是一种非实体的事件参与者，例如工作岗位 ；</li>
+<li><strong>论元角色/要素角色/role</strong> ：事件论元在事件中充当的角色。共有35类角色，例如，攻击者 、受害者等。  </li>
+</ul>
+<p>如下例句：在 Baghdad，当一个美国坦克对着 Palestine 酒店开火时一个摄影师死去了。</p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161545203847_1.jpeg' width='1080' /></p>
+<p>“事件图谱“指持续、快速地获取客观世界中发生的事件，并丰富事件属性、建立事件间的关联关系，构成以事件为基本单位的知识网络。</p>
+<p>事件抽取的目标即自动化的从非结构化的信息中完成上述信息的获取，并结构化进行展示。事件抽取是信息抽取领域中一项重要且具有挑战性的任务。其可以为知识库构建，问答以及语言理解任务提供有效的结构化信息。然而传统的事件抽取任务大多数基于句子层面，但是这样具有很明显的缺陷：一个事件会涉及到触发词和多个论元，但是实际情况中，很少会有触发词和所有的论元都出现在一个句子中的理想情况（如图1），所以如果在实际的文本中，孤立的从单个句子抽取，很可能会得不到完整的事件信息。因此，研究文档级别的事件抽取，如何获取跨句子的信息，对事件抽取的实际应用是很有帮助的。</p>
+<p><img src='images/p01.png' width='1080' /> 图1 触发词以及论元位于不同句子中的例子</p>
+<p><strong>1.2 事件抽取</strong></p>
+<p>（1）定义</p>
+<p>事件抽取技术是从非结构化信息中抽取出用户感兴趣的事件，并以结构化呈现给用户。</p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161548305459_1.jpeg' width='968' /></p>
+<p>事件抽取任务可分解为4个子任务: <strong>触发词识别、事件类型分类、论元识别和角色分类任务</strong> 。</p>
+<p>其中，触发词识别和事件类型分类可合并成 <strong>事件识别任务</strong> 。论元识别和角色分类可合并成 <strong>论元角色分类任务</strong> 。事件识别任务判断句子中的每个单词归属的事件类型，是一个基于单词的多分类任务。角色分类任务则是一个基于词对的多分类任务，判断句子中任意一对触发词和实体之间的角色关系。</p>
+<p>（2）分类</p>
+<p>事件抽取任务总体可以分为两个大类：元事件抽取及主题事件抽取。事件表示一个动作的发生或状态的变化。往往由动词驱动，也可以由能表示动作的名词等其他词性的词来触发，它包括参与该动作行为的主要成分 ( 如时间、地点、人物等) 。主题事件包括一类核心事件或活动以及所有与之直接相关的事件和活动，可以由多个元事件片段组成。当前主要是面对元事件抽取，关于主题事件抽取的研究较少。  </p>
+<h3 id="13"><strong>1.3 知识抽取相关竞赛</strong><a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>消息理解会议（<a href="https://catalog.ldc.upenn.edu/LDC2001T02">MUC</a>）<br />
+MUC是由美国DARPA发起，目的在于鼓励和开发信息抽取系统，主要以召回率和精确率来评价信息抽取系统性能的重要指标，一般是基于召回率和精确率来计算法F1值</li>
+<li>自动内容抽取（<a href="https://www.allacronyms.com/ACE/Automatic_Content_Extraction">ACE</a>）<br />
+由美国国家标准技术研究所（NIST）组织的评测会议，主要包括 <strong>实体检测与跟踪、关系检测与表征、事件检测与跟踪</strong> ，与MUC解决的问题类似，只是对MUC的任务进行融合。</li>
+<li>知识库填充（<a href="https://tac.nist.gov/2017/KBP/">KBP</a>）<br />
+由文本分析会议主办，其目的是开发和评估从非结构化文本中获取知识填充知识库的技术，主要任务包括 <strong>实体发现与链接、槽填充、事件跟踪和信念与情感分析</strong></li>
+<li>语义评测（<a href="https://en.wikipedia.org/wiki/SemEval">SemEval</a>）<br />
+由ACL-SIGLEX组织发起，是比较早进行实体消歧的评测任务的机构，目的是增进人们对词义与语义现象的理解，主要包括语义角色标注、情感分析、跨语言语义分析等</li>
+</ul>
+<h2 id="2">2. 事件抽取任务的基本做法<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>在前面所述概念的基础上，我们可以列出事件抽取模型的核心构成：</p>
+<p>（1） 事件类型体系，以及各类事件里重要的角色，统称为schema。</p>
+<p>（2） 信息抽取方法。</p>
+<h2 id="21-schema">2.1 Schema的制定<a class="headerlink" href="#21-schema" title="Permanent link">&para;</a></h2>
+<p>事件抽取任务的起点，是需求的出现。关心金融领域的朋友，持有市值约370元人民币的基金，希望了解所有可以影响市场情绪的事件。因此，海量新闻数据中识别特定类型的事件就是我们的需求。</p>
+<p>需求确定了，接下来的任务就是把需求转换为人和机器都可以理解的一种形式，即制定事件的schema。“schema”即纲要，是我们对事物一般的、抽象的描述，体现人类对事物的认知水平，决定了机器抽取事件的能力，因此非常重要。</p>
+<p><strong>schema的定义</strong></p>
+<p>简单来说，一个知识图谱的schema就是相当于一个领域内的数据模型，包含了这个领域里面有意义的概念类型以及这些类型的属性。任何一个域的schema主要由类型（type）和属性（property）来表达。举例说创投schema，主要是为了发掘一级市场的投资和融资构建的schema,该schema主要是去定义需求，哪些数据对创投有用，才往上构建，例如：人物都有身高 体重，但是这些数据对创投来说意义不大，在schema中就不用构建了。关注创投的人会关注这些基金与人物投资了哪些公司，投资的公司所属行业，投资的公司属于哪一类企业，在该schema中就需要详细构建。</p>
+<p>一个完整的事件schema，应当包括：</p>
+<p>（1） <strong>事件类型体系</strong> ，比如“企业成立”、“企业并购”等等组成的，就是我关心的事件的类型体系；</p>
+<p>（2） <strong>各类事件的重要角色</strong> ，比如表2.1所示的各个字段，就是一个事件得以发展所依赖的重要角色。有时候，我们会设置一种特殊的角色，即“事件触发词”，用来辅助判断事件的发生。</p>
+<p>确定了schema，一方面方便大家在相同的概念基础上展开协作，另一方面也让机器有了相对确定的学习和预测目标。</p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161550335630_1.png' width='653' />图2.1 《炒股还是革命？股民蒋介石的投机人生》片段(<a href="https://mil.news.sina.com.cn/history/2020-07-16/doc-iivhuipn3293292.shtml">https://mil.news.sina.com.cn/history/2020-07-16/doc-iivhuipn3293292.shtml</a>)</p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161552738036_1.jpeg' width='744' />表2.1 一个企业成立事件的描述信息</p>
+<p><strong>如何构建schema</strong>   </p>
+<p>1.如何构建域（domain）</p>
+<p>域（domain）的概念是凌驾于所有类型之上，对于域的定义应该尽量的抽象，不应该具体，同时域与域之间应尽量做到相互独立，不交叉。例如，省份就不应该是一个域的概念，在思考是否应该把一个概念当做域时，需要考虑到该概念是否能够继续向上抽象，例如：省份；城市；国家；县等等，他们同属于地理位置域。在明确域的概念时，应该定义好域的边界，这样比较容易区分不同域之间的区域划分。</p>
+<p>2.如何确定一个域的类型（type）</p>
+<p>这里需要产品经理去思考，构建这个schema的核心需求是什么，到底需要解决用户什么问题。为了满足这些核心需求，我们需要创造出哪些概念？</p>
+<p>举个例子，在汽车领域，用户主要关心什么问题，例如：汽车的品牌、车系、发动机。</p>
+<p>在NBA领域，用户主要关心球队、所属联盟、教练、球员等等。</p>
+<p>针对不同的需求，需要在域下面构建不同的类型来满足用户的需求。</p>
+<p>3.如何确定属性（property）</p>
+<p>思考的角度如下：</p>
+<p>1).以用户需求为出发点</p>
+<p>2).以数据统计为证据</p>
+<p>比如在构建完足球领域中的球队类型后，该类型集合了所有的球队实体，站在用户角度触发，用户会关注球队的哪些关系？</p>
+<p><img src='images/p02.png' width='1080' /> 图2 足球领域schema   </p>
+<p>图2是针对足球领域构建的一个图谱，上面包含了梅西（球队的球员），埃内斯托·巴尔韦德（球队的教练），西甲（球队的所属联赛），其中梅西、西甲、埃内斯托.巴尔韦德又分属于不同的类型：足球球员，足球联赛，足球教练，这些所有的类型构成了足球域。</p>
+<p>从上图的common sense配合图查询和自然语言处理技术已经可以支持基础的问答了，例如，梅西是哪个球队的？埃内斯托巴尔韦德是哪些球员的教练？西甲有哪些球队在踢球？等等</p>
+<h2 id="22">2.2 信息的抽取方法<a class="headerlink" href="#22" title="Permanent link">&para;</a></h2>
+<p>事件抽取的schema和知识图谱的schema是同一种东西，类似“语义槽”，需要从原始数据中抽取特定的片段来填写，就像表2.1的“例子”一栏一样。至此，我们就进入到了事件抽取任务的第二个子任务，即 <strong>信息抽取模型构建</strong> ——换句话说， <strong>我们需要构建一定的工具，让它从半结构化、非结构化数据中，把schema描述的信息抽取出来</strong> 。</p>
+<p>目前的主流做法，是用两个子任务完成信息的抽取：</p>
+<p>（1） <strong>识别事件并判断类型</strong> 。可以用序列元素分类的方式 <strong>识别触发词并判断事件类型</strong> ，或者直接 <strong>使用文本分类的方式判断mention对应的事件类型</strong> 。</p>
+<p>（2） <strong>识别事件角色</strong> 。用序列元素分类，或者三元组抽取的方式，把事件的重要角色识别出来并分类。</p>
+<p>我们可以使用流水线结构的模型（如图2.2），也可以使用联合模型(如图2.3)，来做事件抽取。流水线式模型构建较为简单，但是存在误差传递。</p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161554405385_1.jpeg' width='384' /><img src='' width='384' />图2.2 一个流水线式事件抽取模型</p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161556041882_1.jpeg' width='666' />图2.3 一个用于事件抽取的联合模型</p>
+<h2 id="23">2.3 事件抽取模型的评价<a class="headerlink" href="#23" title="Permanent link">&para;</a></h2>
+<p>模型的评价指标，可以根据任务的需求来制定。假如我们强调尽可能多、尽可能正确地识别事件，那么我们可以使用 <strong>查全率(recall)、查准率(precision)、F1-score</strong> 这样的简单指标；</p>
+<p>假如我们比较重视错误识别带来的损失，那么可以对各类错误代价加权求和、得到一个 <strong>错误总代价</strong> 。</p>
+<h2 id="24-schema">2.4 schema的应用<a class="headerlink" href="#24-schema" title="Permanent link">&para;</a></h2>
+<p>schema的应用是产品经理需要重点考虑的内容，因为产品需求决定了schema应该怎么构建，构建的是否完备。而产品的具体应用则主导了schema的整体构建方式，如果不仔细考虑产品应用的话，最惨的情况可能构建了很久的schema会因为一个逻辑坑而彻底报废掉，由于知识图谱又是一个牵一发而动全身的工程，根据实际经验来说，如果图谱构建和应用有部分脱节，可能修改图谱schema比重新构建图谱schema的成本还要高。所以，首先确认好具体的应用场景对于一个schema构建的成功与否是至关重要的。</p>
+<p>笔者写一套曾经用过的确认schema的流程</p>
+<p>1.需求划分
+先将应用根据需求的强弱划分，分为基础核心需求，schema特色需求，锦上添花需求，未来扩展性需求。</p>
+<p>基础核心需求：是经过需求分析后，构建这个schema需要完成最核心的需求，该需求优先级最高</p>
+<p>schema特色需求：构建图谱时可能会经常遇到图谱可以实现而其他方法实现比较困难的特色需求，这类需求可能需求强度不是很高，但是由于能够实现一定的差异性，经常会有意想不到的效果。</p>
+<p>锦上添花需求：非基础核心需求，做了更好，不做也可以接受</p>
+<p>未来扩展性的需求：确认schema的时候要充分考虑到未来的扩展性，因为这类需求有可能会大改图谱的schema结构</p>
+<p>2.列出功能点
+在构建schema的时候，根据上述分类，需要去考虑该schema一期需要满足哪些具体的功能，将功能一一列下来，哪些功能是需要放在第二期、第三期完成的，未来的扩展性需求需要在构建的哪一块区域留下可扩展的内容。</p>
+<p>常用的方法可以使用excel去列出一、二、三期所需要的功能点。</p>
+<p>3.转化成查询结构
+列出上述的功能点后，针对每一个功能点在后面备注好该功能的构建要点（注：这个非常重要），通常需求只需要将产品需求转化成一定的查询结构即可，笔者原来用的是cypher查询语法。以图2为例，我要支持某个教练教了哪些球员？转化成查询语言就是（a:足球教练）&lt;-{b:教练}-（c:球队）-{d:球员}-（e:足球球员） return e。将a变成参数，输入a即可返回所有的e，即输入埃内斯托巴尔韦德，返回就是梅西。</p>
+<p>流程如下：query:埃内斯托巴尔韦德带了哪些球员？→语义解析→转化成上述查询，将埃内斯托巴尔韦德作为参数a代入查询→返回结果→前端包装展示</p>
+<p>注：上面在每个功能点后面备注了构建要点，当大部分功能点的构建要点都写完的时候，需要集中查看构建要点，因为如果需求本身比较大的话，不同的需求很容易造成schema的构建冲突，正如前面所讲，schema尽量要保证少出错。这个时候由于备注了构建要点，可以全局的来审视这个schema中间有没有逻辑黑洞。常出现的问题主要是在属性的设计，以及知识融合上。</p>
+<p>4.转化开发需求
+拿着上述文件去找开发，确认一下哪些是比较好实现的，一般来说做到这种程度大多数需求开发都是会接的。如果开发同学足够专业的话，他会从他的视角去给你提出他的宝贵意见。通常产品经理在思考schema这一块更倾向于思考这个schema的作用，而开发同学会思考工程实现、实现效率、运行效率、计算量等问题。</p>
+<h2 id="3">3. 事件抽取技术有啥用？<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>从理论研究的角度看，事件抽取任务是对NLP模型认识世界、理解世界的能力的一种评测手段。当我们有若干指标来评价一个事物的时候，这个事物就有了发展的方向——事件抽取任务是NLP发展到一定程度时，一个重要的评测指标。</p>
+<p>从应用的角度看，事件抽取技术可以帮助依靠情报生存的同志们提升工作效率(用简洁而时髦的话术就是“赋能”)。</p>
+<p>事件抽取技术的核心价值，是可以把半结构化、非结构化数据转换为对事件的结构化描述，进而支持丰富的下游应用。</p>
+<p>比如说我们要为一些人物整理年表，如图3.1，把人物经历的重要事件汇总起来，就可以用事件抽取方法来完成；我们不仅可以整理历史数据，还可以把新闻数据中的事件(天气、体育比赛情况、不和谐的行为和言论、面馆开张信息等等)抽取出来；等等。</p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161558270038_1.png' width='442' />图3.1 马克思生平大事年表(<a href="http://www.verydaily.com/history/event-33.html">http://www.verydaily.com/history/event-33.html</a>)</p>
+<p>抽取出来的结构化数据，最大的特点就是字段含义明确。一方面，结构化数据支持各种各样的数据统计，比如把蒋委员长年轻时开店的事件聚合起来，分析盈亏状况，进而了解委员长的商业能力；另一方面，结构化的事件数据，可以支持我们做文本生成，比如把表2.1所示事件改写为“蒋介石和张静江于1920年12月创立了关注经纪事业的恒泰号。”</p>
+<h2 id="4"><strong>4. 例子</strong><a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p><strong>火灾新闻例子：</strong><br />
+一个火灾事件新闻我们感兴趣的是 事故发生时间，事故发生地点，事故伤亡,事故原因。<br />
+我们把这些抽取出来。<br />
+即输入一个火灾事件新闻，输出 事故地点，事故时间，事故伤亡，事故原因，事故摘要。<br />
+方法：基于正则。</p>
+<p>导入包：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="ch">#!/usr/bin/env python3</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="c1"># -*- coding: utf-8 -*-</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="c1"># @Author: yudengwu</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1"># @Date  : 2020/6/27</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="kn">import</span> <span class="nn">re</span>
+</code></pre></div></td></tr></table></div></p>
+<p>事故原因：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">def</span> <span class="nf">pattern_cause</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="s2">&quot;data.type: [文字]&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="n">data</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="n">patterns</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="n">key_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;起火&#39;</span><span class="p">,</span> <span class="s1">&#39;事故&#39;</span><span class="p">,</span> <span class="s1">&#39;火灾&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;.*?(?:</span><span class="si">{0}</span><span class="s1">)原因(.*?)[,.?:;!，。？：；！]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key_words</span><span class="p">)))</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;事故原因：&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;起火原因正在调查中。&#39;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="n">pattern_cause</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161558980048_1.png' width='162' /><img src='' width='162' /></p>
+<blockquote>
+<p>(?:X)在正则中表示所匹配的子组X不作为结果输出</p>
+</blockquote>
+<p><em>理解下里面的正则</em>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># 没有?：</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">def</span> <span class="nf">pattern_cause</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="s2">&quot;data.type: [文字]&quot;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="n">data</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>    <span class="n">patterns</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>    <span class="n">key_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;起火&#39;</span><span class="p">,</span> <span class="s1">&#39;事故&#39;</span><span class="p">,</span> <span class="s1">&#39;火灾&#39;</span><span class="p">]</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;.*?(</span><span class="si">{0}</span><span class="s1">)原因(.*?)[,.?:;!，。？：；！]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key_words</span><span class="p">)))</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;事故原因：&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;起火原因正在调查中。&#39;</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="n">pattern_cause</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161600745140_1.png' width='99' /><img src='' width='99' /></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">#没有 [,.?:;!，。？：；！]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">def</span> <span class="nf">pattern_cause</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="s2">&quot;data.type: [文字]&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="n">data</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>    <span class="n">patterns</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>    <span class="n">key_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;起火&#39;</span><span class="p">,</span> <span class="s1">&#39;事故&#39;</span><span class="p">,</span> <span class="s1">&#39;火灾&#39;</span><span class="p">]</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;.*?(?:</span><span class="si">{0}</span><span class="s1">)原因(.*?)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key_words</span><span class="p">)))</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;事故原因：&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;起火原因正在调查中。&#39;</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="n">pattern_cause</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161601601521_1.png' width='130' /><img src='' width='130' /></p>
+<p>事故伤亡：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">def</span> <span class="nf">pattern_lose</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>    <span class="s2">&quot;data.type: [文字]&quot;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="n">data</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="n">patterns</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>    <span class="n">key_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;伤亡&#39;</span><span class="p">,</span> <span class="s1">&#39;损失&#39;</span><span class="p">]</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;.*?(未造成.*?(?:</span><span class="si">{0}</span><span class="s1">))[,.?:;!，。？：；]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key_words</span><span class="p">)))</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人死亡)&#39;</span><span class="p">))</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人身亡)&#39;</span><span class="p">))</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人受伤)&#39;</span><span class="p">))</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人烧伤)&#39;</span><span class="p">))</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人坠楼身亡)&#39;</span><span class="p">))</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人遇难)&#39;</span><span class="p">))</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a>        <span class="n">jieguo</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">jieguo</span><span class="p">:</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a>            <span class="k">pass</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a>            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;事故伤亡：&#39;</span><span class="p">,</span> <span class="n">jieguo</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a>
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a>
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;火灾未造成人员伤亡，&#39;</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="n">pattern_lose</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;火灾造成1人受伤，&#39;</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="n">pattern_lose</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161602806077_1.png' width='195' /><img src='' width='195' /></p>
+<p>事故时间：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># 事故时间：</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">def</span> <span class="nf">pattern_time</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># data.type :str</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>    <span class="n">PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;([0-9零一二两三四五六七八九十]+年)?([0-9一二两三四五六七八九十]+月)?([0-9一二两三四五六七八九十]+[号日])?([上中下午晚早]+)?([0-9零一二两三四五六七八九十百]+[点:\.时])?([0-9零一二三四五六七八九十百]+分?)?([0-9零一二三四五六七八九十百]+秒)?&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">PATTERN</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>    <span class="n">m</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>    <span class="c1"># &quot;19年1月14日18时19分39秒上午&quot;</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>    <span class="n">m1</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;上午&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>    <span class="n">year</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 年</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>    <span class="n">month</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># 月</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>    <span class="n">day</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># 日</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>    <span class="n">am</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># 上午，中午，下午，早中晚</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>    <span class="n">hour</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 时</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>    <span class="n">minutes</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>  <span class="c1"># 分</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>    <span class="n">seconds</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>  <span class="c1"># 秒</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;事故时间: &#39;</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">am</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span><span class="p">)</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;2019年1月14日18时19分30秒，&#39;</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="n">pattern_time</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161604253891_1.png' width='346' /><img src='' width='346' /></p>
+<p>事故地点：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span>
+<span class="normal"><a href="#__codelineno-6-21">21</a></span>
+<span class="normal"><a href="#__codelineno-6-22">22</a></span>
+<span class="normal"><a href="#__codelineno-6-23">23</a></span>
+<span class="normal"><a href="#__codelineno-6-24">24</a></span>
+<span class="normal"><a href="#__codelineno-6-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># 事件地点</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">def</span> <span class="nf">pattern_address</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># 转换格式</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="n">p_string</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;，&#39;</span><span class="p">)</span>  <span class="c1"># 分句</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="n">address</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">p_string</span><span class="p">:</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>        <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>        <span class="n">PATTERN1</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;([\u4e00-\u9fa5]{2,5}?(?:省|自治区|市)){0,1}([\u4e00-\u9fa5]{2,7}?(?:区|县|州)){0,1}([\u4e00-\u9fa5]{2,7}?(?:镇)){0,1}([\u4e00-\u9fa5]{2,7}?(?:村|街|街道)){0,1}([\d]{1,3}?(号)){0,1}&#39;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>        <span class="c1"># \u4e00-\u9fa5 匹配任何中文</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>        <span class="c1"># {2,5} 匹配2到5次</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>        <span class="c1"># ? 前面可不匹配</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>        <span class="c1"># (?:pattern) 如industr(?:y|ies) 就是一个比 &#39;industry|industries&#39; 更简略的表达式。意思就是说括号里面的内容是一个整体是以y或者ies结尾的单词</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a>        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">PATTERN1</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a>        <span class="n">m</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">m</span><span class="p">:</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a>            <span class="k">continue</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a>            <span class="n">address</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a>
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;事件地点：&#39;</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">address</span><span class="p">))</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a>
+<a id="__codelineno-6-23" name="__codelineno-6-23"></a>
+<a id="__codelineno-6-24" name="__codelineno-6-24"></a><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;宝鸡市渭滨区金陵街道机厂街社区铁路家属院17号楼一单元发生火灾&#39;</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25"></a><span class="n">pattern_address</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161605696525_1.png' width='260' /><img src='' width='260' /></p>
+<p>主函数：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>    <span class="n">pattern_cause</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="n">pattern_lose</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="n">pattern_time</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>    <span class="n">pattern_address</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>    <span class="n">shijian</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="c1">#读取数据</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;新闻.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>        <span class="n">test_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>    <span class="n">main</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></p>
+<p>数据集：新闻.txt
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>    1月14日18时19分，宝鸡市渭滨区金陵街道机厂街社区铁路家属院17号楼一单元发生火灾，火势由二、三、四阳台向上蔓延，一名老人被困屋内，情况危急。宝鸡消防支队渭滨大队广元路中队接警后，迅速赶赴现场展开救援，将被困老人救出。记者了解到，火灾发生后，宝鸡消防支队渭滨大队广元路中队立即赶赴现场开展救援，经现场侦查发现，火势由二、三、四楼阳台向上蔓延，均已过火。由于小区内道路蜿蜒且狭窄，中队立即调派经一路、开元、宝光、电子街4个卫星消防站增援。中队到场后立即成立搜救组、灭火组、供水组开展救援工作。消防在搜救过程中发现1单元2楼南户有一名老人被困，中队立即进行营救，同时并对2单元30余名群众进行疏散。灭火小组从小区南北两侧对现场火势进行打压。铁塔路及新华路中队随后也赶到现场增援，20时10分现场明火被扑灭。火灾未造成人员伤亡，起火原因正在调查中。
+</code></pre></div></td></tr></table></div></p>
+<p>运行结果</p>
+<p><img src='images/extraction-event_22Sep08161543208256_22Sep08161607538989_1.png' title="extraction-event_22Sep08161543208256_22Sep08161607538989_1.png" alt="extraction-event_22Sep08161543208256_22Sep08161607538989_1.png" width='356' /><img src='' width='356' /></p>
+<p>完整代码：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span>
+<span class="normal"><a href="#__codelineno-9-30">30</a></span>
+<span class="normal"><a href="#__codelineno-9-31">31</a></span>
+<span class="normal"><a href="#__codelineno-9-32">32</a></span>
+<span class="normal"><a href="#__codelineno-9-33">33</a></span>
+<span class="normal"><a href="#__codelineno-9-34">34</a></span>
+<span class="normal"><a href="#__codelineno-9-35">35</a></span>
+<span class="normal"><a href="#__codelineno-9-36">36</a></span>
+<span class="normal"><a href="#__codelineno-9-37">37</a></span>
+<span class="normal"><a href="#__codelineno-9-38">38</a></span>
+<span class="normal"><a href="#__codelineno-9-39">39</a></span>
+<span class="normal"><a href="#__codelineno-9-40">40</a></span>
+<span class="normal"><a href="#__codelineno-9-41">41</a></span>
+<span class="normal"><a href="#__codelineno-9-42">42</a></span>
+<span class="normal"><a href="#__codelineno-9-43">43</a></span>
+<span class="normal"><a href="#__codelineno-9-44">44</a></span>
+<span class="normal"><a href="#__codelineno-9-45">45</a></span>
+<span class="normal"><a href="#__codelineno-9-46">46</a></span>
+<span class="normal"><a href="#__codelineno-9-47">47</a></span>
+<span class="normal"><a href="#__codelineno-9-48">48</a></span>
+<span class="normal"><a href="#__codelineno-9-49">49</a></span>
+<span class="normal"><a href="#__codelineno-9-50">50</a></span>
+<span class="normal"><a href="#__codelineno-9-51">51</a></span>
+<span class="normal"><a href="#__codelineno-9-52">52</a></span>
+<span class="normal"><a href="#__codelineno-9-53">53</a></span>
+<span class="normal"><a href="#__codelineno-9-54">54</a></span>
+<span class="normal"><a href="#__codelineno-9-55">55</a></span>
+<span class="normal"><a href="#__codelineno-9-56">56</a></span>
+<span class="normal"><a href="#__codelineno-9-57">57</a></span>
+<span class="normal"><a href="#__codelineno-9-58">58</a></span>
+<span class="normal"><a href="#__codelineno-9-59">59</a></span>
+<span class="normal"><a href="#__codelineno-9-60">60</a></span>
+<span class="normal"><a href="#__codelineno-9-61">61</a></span>
+<span class="normal"><a href="#__codelineno-9-62">62</a></span>
+<span class="normal"><a href="#__codelineno-9-63">63</a></span>
+<span class="normal"><a href="#__codelineno-9-64">64</a></span>
+<span class="normal"><a href="#__codelineno-9-65">65</a></span>
+<span class="normal"><a href="#__codelineno-9-66">66</a></span>
+<span class="normal"><a href="#__codelineno-9-67">67</a></span>
+<span class="normal"><a href="#__codelineno-9-68">68</a></span>
+<span class="normal"><a href="#__codelineno-9-69">69</a></span>
+<span class="normal"><a href="#__codelineno-9-70">70</a></span>
+<span class="normal"><a href="#__codelineno-9-71">71</a></span>
+<span class="normal"><a href="#__codelineno-9-72">72</a></span>
+<span class="normal"><a href="#__codelineno-9-73">73</a></span>
+<span class="normal"><a href="#__codelineno-9-74">74</a></span>
+<span class="normal"><a href="#__codelineno-9-75">75</a></span>
+<span class="normal"><a href="#__codelineno-9-76">76</a></span>
+<span class="normal"><a href="#__codelineno-9-77">77</a></span>
+<span class="normal"><a href="#__codelineno-9-78">78</a></span>
+<span class="normal"><a href="#__codelineno-9-79">79</a></span>
+<span class="normal"><a href="#__codelineno-9-80">80</a></span>
+<span class="normal"><a href="#__codelineno-9-81">81</a></span>
+<span class="normal"><a href="#__codelineno-9-82">82</a></span>
+<span class="normal"><a href="#__codelineno-9-83">83</a></span>
+<span class="normal"><a href="#__codelineno-9-84">84</a></span>
+<span class="normal"><a href="#__codelineno-9-85">85</a></span>
+<span class="normal"><a href="#__codelineno-9-86">86</a></span>
+<span class="normal"><a href="#__codelineno-9-87">87</a></span>
+<span class="normal"><a href="#__codelineno-9-88">88</a></span>
+<span class="normal"><a href="#__codelineno-9-89">89</a></span>
+<span class="normal"><a href="#__codelineno-9-90">90</a></span>
+<span class="normal"><a href="#__codelineno-9-91">91</a></span>
+<span class="normal"><a href="#__codelineno-9-92">92</a></span>
+<span class="normal"><a href="#__codelineno-9-93">93</a></span>
+<span class="normal"><a href="#__codelineno-9-94">94</a></span>
+<span class="normal"><a href="#__codelineno-9-95">95</a></span>
+<span class="normal"><a href="#__codelineno-9-96">96</a></span>
+<span class="normal"><a href="#__codelineno-9-97">97</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="ch">#!/usr/bin/env python3</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="c1"># -*- coding: utf-8 -*-</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="c1"># @Author: yudengwu</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="c1"># @Date  : 2020/6/27</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="kn">import</span> <span class="nn">re</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="k">def</span> <span class="nf">pattern_cause</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>    <span class="s2">&quot;data.type: [文字]&quot;</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>    <span class="n">data</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a>    <span class="n">patterns</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a>    <span class="n">key_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;起火&#39;</span><span class="p">,</span> <span class="s1">&#39;事故&#39;</span><span class="p">,</span> <span class="s1">&#39;火灾&#39;</span><span class="p">]</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a>    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;.*?(?:</span><span class="si">{0}</span><span class="s1">)原因(.*?)[,.?:;!，。？：；！]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key_words</span><span class="p">)))</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a>    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;事故原因：&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="k">def</span> <span class="nf">pattern_lose</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a>    <span class="s2">&quot;data.type: [文字]&quot;</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a>    <span class="n">data</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a>    <span class="n">patterns</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a>
+<a id="__codelineno-9-26" name="__codelineno-9-26"></a>    <span class="n">key_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;伤亡&#39;</span><span class="p">,</span> <span class="s1">&#39;损失&#39;</span><span class="p">]</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27"></a>    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;.*?(未造成.*?(?:</span><span class="si">{0}</span><span class="s1">))[,.?:;!，。？：；]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key_words</span><span class="p">)))</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29"></a>
+<a id="__codelineno-9-30" name="__codelineno-9-30"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人死亡)&#39;</span><span class="p">))</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人身亡)&#39;</span><span class="p">))</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人受伤)&#39;</span><span class="p">))</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人烧伤)&#39;</span><span class="p">))</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人坠楼身亡)&#39;</span><span class="p">))</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35"></a>    <span class="n">patterns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(\d+人遇难)&#39;</span><span class="p">))</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37"></a>        <span class="n">jieguo</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">jieguo</span><span class="p">:</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39"></a>            <span class="k">pass</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41"></a>            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;事故伤亡：&#39;</span><span class="p">,</span> <span class="n">jieguo</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42"></a>
+<a id="__codelineno-9-43" name="__codelineno-9-43"></a>
+<a id="__codelineno-9-44" name="__codelineno-9-44"></a><span class="c1"># 事故时间：</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45"></a><span class="k">def</span> <span class="nf">pattern_time</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-9-46" name="__codelineno-9-46"></a>    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># data.type :str</span>
+<a id="__codelineno-9-47" name="__codelineno-9-47"></a>    <span class="n">PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;([0-9零一二两三四五六七八九十]+年)?([0-9一二两三四五六七八九十]+月)?([0-9一二两三四五六七八九十]+[号日])?([上中下午晚早]+)?([0-9零一二两三四五六七八九十百]+[点:\.时])?([0-9零一二三四五六七八九十百]+分?)?([0-9零一二三四五六七八九十百]+秒)?&quot;</span>
+<a id="__codelineno-9-48" name="__codelineno-9-48"></a>    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">PATTERN</span><span class="p">)</span>
+<a id="__codelineno-9-49" name="__codelineno-9-49"></a>    <span class="n">m</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-9-50" name="__codelineno-9-50"></a>    <span class="c1"># &quot;19年1月14日18时19分39秒上午&quot;</span>
+<a id="__codelineno-9-51" name="__codelineno-9-51"></a>    <span class="n">m1</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;上午&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-52" name="__codelineno-9-52"></a>    <span class="n">year</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 年</span>
+<a id="__codelineno-9-53" name="__codelineno-9-53"></a>    <span class="n">month</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># 月</span>
+<a id="__codelineno-9-54" name="__codelineno-9-54"></a>    <span class="n">day</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># 日</span>
+<a id="__codelineno-9-55" name="__codelineno-9-55"></a>    <span class="n">am</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># 上午，中午，下午，早中晚</span>
+<a id="__codelineno-9-56" name="__codelineno-9-56"></a>    <span class="n">hour</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 时</span>
+<a id="__codelineno-9-57" name="__codelineno-9-57"></a>    <span class="n">minutes</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>  <span class="c1"># 分</span>
+<a id="__codelineno-9-58" name="__codelineno-9-58"></a>    <span class="n">seconds</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>  <span class="c1"># 秒</span>
+<a id="__codelineno-9-59" name="__codelineno-9-59"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;事故时间: &#39;</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">am</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span><span class="p">)</span>
+<a id="__codelineno-9-60" name="__codelineno-9-60"></a>
+<a id="__codelineno-9-61" name="__codelineno-9-61"></a>
+<a id="__codelineno-9-62" name="__codelineno-9-62"></a><span class="c1"># 事件地点</span>
+<a id="__codelineno-9-63" name="__codelineno-9-63"></a><span class="k">def</span> <span class="nf">pattern_address</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-9-64" name="__codelineno-9-64"></a>    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># 转换格式</span>
+<a id="__codelineno-9-65" name="__codelineno-9-65"></a>    <span class="n">p_string</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;，&#39;</span><span class="p">)</span>  <span class="c1"># 分句</span>
+<a id="__codelineno-9-66" name="__codelineno-9-66"></a>    <span class="n">address</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-9-67" name="__codelineno-9-67"></a>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">p_string</span><span class="p">:</span>
+<a id="__codelineno-9-68" name="__codelineno-9-68"></a>        <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<a id="__codelineno-9-69" name="__codelineno-9-69"></a>        <span class="n">PATTERN1</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;([\u4e00-\u9fa5]{2,5}?(?:省|自治区|市)){0,1}([\u4e00-\u9fa5]{2,7}?(?:区|县|州)){0,1}([\u4e00-\u9fa5]{2,7}?(?:镇)){0,1}([\u4e00-\u9fa5]{2,7}?(?:村|街|街道)){0,1}([\d]{1,3}?(号)){0,1}&#39;</span>
+<a id="__codelineno-9-70" name="__codelineno-9-70"></a>        <span class="c1"># \u4e00-\u9fa5 匹配任何中文</span>
+<a id="__codelineno-9-71" name="__codelineno-9-71"></a>        <span class="c1"># {2,5} 匹配2到5次</span>
+<a id="__codelineno-9-72" name="__codelineno-9-72"></a>        <span class="c1"># ? 前面可不匹配</span>
+<a id="__codelineno-9-73" name="__codelineno-9-73"></a>        <span class="c1"># (?:pattern) 如industr(?:y|ies) 就是一个比 &#39;industry|industries&#39; 更简略的表达式。意思就是说括号里面的内容是一个整体是以y或者ies结尾的单词</span>
+<a id="__codelineno-9-74" name="__codelineno-9-74"></a>        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">PATTERN1</span><span class="p">)</span>
+<a id="__codelineno-9-75" name="__codelineno-9-75"></a>
+<a id="__codelineno-9-76" name="__codelineno-9-76"></a>        <span class="n">m</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<a id="__codelineno-9-77" name="__codelineno-9-77"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">m</span><span class="p">:</span>
+<a id="__codelineno-9-78" name="__codelineno-9-78"></a>            <span class="k">continue</span>
+<a id="__codelineno-9-79" name="__codelineno-9-79"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-80" name="__codelineno-9-80"></a>            <span class="n">address</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<a id="__codelineno-9-81" name="__codelineno-9-81"></a>
+<a id="__codelineno-9-82" name="__codelineno-9-82"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;事件地点：&#39;</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">address</span><span class="p">))</span>
+<a id="__codelineno-9-83" name="__codelineno-9-83"></a>
+<a id="__codelineno-9-84" name="__codelineno-9-84"></a>
+<a id="__codelineno-9-85" name="__codelineno-9-85"></a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<a id="__codelineno-9-86" name="__codelineno-9-86"></a>    <span class="n">pattern_cause</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-9-87" name="__codelineno-9-87"></a>    <span class="n">pattern_lose</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-9-88" name="__codelineno-9-88"></a>    <span class="n">pattern_time</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-9-89" name="__codelineno-9-89"></a>    <span class="n">pattern_address</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-9-90" name="__codelineno-9-90"></a>    <span class="c1"># shijian(data)</span>
+<a id="__codelineno-9-91" name="__codelineno-9-91"></a>
+<a id="__codelineno-9-92" name="__codelineno-9-92"></a>
+<a id="__codelineno-9-93" name="__codelineno-9-93"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<a id="__codelineno-9-94" name="__codelineno-9-94"></a>    <span class="c1"># 读取数据</span>
+<a id="__codelineno-9-95" name="__codelineno-9-95"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;新闻.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-9-96" name="__codelineno-9-96"></a>        <span class="n">test_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<a id="__codelineno-9-97" name="__codelineno-9-97"></a>    <span class="n">main</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></p>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/kobeyu652453/article/details/106985033">nlp事件抽取算例实现：（有完整算例和完整代码）_kobeyu652453的博客-CSDN</a></p>
+<p><a href="https://blog.csdn.net/qq_32037669/article/details/80985752">知识图谱-事件抽取综述_qq_32037669的博客-CSDN博客</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/85567106">gaojing：知识图谱-实体抽取与实体链接</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/173769646">李鹏宇：啥是事件抽取(Event Extraction)？</a></p>
+<p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
+作者: 三三, 哈工大SCIR, 画一个逗逗陪着我  <br />
+来源： <a href="https://zhuanlan.zhihu.com/p/231932147">https://zhuanlan.zhihu.com/p/231932147</a> , <a href="https://www.jiqizhixin.com/articles/2020-07-29-4">https://www.jiqizhixin.com/articles/2020-07-29-4</a> , <a href="https://www.jianshu.com/p/704e935c98a9">https://www.jianshu.com/p/704e935c98a9</a></p>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </button>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="footer.title">
+        
+          <a href="../../nlpinfo/spacy-python-information-extraction_22Jul07203415699453/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                使用 Python 和 spaCy 进行信息提取简介
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../../affiliate/seo_competitor_analyze/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                围绕SEO开展竞争对手分析
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "navigation.path", "navigation.prune", "navigation.top", "toc.integrate"], "search": "../../../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.726fbb30.min.js"></script>
+      
+        <script src="../../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,5252 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="线性判别分析(Linear Discriminant Analysis，以下简称LDA)是有监督的降维方法，在模式识别和机器学习领域中常用来降维。PCA是基于最大投影方差或最小投影距离的降维方法，LDA是基于最佳分类方案的降维方法，本文对其原理进行了详细总结。">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/">
+
+
+<link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    
+      
+        <title>如何画lda投影结果_线性判别分析（LDA）原理总结 - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.d451bc0e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a5377069.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-HS6FYDNKSV"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-HS6FYDNKSV",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+    <!-- <script async src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>-->
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lda_lda" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            广告流程自动化
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              如何画lda投影结果_线性判别分析（LDA）原理总结
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/" class="md-tabs__link">
+          
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../html5/" class="md-tabs__link">
+          
+  
+  HTML5/CSS/VUE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ml/matrix/" class="md-tabs__link">
+          
+  
+  机器学习
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
+          
+  
+  数学基础
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../nlp/nlp/" class="md-tabs__link">
+          
+  
+  自然语言处理
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          
+  
+  广告程序化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+          
+  
+  网站SEO优化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../rpa/tool-reptile-mobile-method-introduction_21Oct26195529728646/" class="md-tabs__link">
+          
+  
+  自动化与爬虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../quant/" class="md-tabs__link">
+          
+  
+  量化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../medicine/classification_hepatoprotective_drugs_usage/" class="md-tabs__link">
+          
+  
+  其他知识
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  关于
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python 基础教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 语法结构
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-datatypes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 数据类型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-strings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 字符串
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-fstring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python f 字符串
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-lists/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 列表
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 字典
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 集合
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-map/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 映射
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-operators/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 运算符
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-keywords/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 关键字
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-forloop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python for 循环
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-itergener/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 迭代器和生成器
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 列表推导式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-reverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 反转
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 正则表达式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-oop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 面向对象编程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 模块
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 中的软件包
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-exceptions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 异常
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-introspection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 自省
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-lambda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Lambda 函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 日志教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-simplejson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python JSON 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-faker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Faker 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-feedparser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python feedparser 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python bcrypt 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 套接字教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-smtplib/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python smtplib 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-yaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python YAML 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-hashing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 哈希教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-configparser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python ConfigParser 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-argparse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python argparse 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-sqlite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python SQLite 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-cerberus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Cerberus 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pymysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python PyMySQL 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-peewee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Peewee 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pydal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python pyDAL 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pytest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Pytest 单元测试教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BeautifulSoup 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pyquery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python pyquery 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-sympy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SymPy 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pandas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Matplotlib 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pillow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pillow 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-ftp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python FTP 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Requests 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-arrow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Arrow 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 魔术方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python Uipath Orchestrator Cloud API 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用python算微积分及牛顿迭代求解高阶方程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/py-setuptools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python打包分发工具setuptools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-processing-modules-handy-dandy-da_21Apr13181713428312/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用于数据处理的Python工具(Numerizer,Faker,Missingno,emot,Arrow)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用 Python Camelot从 PDF 文件中提取表格
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/ipiprequestsscrapy_downdawn-csdn_21Oct18105139565977/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多ip服务器绑定ip发送请求（requests和scrapy）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/workers-threadpoolexecutor-configure_22May22102214296245/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ThreadPoolExecutor 如何选择最大工作线程数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    HTML5/CSS/VUE
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            HTML5/CSS/VUE
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html_5_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html-head/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 头部
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html_5_video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 视频
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html-tables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 表格
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html-images/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 图像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html_5_geolocation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 地理定位
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html_5_webworkers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 Worker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/thinkphp-template-syntax_21Apr18100959778030/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ThinkPHP 模板语法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VUE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VUE资料目录
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NextJS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NextJS资料
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/matrix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习与矩阵,numpy,sklearn等工具
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python – 如何使用 t-SNE 進行降維
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征值分解、奇异值分解、PCA概念
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Numpy中矩阵计算模块linalg的常用函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    深度学习的激活函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    加快Scikit-Learn训练
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征选择,如何丢掉95%的数据并获得95%的准确率
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/pandas/speed-pandas-line-couple-significantly-c_21May12202229315527/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用几行代码显著加快pandas速度的6种方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/pandas/-pandas-joblib_22Apr09101730660571/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 joblib 对 Pandas 数据进行并行处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/pandas/series-example-analysis-forecasting-time_22Apr09120943456879/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    时间序列分析和预测
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/pandas/time-series-determination-analysis-trend_22Apr09135816740900/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    时间序列的趋势判断
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/imblearn-unbalanced-sample-categories-deeling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    imblearn SMOTE算法处理样本类别不平衡
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/rating-gridsearchcv_22Apr25090121978278/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gridSearchCV(网格搜索)的参数、方法及示例
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/recallcompleteness-accuracyaccuracy-valu_22Apr25102517019011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    混淆矩阵、准确率、精确率/查准率、召回率/查全率、F1值、ROC曲线的AUC值
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/basic/xgboost-starter-series-lecture-first_22May06135159845512/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XGBoost介绍
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/xgboost-tutorial-start-easy_22May07104546887754/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XGBoost 使用讲解
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/technique-nuclear-linearity-inseparable_22Sep11093830253879/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    讲解绘图与支持向量机(support vector machine)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    数学基础
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            数学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    指数分布公式的含义
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTeX 数学公式排版
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    常见概率统计分布及Python实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期望值、方差、协方差、相关系数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    softmax详解
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    最小二乘法多项式曲线拟合及其python实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loss-cross-entropy-_22Aug21144655921227/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    交叉熵损失函数一
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    损失函数 - 交叉熵损失函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    向量的距离度量
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    协方差、PCA、样本中心化,白化、方差、标准差、BN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    降维基础知识(样本均值、样本方差、中心矩阵)与PCA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    如何画lda投影结果_线性判别分析(LDA)原理总结
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    协方差矩阵的几何解释
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    从sympy求最简形矩阵到矩阵的四个子空间及其联系
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    了解卷积
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    向量内积外积的几何意义
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learning-function-deep-csdn-common-blog-_21Nov09082415645481/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    收集16个激活函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../numpy_21Dec04212656270821/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NumPy数组的四种乘法的使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../-csdn_pandas-_-pandas_21Dec05085221730822/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pandas 数据的归一化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../used-method-data-analytical-commonly-ana_22Mar21153258903810/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据分析常用的9种分析方法-判断分布
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maximum-likelihood-estimation-probabilit_22Aug20181839890939/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    贝叶斯估计、最大似然估计、最大后验概率估计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    自然语言处理
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            自然语言处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自然语言处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP 新手上路
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP HanNLP 词典分词
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文本关键词提取
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用Python从海量文本抽取主题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nlp常用工具集
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP pattern库 hands on
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于预训练模型的文本摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    开源项目，涵盖 11 类 AI 学习框架、平台
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自然语言处理工具包之NLTK
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bert-extractive-summarizer 中文文章的抽取式摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    理解NLP中的CNN卷积神经网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    依存分析与依存树 dependency parse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关键词与文章相关性, 关键词自动标注与提取
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 使用 Google NLP API进行网站分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 AI 自动执行 Web 爬网
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通过机器学习对网站进行分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TextRank算法简述
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLTK TextRank实现英文关键词提取
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用余弦相似度算法计算文本相似度
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    细数2018年最好的词嵌入和句嵌入技术
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    从头开始多标签文本分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    没有模型训练情况下用BERT做文本分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用 NLP 做文本分析和特征工程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/using-similarity-sentence-bert-word2vec-_21Apr13202631442339/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何使用 BERT 和 Word2Vec 计算句子相似性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-similarity-measuring-bert_21May08200617801479/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT用于计算句子文本相似度
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/topic-modeling-interactive-bertopic_21Apr27173610787396/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用BERTopic进行交互式主题建模
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/structured-data-processing-practice20211007/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    结构化数据提取实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/summary-long-extract-bert-article_21Oct23115502660035/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT时代下的摘要提取长文总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/csdn-blog-_nlp-summary_miner_zhu-summary_21Oct23175443667734/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP之文章摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/gentle-introduction-to-text-summarization_ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于词频计算句子权重的文本自动摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/text-task-summarize-incomplete-auto-summ_21Oct24165632331849/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文本自动摘要任务的“不完全”心得总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/topic-entity-model-name-recognition-base_21Oct24174759876009/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于主题模型和命名实体识别的自动摘要方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/word-vector-one-hotsvdnnlmword2vecglove_21Oct24183706851403/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    词向量(one-hot/SVD/NNLM/Word2Vec/GloVe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/practical-guide-generative-examples_21Oct25174535026003/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP文本摘要实操 - 具有生成示例的实用指南
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/tokenizer-spacy-extract-custom-keywords-_22Jul06185024871770/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    向 spaCy 添加指定分词器(Jieba,CKIP Transformers)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/spacy-python-information-extraction_22Jul07203415699453/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Python 和 spaCy 进行信息提取简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/extraction-event_22Sep08161543208256/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    事件抽取简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    广告程序化
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            广告程序化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    围绕SEO开展竞争对手分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shopify独立站的几套选品方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/semantic-search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    什么是语义搜索？它是如何影响SEO的
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/meta-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何编写完美的元描述
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Python 进行 Facebook 抓取和情绪分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instagram 爬虫
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Python 查找关键字类别的搜索量上限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    可视化 100，000 亚马逊产品
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用SimHash进行海量文本去重流程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何把网站提交给搜索引擎
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    动态网站使用 Python 向 Google 自动提交站点地图
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/seo_open_graph_protocol/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO 优化: Open Graph protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/seo_json_ld_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO 优化: 添加 JSON-LD 数据
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    网站SEO优化
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            网站SEO优化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    长尾词优化入网页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/keyword-difficulty/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关键词难度：如何确认你在 Google 获得排名的机会
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何让网站排名进入谷歌首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何搭建一个成功的亚马逊联盟网站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/how-to-start-seo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO每日流量如何从0到10000
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python与SEO 词库完整指南
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python百度下拉框关键词采集
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/adsense/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hexo个人next主题博客接入谷歌广告
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    自动化与爬虫
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            自动化与爬虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpa/tool-reptile-mobile-method-introduction_21Oct26195529728646/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    移动端爬虫工具与方法介绍
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpa/sharp-reptile-playwright-generation_22Mar16150047139054/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    新一代爬虫工具 -- Playwright
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpa/thing-grab_23Jun14171058520489/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安卓、苹果的全局代理以及抓包
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    量化
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            量化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/strength-resistance-support-relative-tim_22Mar09144910644904/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RSRS(阻力支撑相对强度)择时策略研究
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/world-stock-select-afraid_22Mar11102617879419/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多因子模型选股,配RSRS择时方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/strong-quantificationhow-onel-find-pytho_22Mar11115955383426/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    利用欧奈尔的RPS寻找强势股
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/regression-model-line-code-author_22Mar16105340028529/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lazy Predict 如何用几行代码运行 40 个回归模型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/_22Mar15205312018057/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    巴菲特的Alpha:利用机器学习量化『股票基本面』
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/correlation-nlpnlu-matrix-vectorspace-da_22Mar16152147921647/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用矢量空间AI NLP / NLU相关矩阵数据集生成阿尔法:股票与周期性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/trading-quantitative-factor-evaluation-s_22Apr25121650255339/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化交易入门——因子的评价体系和IC、IR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/series-brief-introduction-primer-simple-_22Apr28144022194446/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（二）——简单策略初探
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/series-primer-investing-capm-risk-quanti_22Apr28145508941654/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（三）——CAPM与风险
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/series-quantitative-primer-investing-bar_22Apr28150803767664/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（四）——APT与BARRA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/series-portfolio-construction-primer-bas_22Apr28152227119078/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（五）——基于BARRA的组合构建
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/technical-factor-series-analysis-primer-_22Apr28154753258404/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（六）——技术性因子分析与遗传算法生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/trend-stock-series-prediction-primer-bas_22Apr28155928476282/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（七）——基于机器学习的股票走势预测
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/trend-stock-series-prediction-investing-_22Apr28160755545143/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（八）——基于神经网络的股票走势预测
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/tabnet-series-investment-entry-quantitat_22Apr28161224255196/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（九）——TabNet解析与使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/time-series-forecasting-moving-methods-b_22May03131956778461/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    时间序列预测基本方法--移动平均（SMA、EMA、WMA）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/stocks/trading-indicator-macd-clearly-people-ex_22May03162310791780/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MACD交易指标
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    其他知识
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            其他知识
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../medicine/classification_hepatoprotective_drugs_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    保肝药的分类及其使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ubuntu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ubuntu系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ai_ml_testlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI实验平台小技巧
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    工具集合文档
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/tutorial-socks5-android_23Jun14102027281268/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安卓机使用socks5教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/proxy-http-center-socks5-green-availabil_23Jun15205449339580/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    测试socks5 和http 代理IP 的可用性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AIGC教程目录
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+
+
+<script type="text/javascript">
+//September 26, 2023 添加广告 banner
+console.log("ad banner");
+</script>
+<div>
+  <a href="https://www.aijiaolian.chat/midjourney?puid=6056" target="_blank">
+  <img src="/img/onekeyAIGC.jpg" class="img" alt="人工智能一键成图"/>
+  <p style="color:red;font-size:28px;width: 100%;display: block;text-align: center;">AIGC Midjourney 智能一键生成图片</p>
+  </a>
+</div>
+
+
+<h1 id="lda_lda">如何画lda投影结果_线性判别分析（LDA）原理总结<a class="headerlink" href="#lda_lda" title="Permanent link">&para;</a></h1>
+<p><strong>前言</strong></p>
+<p>线性判别分析(Linear Discriminant Analysis，以下简称LDA)是有监督的降维方法，在模式识别和机器学习领域中常用来降维。PCA是基于最大投影方差或最小投影距离的降维方法，LDA是基于最佳分类方案的降维方法，本文对其原理进行了详细总结。</p>
+<p><strong>目录</strong></p>
+<p>1. PCA与LDA降维原理对比<br />
+2. 二类LDA算法推导</p>
+<p>3. 多类LDA算法推导</p>
+<p>4. LDA算法流程</p>
+<p>5. 正态性假设</p>
+<p>6. LDA分类算法</p>
+<p>7. LDA小结</p>
+<p><strong>1. PCA与LDA降维原理对比</strong></p>
+<p>1.1 PCA降维原理</p>
+<p>PCA是非监督式的降维方法，在降维过程中没有考虑类别的影响，PCA是基于最大投影方差或最小投影距离的降维方法，通俗点说，PCA降维后的样本集最大程度的保留了初始样本信息，常用投影距离来描述投影前后样本的差异信息。</p>
+<p>用数学公式来阐述这一思想：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175824217163_1.png' alt='f7cf67ad6f2727642e3b47bd5d51042d.png' /></p>
+<p>其中原始样本集(n个m维数据)：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175825394082_1.png' alt='d7df5be0a152e531c3a3d13bc39db690.png' /></p>
+<p>降维后的样本集(n个k维数据)：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175826553425_1.png' alt='687673fde8339ceb6689f7425dbd869f.png' /></p>
+<p>假设投影变换后的新坐标系(标准正交基)：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175828612395_1.png' alt='94a081feab8b7c1d37e836957bac21ee.png' /></p>
+<p>投影前后的样本关系：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175830887752_1.png' alt='7bd086a9c2d612becf26fc6a2142d425.png' /></p>
+<p>最小化(1)式，并根据条件(2)，可求得最佳的投影坐标系W。给定新的输入样本，利用(2)式可求的对应的降维样本。</p>
+<p>1.2 LDA降维原理</p>
+<p>LDA是有监督的降维方法，在降维过程中考虑了类别的影响，LDA是基于最佳分类效果的降维方法。因此，降维后不同类的样本集具有最大的分类间隔 。</p>
+<p>如何描述最大分类间隔，当不同类样本的投影点尽可能远离且相同类样本的投影点尽可能接近，则样本集具有最大分类间隔。我们用类中心间的距离和类的协方差分别表示不同类的距离和相同类的接近程度。</p>
+<p>本节只考虑二分类的LDA降维，不同类样本间的投影距离：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175833016616_1.png' alt='79d5ac39af6fbcb728dca5100dcd622f.png' /></p>
+<p>不同类的投影协方差之和：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175835063330_1.png' alt='3d5cafb1d4eecea54a444bdab47cf0de.png' /></p>
+<p>结合(3)(4)式，得到优化目标函数：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175836443939_1.png' alt='0099b5181be2bfe16213eada2f6b6a9c.png' /></p>
+<p>最大化(5)式，得到投影向量w，其中<img src='images/principle-judgment-analysis-linear-summa_21Mar18175837649347_1.png' alt='137eebc8d7ef9ffdd4d2906f0ca332a2.png' />和<img src='images/principle-judgment-analysis-linear-summa_21Mar18175838784631_1.png' alt='31638c4c2d7abd87ee3f3a58c068d4f7.png' />分别是两个类样本的中心点，<img src='images/principle-judgment-analysis-linear-summa_21Mar18175839908463_1.png' alt='44a3b6450ee93fdac94982917a472ca5.png' />和<img src='images/principle-judgment-analysis-linear-summa_21Mar18175841041219_1.png' alt='7b7fd0fbc814e8cb60478c57f86631f6.png' />分别是两个类的协方差。</p>
+<p>1.3 PCA与LDA降维应用场景对比</p>
+<p>若训练样本集两类的均值有明显的差异，LDA降维的效果较优，如下图：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175842192359_1.png' alt='d58e0bdec36ba410120061f6ab9cfa4c.png' /></p>
+<p>由上图可知，LDA降维后的二分类样本集具有明显差异的样本分布。</p>
+<p>若训练样本集两类的均值无明显的差异，但协方差差异很大，PCA降维的效果较优，如下图：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175843435367_1.jpeg' alt='67680274b8cb2f88ecee97d3d7d12bf4.png' /></p>
+<p>由上图可知，PCA降维后的二分类样本分布较LDA有明显的差异。</p>
+<p><strong>2. 二类LDA算法推导</strong></p>
+<p>假设二类数据集<img src='images/principle-judgment-analysis-linear-summa_21Mar18175844584589_1.png' alt='ffea3d60199a8d268f07b27838e78148.png' />，其中xi为m维列向量，我们定义两类为C1和C2，即<img src='images/principle-judgment-analysis-linear-summa_21Mar18175846379749_1.png' alt='fae2bcdffe6e17d8d1eb0735804c2f6d.png' />，对应的样本集个数分别为<img src='images/principle-judgment-analysis-linear-summa_21Mar18175847502857_1.png' alt='7e77e251fff16a3cde51bb1205af68c8.png' />和<img src='images/principle-judgment-analysis-linear-summa_21Mar18175849234722_1.png' alt='36be0ee8279b0b288398a27a5a9a9ede.png' />。</p>
+<p>根据上一节的LDA的优化目标函数推导投影向量，即最大化目标函数：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175850381644_1.png' alt='50ca365ab613411e76ce61728303ea77.png' /></p>
+<p>其中<img src='images/principle-judgment-analysis-linear-summa_21Mar18175851652009_1.png' alt='2dd22e07487c1bd4268df727b8091cc3.png' />和<img src='images/principle-judgment-analysis-linear-summa_21Mar18175853789035_1.png' alt='12953643ad1eacb5691e27f2dc6360b4.png' />为二类的均值向量：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175855542719_1.png' alt='f26b6b8e2c8d48f3fa9fdbf4aaa196e7.png' /></p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175857489708_1.png' alt='b05d3895c38bd0908d04193143b1908d.png' /></p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175858717746_1.png' alt='3517a648de4c426f9ce63afe239902b9.png' />和<img src='images/principle-judgment-analysis-linear-summa_21Mar18175900050455_1.png' alt='83e7ab17129d3ec1098b1b915570f3d8.png' />为二类的协方差矩阵：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175901381381_1.png' alt='3e28e507f26538b22fcd6afc2ecba1b1.png' /></p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175902629299_1.png' alt='bdd668c31e1620cc23b0808898e412fa.png' /></p>
+<p>目标函数转化为：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175903852648_1.png' alt='daddd7842923c8c04cb41d0a1c8eecc7.png' /></p>
+<p>定义类内散度矩阵<img src='images/principle-judgment-analysis-linear-summa_21Mar18175905272178_1.png' alt='decba92eb845a64a5a6ae606f4d499ad.png' />和类间散度矩阵<img src='images/principle-judgment-analysis-linear-summa_21Mar18175906603141_1.png' alt='9b8304833f9671111dc2355395ae51b0.png' />：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175907902496_1.png' alt='c74ad2f349a652032f744f0258db5f89.png' /></p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175909775085_1.png' alt='aefef9d81cec882b06db892e3fc58768.png' /></p>
+<p>则(6)式等价于：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175910979626_1.png' alt='77aed78dae765282bf99c1f8bcf3177d.png' /></p>
+<p>我们对(7)式的分母进行标准化，则(7)式等价于：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175913874047_1.png' alt='d15a13e313f317cda4985edb87009d8a.png' /></p>
+<p>引用拉格朗日乘子法，得：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175915101877_1.png' alt='0de81b58486dfa9f700517258f3714cc.png' /></p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175916331500_1.png' alt='2b43124d3a679a7afb9d4312b6d38928.png' /></p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175917662123_1.png' alt='2ec7b4234f4b6f40af6304d08bebf85b.png' /></p>
+<p>因此，只要求出原始二类样本的均值和协方差就可以确定最佳的投影方向w了。</p>
+<p><strong>3. 多类LDA算法推导</strong></p>
+<p>假设k类数据集<img src='images/principle-judgment-analysis-linear-summa_21Mar18175919197627_1.png' alt='ffea3d60199a8d268f07b27838e78148.png' />，其中xi为m维列向量，我们定义k类为</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175920531001_1.png' alt='a16e41336161d86fa87a7090c1a0c926.png' />，对应的样本集个数分别为<img src='images/principle-judgment-analysis-linear-summa_21Mar18175922474330_1.png' alt='e68e89413ca741261ccf75ff78eacde0.png' />。二类样本数据集通过投影向量w降到一维空间，多类样本数据集降到低维空间是一个超平面，假设投影到低维空间的维度为d，对应的基向量矩阵<img src='images/principle-judgment-analysis-linear-summa_21Mar18175923770398_1.png' alt='d316eaa0a86c3abb3d8281be83eeef1d.png' />。</p>
+<p>因此，多类LDA算法的优化目标函数为：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175925035540_1.png' alt='813f257c8b735bff79077fd625ae83ba.png' /></p>
+<p>其中类内散度矩阵<img src='images/principle-judgment-analysis-linear-summa_21Mar18175926264380_1.png' alt='decba92eb845a64a5a6ae606f4d499ad.png' />和类间散度矩阵<img src='images/principle-judgment-analysis-linear-summa_21Mar18175927491838_1.png' alt='9b8304833f9671111dc2355395ae51b0.png' />：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175928729039_1.png' alt='461cfa28ba457a63db8957cfa6300a7f.png' /></p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175930667717_1.png' alt='5168ef78ff7ae5d6f6d124fe377eece1.png' /></p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175931997632_1.png' alt='19ff740859477d6e02d8832cd6d80f98.png' />为第j类样本的均值向量，u为所有样本的均值向量：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175933329187_1.png' alt='8f363cb8082d755514196b4abcc1c20b.png' /></p>
+<p>因为(8)式分子分母都是矩阵，常见的一种实现是取矩阵的迹，优化目标函数转化为：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175934660043_1.png' alt='0d9dd8a3d54a4cb034c69572c43f9fba.png' /></p>
+<p>优化过程如下：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175937322944_1.png' alt='034c6594bf85fce19488e8b25f8f093a.png' /></p>
+<p>参考二类LDA算法，利用拉格朗日乘子法，得：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175938537415_1.png' alt='f0f1c44927bb8f9f113b92f0740f84f5.png' /></p>
+<p>两边左乘<img src='images/principle-judgment-analysis-linear-summa_21Mar18175940190087_1.png' alt='68edcf7afb3e2c100f82ef128f19dc06.png' />：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175941520956_1.png' alt='24dfe968d2e571c9af2f821caaf9db24.png' /></p>
+<p>由上式可得LDA的最优投影空间是矩阵<img src='images/principle-judgment-analysis-linear-summa_21Mar18175942708141_1.png' alt='8cd7e02e3c75eea2b32c7e2f0cc61d89.png' />最大d个特征值对应的特征向量所组成的。</p>
+<p><strong>4. LDA算法流程</strong></p>
+<p>前两节推导了LDA算法，现在对LDA算法流程进行总结，理清一下思路。</p>
+<p>假设k类数据集<img src='images/principle-judgment-analysis-linear-summa_21Mar18175946027402_1.png' alt='ffea3d60199a8d268f07b27838e78148.png' />，其中xi为m维列向量，我们定义k类为</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18175947256205_1.png' alt='a16e41336161d86fa87a7090c1a0c926.png' />，降维后的维度是d。</p>
+<p>1)计算每个类样本的均值向量<img src='images/principle-judgment-analysis-linear-summa_21Mar18175948587349_1.png' alt='0d09b83ce3f517f1a9abd260fe3e6408.png' />和所有数据集的均值向量<img src='images/principle-judgment-analysis-linear-summa_21Mar18175950635252_1.png' alt='9090831acf8fea34d6a5b014702c2cc2.png' /></p>
+<p>2)计算散度矩阵，包括类内散度矩阵<img src='images/principle-judgment-analysis-linear-summa_21Mar18175952581089_1.png' alt='decba92eb845a64a5a6ae606f4d499ad.png' />和类间散度矩阵<img src='images/principle-judgment-analysis-linear-summa_21Mar18175953747159_1.png' alt='9b8304833f9671111dc2355395ae51b0.png' /></p>
+<p>3)计算<img src='images/principle-judgment-analysis-linear-summa_21Mar18175957189170_1.png' alt='8cd7e02e3c75eea2b32c7e2f0cc61d89.png' />的特征向量<img src='images/principle-judgment-analysis-linear-summa_21Mar18175958622052_1.png' alt='9f8e2e1d1de7b162bf2640cecfe2a4ec.png' />和对应的特征值<img src='images/principle-judgment-analysis-linear-summa_21Mar18175959953778_1.png' alt='6e6a2589a091e4978fa79cffd7a1b2b5.png' /></p>
+<p>4)选择d个最大特征值对应的矩阵<img src='images/principle-judgment-analysis-linear-summa_21Mar18180001148206_1.png' alt='962a6aa6aaec51b7ed441bd86f183fa9.png' />，矩阵的每一列表示特征向量</p>
+<p>5)对数据集D进行降维，得到对应的降维数据集<img src='images/principle-judgment-analysis-linear-summa_21Mar18180002411832_1.png' alt='8579f97c450de234f5bc54a353fc3a76.png' />，其中<img src='images/principle-judgment-analysis-linear-summa_21Mar18180004238797_1.png' alt='3dd4e7c865f7be741141bc740dfa7bd8.png' />。</p>
+<p><strong>5. 正态性假设</strong></p>
+<p>LDA算法对数据集进行了如下假设：</p>
+<p>1)数据集是服从正态分布的；</p>
+<p>2)特征间是相互独立的；</p>
+<p>3)每个类的协方差矩阵是相同的；</p>
+<p>但是如果不满足了这三个假设，LDA算法也能用来分类和降维，因此LDA算法对数据集的分布有较好的鲁棒性。</p>
+<p><strong>6. LDA分类算法</strong></p>
+<p>前面我们重点分析了LDA算法在降维的应用，LDA算法也能用于分类 。LDA假设各类的样本数据集符合正态分布，LDA对各类的样本数据进行降维后，我们可以通过最大似然估计去计算各类别投影数据的均值和方差，如下式：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18180005994052_1.png' alt='8b1058875680f3a1d968bee182c13ce0.png' /></p>
+<p>进而得到各个类样本的概率密度函数：</p>
+<p><img src='images/principle-judgment-analysis-linear-summa_21Mar18180007217266_1.png' alt='212011d911e5a66e81ea9eadcd4f4372.png' /></p>
+<p>其中<img src='images/principle-judgment-analysis-linear-summa_21Mar18180008388308_1.png' alt='238df367b996919c8d77fc8e71254081.png' />为降维后的样本。</p>
+<p>因此对一个未标记的输入样本进行LDA分类的步骤：</p>
+<p>1) LDA对该输入样本进行降维；</p>
+<p>2)根据概率密度函数，计算该降维样本属于每一个类的概率；</p>
+<p>3)最大的概率对应的类别即为预测类别。</p>
+<p><strong>7. LDA小结</strong></p>
+<p>PCA是基于最大投影方差的降维方法，LDA是基于最优分类的降维方法，当两类的均值有明显差异时，LDA降维方法较优；当两类的协方差有明显差异时，PCA降维方法较优。在实际应用中也常结合LDA和PCA一起使用，先用PCA降维去消除噪声，再用LDA降维。</p>
+<p>参考</p>
+<p><a href="http://sebastianraschka.com/Articles/2014_python_lda.html#introduction">http://sebastianraschka.com/Articles/2014_python_lda.html#introduction</a></p>
+<p><a href="https://www.cnblogs.com/pinard/p/6244265.html">https://www.cnblogs.com/pinard/p/6244265.html</a></p>
+<p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
+作者:  黄昏看日出   <br />
+来源： <a href="https://blog.csdn.net/weixin_42499335/article/details/112652055">https://blog.csdn.net/weixin_42499335/article/details/112652055</a> </p>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </button>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="footer.title">
+        
+          <a href="../variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                降维基础知识(样本均值、样本方差、中心矩阵)与PCA
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                协方差矩阵的几何解释
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "navigation.path", "navigation.prune", "navigation.top", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.726fbb30.min.js"></script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
