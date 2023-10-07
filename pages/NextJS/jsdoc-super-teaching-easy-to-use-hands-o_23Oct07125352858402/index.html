@@ -8,24 +8,24 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <meta name="description" content="Next.js是一个构建于Node.js之上的开源Web开发框架，支持基于React的Web应用程序功能，例如服务端渲染和生成静态网站。">
+  <meta name="description" content="安装准备Nodejs 8150+通过npm安装全局安装：npm install -g jsdoc 若出现权限问题，如 EACCES报错，最佳实践为用node版本管理器（nvm等）重装npm本地安装：npm --save-dev jsdoc命令行工具目录：node_modulesbin">
 
 
-  <link rel="canonical" href="https://geek.digiasset.org/pages/NextJS/">
+  <link rel="canonical" href="https://geek.digiasset.org/pages/NextJS/jsdoc-super-teaching-easy-to-use-hands-o_23Oct07125352858402/">
 
 
 <link rel="shortcut icon" href="/assets/images/favicon.png">
 
     
       
-        <title>NextJS 资料 - 广告流程自动化</title>
+        <title>JSDoc入门使用指南 - 广告流程自动化</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.d451bc0e.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.d451bc0e.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a5377069.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a5377069.min.css">
       
       
 
@@ -44,9 +44,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nextjs" class="md-skip">
+        <a href="#jsdoc" class="md-skip">
           跳转至
         </a>
       
@@ -103,7 +103,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+    <a href="../../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NextJS 资料
+              JSDoc入门使用指南
             
           </span>
         </div>
@@ -215,7 +215,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
     
@@ -234,7 +234,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../python/" class="md-tabs__link">
+        <a href="../../python/" class="md-tabs__link">
           
   
   Python
@@ -248,13 +248,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../html5/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../html5/" class="md-tabs__link">
           
   
   HTML5/CSS/VUE
@@ -272,7 +270,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../ml/matrix/" class="md-tabs__link">
+        <a href="../../ml/matrix/" class="md-tabs__link">
           
   
   机器学习
@@ -290,7 +288,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
+        <a href="../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
           
   
   数学基础
@@ -308,7 +306,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../nlp/nlp/" class="md-tabs__link">
+        <a href="../../nlp/nlp/" class="md-tabs__link">
           
   
   自然语言处理
@@ -326,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+        <a href="../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
           
   
   广告程序化
@@ -344,7 +342,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+        <a href="../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
           
   
   网站SEO优化
@@ -362,7 +360,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../rpa/tool-reptile-mobile-method-introduction_21Oct26195529728646/" class="md-tabs__link">
+        <a href="../../rpa/tool-reptile-mobile-method-introduction_21Oct26195529728646/" class="md-tabs__link">
           
   
   自动化与爬虫
@@ -380,7 +378,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../quant/" class="md-tabs__link">
+        <a href="../../quant/" class="md-tabs__link">
           
   
   量化
@@ -398,7 +396,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../medicine/classification_hepatoprotective_drugs_usage/" class="md-tabs__link">
+        <a href="../../medicine/classification_hepatoprotective_drugs_usage/" class="md-tabs__link">
           
   
   其他知识
@@ -414,7 +412,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../about/" class="md-tabs__link">
+      <a href="../../../about/" class="md-tabs__link">
         
   
     
@@ -450,7 +448,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+    <a href="../../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -467,7 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -527,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/" class="md-nav__link">
+      <a href="../../python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -547,7 +545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -567,7 +565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-datatypes/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-datatypes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -587,7 +585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-strings/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-strings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -607,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-fstring/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-fstring/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -627,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-lists/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-lists/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -647,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-dictionaries/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-dictionaries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -667,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-set/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -687,7 +685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-map/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-map/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -707,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-operators/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-operators/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -727,7 +725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-keywords/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-keywords/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -747,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-forloop/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-forloop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -767,7 +765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-itergener/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-itergener/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -787,7 +785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -807,7 +805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-reverse/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-reverse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -827,7 +825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-functions/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -847,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -867,7 +865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-oop/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-oop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -887,7 +885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-modules/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-modules/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -907,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-packages/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-packages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -927,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-exceptions/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-exceptions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -947,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-introspection/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-introspection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -967,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-lambda/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-lambda/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -987,7 +985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-logging/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-logging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1007,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-simplejson/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-simplejson/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1027,7 +1025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-faker/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-faker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1047,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-feedparser/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-feedparser/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1067,7 +1065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-bcrypt/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-bcrypt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1087,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-socket/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-socket/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1107,7 +1105,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-smtplib/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-smtplib/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1127,7 +1125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-yaml/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-yaml/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1147,7 +1145,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-hashing/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-hashing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1167,7 +1165,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-configparser/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-configparser/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1187,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-argparse/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-argparse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1207,7 +1205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-sqlite/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-sqlite/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1227,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-cerberus/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-cerberus/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1247,7 +1245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-pymysql/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-pymysql/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1267,7 +1265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-peewee/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-peewee/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1287,7 +1285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-pydal/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-pydal/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1307,7 +1305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-pytest/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-pytest/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1327,7 +1325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1347,7 +1345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-pyquery/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-pyquery/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1367,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-sympy/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-sympy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1387,7 +1385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-pandas/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-pandas/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1407,7 +1405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-matplotlib/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-matplotlib/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1427,7 +1425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-pillow/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-pillow/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1447,7 +1445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-ftp/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-ftp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1467,7 +1465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-requests/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-requests/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1487,7 +1485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-arrow/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-arrow/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1507,7 +1505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-magicmethods/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-magicmethods/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1527,7 +1525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1547,7 +1545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+      <a href="../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1567,7 +1565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/py-setuptools/" class="md-nav__link">
+      <a href="../../python/pytutorial/py-setuptools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1587,7 +1585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/python-processing-modules-handy-dandy-da_21Apr13181713428312/" class="md-nav__link">
+      <a href="../../python/pytutorial/python-processing-modules-handy-dandy-da_21Apr13181713428312/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1607,7 +1605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-nav__link">
+      <a href="../../python/pytutorial/single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1627,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/ipiprequestsscrapy_downdawn-csdn_21Oct18105139565977/" class="md-nav__link">
+      <a href="../../python/pytutorial/ipiprequestsscrapy_downdawn-csdn_21Oct18105139565977/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1647,7 +1645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/pytutorial/workers-threadpoolexecutor-configure_22May22102214296245/" class="md-nav__link">
+      <a href="../../python/pytutorial/workers-threadpoolexecutor-configure_22May22102214296245/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1672,8 +1670,6 @@
       
   
   
-    
-  
   
     
     
@@ -1683,12 +1679,14 @@
       
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -1702,7 +1700,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             HTML5/CSS/VUE
@@ -1715,7 +1713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html5/" class="md-nav__link">
+      <a href="../../html5/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1735,7 +1733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html5/html_5_intro/" class="md-nav__link">
+      <a href="../../html5/html_5_intro/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1755,7 +1753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html5/html-head/" class="md-nav__link">
+      <a href="../../html5/html-head/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1775,7 +1773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html5/html_5_video/" class="md-nav__link">
+      <a href="../../html5/html_5_video/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1795,7 +1793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html5/html-tables/" class="md-nav__link">
+      <a href="../../html5/html-tables/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1815,7 +1813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html5/html-images/" class="md-nav__link">
+      <a href="../../html5/html-images/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1835,7 +1833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html5/html_5_geolocation/" class="md-nav__link">
+      <a href="../../html5/html_5_geolocation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1855,7 +1853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html5/html_5_webworkers/" class="md-nav__link">
+      <a href="../../html5/html_5_webworkers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1875,7 +1873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../html5/thinkphp-template-syntax_21Apr18100959778030/" class="md-nav__link">
+      <a href="../../html5/thinkphp-template-syntax_21Apr18100959778030/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1895,7 +1893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../VUE/" class="md-nav__link">
+      <a href="../../VUE/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1913,18 +1911,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1933,7 +1922,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1993,7 +1981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/matrix/" class="md-nav__link">
+      <a href="../../ml/matrix/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2013,7 +2001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+      <a href="../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2033,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+      <a href="../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2053,7 +2041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+      <a href="../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2073,7 +2061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+      <a href="../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2093,7 +2081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+      <a href="../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2113,7 +2101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-nav__link">
+      <a href="../../ml/sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2133,7 +2121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/pandas/speed-pandas-line-couple-significantly-c_21May12202229315527/" class="md-nav__link">
+      <a href="../../ml/pandas/speed-pandas-line-couple-significantly-c_21May12202229315527/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2153,7 +2141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/pandas/-pandas-joblib_22Apr09101730660571/" class="md-nav__link">
+      <a href="../../ml/pandas/-pandas-joblib_22Apr09101730660571/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2173,7 +2161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/pandas/series-example-analysis-forecasting-time_22Apr09120943456879/" class="md-nav__link">
+      <a href="../../ml/pandas/series-example-analysis-forecasting-time_22Apr09120943456879/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2193,7 +2181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/pandas/time-series-determination-analysis-trend_22Apr09135816740900/" class="md-nav__link">
+      <a href="../../ml/pandas/time-series-determination-analysis-trend_22Apr09135816740900/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2213,7 +2201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/sklearn/imblearn-unbalanced-sample-categories-deeling/" class="md-nav__link">
+      <a href="../../ml/sklearn/imblearn-unbalanced-sample-categories-deeling/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2233,7 +2221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/sklearn/rating-gridsearchcv_22Apr25090121978278/" class="md-nav__link">
+      <a href="../../ml/sklearn/rating-gridsearchcv_22Apr25090121978278/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2253,7 +2241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/sklearn/recallcompleteness-accuracyaccuracy-valu_22Apr25102517019011/" class="md-nav__link">
+      <a href="../../ml/sklearn/recallcompleteness-accuracyaccuracy-valu_22Apr25102517019011/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2273,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/basic/xgboost-starter-series-lecture-first_22May06135159845512/" class="md-nav__link">
+      <a href="../../ml/basic/xgboost-starter-series-lecture-first_22May06135159845512/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2293,7 +2281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/sklearn/xgboost-tutorial-start-easy_22May07104546887754/" class="md-nav__link">
+      <a href="../../ml/sklearn/xgboost-tutorial-start-easy_22May07104546887754/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2313,7 +2301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ml/sklearn/technique-nuclear-linearity-inseparable_22Sep11093830253879/" class="md-nav__link">
+      <a href="../../ml/sklearn/technique-nuclear-linearity-inseparable_22Sep11093830253879/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2381,7 +2369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+      <a href="../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2401,7 +2389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+      <a href="../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2421,7 +2409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+      <a href="../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2441,7 +2429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+      <a href="../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2461,7 +2449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+      <a href="../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2481,7 +2469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+      <a href="../../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2501,7 +2489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/loss-cross-entropy-_22Aug21144655921227/" class="md-nav__link">
+      <a href="../../mathbasic/loss-cross-entropy-_22Aug21144655921227/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2521,7 +2509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
+      <a href="../../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2541,7 +2529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
+      <a href="../../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2561,7 +2549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
+      <a href="../../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2581,7 +2569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
+      <a href="../../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2601,7 +2589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
+      <a href="../../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2621,7 +2609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
+      <a href="../../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2641,7 +2629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
+      <a href="../../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2661,7 +2649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
+      <a href="../../mathbasic/understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2681,7 +2669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
+      <a href="../../mathbasic/within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2701,7 +2689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/learning-function-deep-csdn-common-blog-_21Nov09082415645481/" class="md-nav__link">
+      <a href="../../mathbasic/learning-function-deep-csdn-common-blog-_21Nov09082415645481/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2721,7 +2709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/numpy_21Dec04212656270821/" class="md-nav__link">
+      <a href="../../mathbasic/numpy_21Dec04212656270821/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2741,7 +2729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/-csdn_pandas-_-pandas_21Dec05085221730822/" class="md-nav__link">
+      <a href="../../mathbasic/-csdn_pandas-_-pandas_21Dec05085221730822/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2761,7 +2749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/used-method-data-analytical-commonly-ana_22Mar21153258903810/" class="md-nav__link">
+      <a href="../../mathbasic/used-method-data-analytical-commonly-ana_22Mar21153258903810/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2781,7 +2769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mathbasic/maximum-likelihood-estimation-probabilit_22Aug20181839890939/" class="md-nav__link">
+      <a href="../../mathbasic/maximum-likelihood-estimation-probabilit_22Aug20181839890939/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2849,7 +2837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlp/" class="md-nav__link">
+      <a href="../../nlp/nlp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2869,7 +2857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2889,7 +2877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2909,7 +2897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2929,7 +2917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2949,7 +2937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/topicextract/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/topicextract/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2969,7 +2957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2989,7 +2977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3009,7 +2997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3029,7 +3017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3049,7 +3037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3069,7 +3057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3089,7 +3077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3109,7 +3097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3129,7 +3117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3149,7 +3137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3169,7 +3157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3189,7 +3177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3209,7 +3197,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3229,7 +3217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3249,7 +3237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3269,7 +3257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3289,7 +3277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3309,7 +3297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3329,7 +3317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3349,7 +3337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3369,7 +3357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3389,7 +3377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3409,7 +3397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/using-similarity-sentence-bert-word2vec-_21Apr13202631442339/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/using-similarity-sentence-bert-word2vec-_21Apr13202631442339/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3429,7 +3417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/text-similarity-measuring-bert_21May08200617801479/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/text-similarity-measuring-bert_21May08200617801479/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3449,7 +3437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/topic-modeling-interactive-bertopic_21Apr27173610787396/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/topic-modeling-interactive-bertopic_21Apr27173610787396/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3469,7 +3457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/structured-data-processing-practice20211007/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/structured-data-processing-practice20211007/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3489,7 +3477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/summary-long-extract-bert-article_21Oct23115502660035/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/summary-long-extract-bert-article_21Oct23115502660035/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3509,7 +3497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpex/csdn-blog-_nlp-summary_miner_zhu-summary_21Oct23175443667734/" class="md-nav__link">
+      <a href="../../nlp/nlpex/csdn-blog-_nlp-summary_miner_zhu-summary_21Oct23175443667734/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3529,7 +3517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpex/gentle-introduction-to-text-summarization_ml/" class="md-nav__link">
+      <a href="../../nlp/nlpex/gentle-introduction-to-text-summarization_ml/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3549,7 +3537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpex/text-task-summarize-incomplete-auto-summ_21Oct24165632331849/" class="md-nav__link">
+      <a href="../../nlp/nlpex/text-task-summarize-incomplete-auto-summ_21Oct24165632331849/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3569,7 +3557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpex/topic-entity-model-name-recognition-base_21Oct24174759876009/" class="md-nav__link">
+      <a href="../../nlp/nlpex/topic-entity-model-name-recognition-base_21Oct24174759876009/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3589,7 +3577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/word-vector-one-hotsvdnnlmword2vecglove_21Oct24183706851403/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/word-vector-one-hotsvdnnlmword2vecglove_21Oct24183706851403/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3609,7 +3597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpex/practical-guide-generative-examples_21Oct25174535026003/" class="md-nav__link">
+      <a href="../../nlp/nlpex/practical-guide-generative-examples_21Oct25174535026003/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3629,7 +3617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/tokenizer-spacy-extract-custom-keywords-_22Jul06185024871770/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/tokenizer-spacy-extract-custom-keywords-_22Jul06185024871770/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3649,7 +3637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpinfo/spacy-python-information-extraction_22Jul07203415699453/" class="md-nav__link">
+      <a href="../../nlp/nlpinfo/spacy-python-information-extraction_22Jul07203415699453/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3669,7 +3657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/nlpex/extraction-event_22Sep08161543208256/" class="md-nav__link">
+      <a href="../../nlp/nlpex/extraction-event_22Sep08161543208256/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3737,7 +3725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/seo_competitor_analyze/" class="md-nav__link">
+      <a href="../../affiliate/seo_competitor_analyze/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3757,7 +3745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/select-products-from-hottrend/" class="md-nav__link">
+      <a href="../../affiliate/select-products-from-hottrend/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3777,7 +3765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/semantic-search/" class="md-nav__link">
+      <a href="../../affiliate/semantic-search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3797,7 +3785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/meta-description/" class="md-nav__link">
+      <a href="../../affiliate/meta-description/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3817,7 +3805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+      <a href="../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3837,7 +3825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      <a href="../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3857,7 +3845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+      <a href="../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3877,7 +3865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+      <a href="../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3897,7 +3885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+      <a href="../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3917,7 +3905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+      <a href="../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3937,7 +3925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+      <a href="../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3957,7 +3945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+      <a href="../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3977,7 +3965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/seo_open_graph_protocol/" class="md-nav__link">
+      <a href="../../affiliate/seo_open_graph_protocol/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3997,7 +3985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/seo_json_ld_data/" class="md-nav__link">
+      <a href="../../affiliate/seo_json_ld_data/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4065,7 +4053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+      <a href="../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4085,7 +4073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/keyword-difficulty/" class="md-nav__link">
+      <a href="../../affiliate/keyword-difficulty/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4105,7 +4093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+      <a href="../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4125,7 +4113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+      <a href="../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4145,7 +4133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+      <a href="../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4165,7 +4153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+      <a href="../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4185,7 +4173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/how-to-start-seo/" class="md-nav__link">
+      <a href="../../affiliate/how-to-start-seo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4205,7 +4193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+      <a href="../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4225,7 +4213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+      <a href="../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4245,7 +4233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../affiliate/adsense/" class="md-nav__link">
+      <a href="../../affiliate/adsense/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4313,7 +4301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rpa/tool-reptile-mobile-method-introduction_21Oct26195529728646/" class="md-nav__link">
+      <a href="../../rpa/tool-reptile-mobile-method-introduction_21Oct26195529728646/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4333,7 +4321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rpa/sharp-reptile-playwright-generation_22Mar16150047139054/" class="md-nav__link">
+      <a href="../../rpa/sharp-reptile-playwright-generation_22Mar16150047139054/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4353,7 +4341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rpa/thing-grab_23Jun14171058520489/" class="md-nav__link">
+      <a href="../../rpa/thing-grab_23Jun14171058520489/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4421,7 +4409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/" class="md-nav__link">
+      <a href="../../quant/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4441,7 +4429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/strength-resistance-support-relative-tim_22Mar09144910644904/" class="md-nav__link">
+      <a href="../../quant/strength-resistance-support-relative-tim_22Mar09144910644904/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4461,7 +4449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/world-stock-select-afraid_22Mar11102617879419/" class="md-nav__link">
+      <a href="../../quant/world-stock-select-afraid_22Mar11102617879419/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4481,7 +4469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/strong-quantificationhow-onel-find-pytho_22Mar11115955383426/" class="md-nav__link">
+      <a href="../../quant/strong-quantificationhow-onel-find-pytho_22Mar11115955383426/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4501,7 +4489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/regression-model-line-code-author_22Mar16105340028529/" class="md-nav__link">
+      <a href="../../quant/regression-model-line-code-author_22Mar16105340028529/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4521,7 +4509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/_22Mar15205312018057/" class="md-nav__link">
+      <a href="../../quant/_22Mar15205312018057/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4541,7 +4529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/correlation-nlpnlu-matrix-vectorspace-da_22Mar16152147921647/" class="md-nav__link">
+      <a href="../../quant/correlation-nlpnlu-matrix-vectorspace-da_22Mar16152147921647/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4561,7 +4549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/trading-quantitative-factor-evaluation-s_22Apr25121650255339/" class="md-nav__link">
+      <a href="../../quant/trading-quantitative-factor-evaluation-s_22Apr25121650255339/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4581,7 +4569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/lhr/series-brief-introduction-primer-simple-_22Apr28144022194446/" class="md-nav__link">
+      <a href="../../quant/lhr/series-brief-introduction-primer-simple-_22Apr28144022194446/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4601,7 +4589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/lhr/series-primer-investing-capm-risk-quanti_22Apr28145508941654/" class="md-nav__link">
+      <a href="../../quant/lhr/series-primer-investing-capm-risk-quanti_22Apr28145508941654/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4621,7 +4609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/lhr/series-quantitative-primer-investing-bar_22Apr28150803767664/" class="md-nav__link">
+      <a href="../../quant/lhr/series-quantitative-primer-investing-bar_22Apr28150803767664/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4641,7 +4629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/lhr/series-portfolio-construction-primer-bas_22Apr28152227119078/" class="md-nav__link">
+      <a href="../../quant/lhr/series-portfolio-construction-primer-bas_22Apr28152227119078/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4661,7 +4649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/lhr/technical-factor-series-analysis-primer-_22Apr28154753258404/" class="md-nav__link">
+      <a href="../../quant/lhr/technical-factor-series-analysis-primer-_22Apr28154753258404/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4681,7 +4669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/lhr/trend-stock-series-prediction-primer-bas_22Apr28155928476282/" class="md-nav__link">
+      <a href="../../quant/lhr/trend-stock-series-prediction-primer-bas_22Apr28155928476282/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4701,7 +4689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/lhr/trend-stock-series-prediction-investing-_22Apr28160755545143/" class="md-nav__link">
+      <a href="../../quant/lhr/trend-stock-series-prediction-investing-_22Apr28160755545143/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4721,7 +4709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/lhr/tabnet-series-investment-entry-quantitat_22Apr28161224255196/" class="md-nav__link">
+      <a href="../../quant/lhr/tabnet-series-investment-entry-quantitat_22Apr28161224255196/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4741,7 +4729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/time-series-forecasting-moving-methods-b_22May03131956778461/" class="md-nav__link">
+      <a href="../../quant/time-series-forecasting-moving-methods-b_22May03131956778461/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4761,7 +4749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quant/stocks/trading-indicator-macd-clearly-people-ex_22May03162310791780/" class="md-nav__link">
+      <a href="../../quant/stocks/trading-indicator-macd-clearly-people-ex_22May03162310791780/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4829,7 +4817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../medicine/classification_hepatoprotective_drugs_usage/" class="md-nav__link">
+      <a href="../../medicine/classification_hepatoprotective_drugs_usage/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4849,7 +4837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc/ubuntu/" class="md-nav__link">
+      <a href="../../misc/ubuntu/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4869,7 +4857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc/ai_ml_testlab/" class="md-nav__link">
+      <a href="../../misc/ai_ml_testlab/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4889,7 +4877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc/tools/" class="md-nav__link">
+      <a href="../../misc/tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4909,7 +4897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc/tutorial-socks5-android_23Jun14102027281268/" class="md-nav__link">
+      <a href="../../misc/tutorial-socks5-android_23Jun14102027281268/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4929,7 +4917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc/proxy-http-center-socks5-green-availabil_23Jun15205449339580/" class="md-nav__link">
+      <a href="../../misc/proxy-http-center-socks5-green-availabil_23Jun15205449339580/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4949,7 +4937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../AI/" class="md-nav__link">
+      <a href="../../AI/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4976,7 +4964,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../../about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5019,12 +5007,195 @@ console.log("ad banner");
 </div>
 
 
-<h1 id="nextjs">NextJS资料<a class="headerlink" href="#nextjs" title="Permanent link">&para;</a></h1>
-<hr />
+<h1 id="jsdoc">JSDoc入门使用指南<a class="headerlink" href="#jsdoc" title="Permanent link">&para;</a></h1>
+<h2 id="_1">安装<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">准备<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="project-practice-nextjs-best_23Sep24103355978064/">创建 Next.js 项目</a></li>
-<li><a href="jsdoc-super-teaching-easy-to-use-hands-o_23Oct07125352858402/">JSDoc入门使用指南</a></li>
+<li>Node.js 8.15.0+  </li>
 </ul>
+<h3 id="npm">通过npm安装<a class="headerlink" href="#npm" title="Permanent link">&para;</a></h3>
+<ul>
+<li>全局安装：<code>npm install -g jsdoc</code><ul>
+<li>若出现权限问题，如 EACCES报错，最佳实践为用node版本管理器（nvm等）重装npm  </li>
+</ul>
+</li>
+<li>本地安装：<code>npm --save-dev jsdoc</code>  <ul>
+<li>命令行工具目录：<code>./node_modules/.bin/jsdoc</code>  </li>
+</ul>
+</li>
+</ul>
+<p>鉴于JSDoc的文档生成工具的本质，建议使用 <code>--save-dev</code> 的本地安装模式</p>
+<h2 id="_3">使用<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="jsdoc_1">书写JSDoc标签<a class="headerlink" href="#jsdoc_1" title="Permanent link">&para;</a></h3>
+<p>jsdoc的使用方式非常简单，在编写代码时根据jsdoc的规则在块级注释中添加相应标签即可：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span>
+<span class="normal"><a href="#__codelineno-0-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="cm">/**  </span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="cm">* 功能：将时间戳格式化为指定格式的字符串  </span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="cm">* @param {Number} milliSec - 要转换的时间，可以为秒、毫秒、微秒、或Date类型  </span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="cm">* @param {String} [formatStr] - 目标格式字符串 可选 默认为：&#39;yyyy-MM-dd hh:mm:ss&#39;  </span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="cm">* @returns {String} - 根据目标时间格式，将时间数值（或Date）转换成的时间字符串  </span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="cm">*/</span><span class="w">  </span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="kd">function</span><span class="w"> </span><span class="nx">formatTime</span><span class="p">(</span><span class="nx">milliSec</span><span class="p">,</span><span class="w"> </span><span class="nx">formatStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">DEFAULT_FORMAT_STR</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="c1">// code  </span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>其中 <code>@param</code>、<code>@returns</code>即为jsdoc的常用标签，具体标签及用法可通过传送门到<a href="https://jsdoc.app/">官网</a>或<a href="https://www.html.cn/doc/jsdoc/about-namepaths.html">中文文档</a>查看</p>
+<h2 id="jsdoc_2">生成JSDoc文档<a class="headerlink" href="#jsdoc_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>代码编写完成后，即可通过命令行生成jsdoc文档</li>
+</ul>
+<h3 id="_4">基本用法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>/path/to/jsdoc yourSourceCodeFile.js</li>
+</ul>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>//<span class="w"> </span>全局安装<span class="w">  </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>jsdoc<span class="w"> </span>yourSourceCodeFile.js<span class="w">  </span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>//<span class="w"> </span>本地安装<span class="w">  </span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>./node_modules/.bin/jsdoc<span class="w"> </span>yourSourceCodeFile.js
+</code></pre></div></td></tr></table></div>
+ - jsdoc提供了大量命令行选项满足使用需求，这里列出一些常用选项：
+   - -c 或 --configure：指定JSDoc配置文件的路径。默认为安装JSDoc目录下的conf.json或conf.json.EXAMPLE<br />
+   - -d 或 --destination：指定输出生成文档的文件夹路径。JSDoc内置的Haruki模板，使用console 将数据转储到控制台。默认为 ./out<br />
+   - -r 或 --recurse：扫描源文件和导览时递归到子目录<br />
+   - -R 或 --readme：用来包含到生成文档的README.md文件。默认为在源路径中找到的第一个README.md文件<br />
+   - -t 或 --template：用于生成输出文档的模板的路径。默认为templates/default，JSDoc内置的默认模板<br />
+   - -v 或 --version：显示jsdoc版本号  </p>
+<p>更多选项可通过 -h 或 --help选项查看，或通过传送门到<a href="https://jsdoc.app/">官网</a>或<a href="https://www.html.cn/doc/jsdoc/about-namepaths.html">中文文档</a>查看</p>
+<p>每次都输入一长串命令行太过繁琐，可在配置文件中的opts参数中指定这些选项<br />
+用conf.json配置JSDoc  </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">{</span><span class="w">  </span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nt">&quot;allowUnknownTags&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="p">},</span><span class="w">  </span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="nt">&quot;include&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./src&quot;</span><span class="p">],</span><span class="w">  </span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="nt">&quot;includePattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.+\\\\.js(doc|x)?$&quot;</span><span class="p">,</span><span class="w">  </span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="nt">&quot;excludePattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(^|\\\/|\\\\\\\\)_&quot;</span><span class="p">,</span><span class="w">  </span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="nt">&quot;exclude&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./src/index.js&quot;</span><span class="p">]</span><span class="w">  </span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="p">},</span><span class="w">  </span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="nt">&quot;plugins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">  </span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="nt">&quot;opts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./doc/templates/docdash&quot;</span><span class="p">,</span><span class="w">  </span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;utf8&quot;</span><span class="p">,</span><span class="w">  </span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="nt">&quot;destination&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./doc/doc-page/&quot;</span><span class="p">,</span><span class="w">  </span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="nt">&quot;recurse&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="p">},</span><span class="w">  </span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="nt">&quot;templates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="nt">&quot;cleverLinks&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  </span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="nt">&quot;monospaceLinks&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  </span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="nt">&quot;outputSourceFiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="p">}</span><span class="w">  </span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="p">}</span><span class="w">  </span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>其中：
+ - tags：控制那些标签允许被使用和解析<br />
+ - source：指定要用jsdoc生成文档的文件<br />
+    - include：路径组成的数组，jsdoc将为它们生成文档<br />
+    - exclude：路径组成的数组，jsdoc应忽略的路径<br />
+    - includePattern：正则表达式字符串，只有文件名匹配的文件才会被jsdoc扫描。默认为 .+.js(doc)?$ 即 .js 或 .jsdoc 结尾的文件才会被扫描<br />
+    - excludePattern：正则表达式字符串，文件名匹配的文件将被jsdoc忽略。默认为 (^|\\/|\\\\)_ 即下划线开头的文件或下划线开头的目录下的所有文件<br />
+    - 结合起来，jsdoc的执行过程是：<br />
+       - 扫描include中的所有文件（若使用了 -r 命令将在子目录中递归搜索）<br />
+       - 在上一步搜索到的文件中，使用includePattern匹配文件名，只保留相匹配的文件<br />
+       - 在上一步匹配到的文件中，使用excludePattern匹配文件名，剔除相匹配的文件<br />
+       - 在上一部生于的文件中，如果文件路径在exclude中，该文件将被剔除<br />
+       - 最终剩下的文件将通过jsdoc进行解析<br />
+ - opts：配置命令行选项，与上面讲的选项相对应<br />
+ - plugins：要启用的插件，在数组中添加插件相对于JSDoc文件夹的路径即可<br />
+ - templates：配置jsdoc所生成的文档的模板<br />
+配置完成后使用 <code>./node_modules/.bin/jsdoc -c path/to/yourconf.json</code> 生成jsdoc文档即可</p>
+<h2 id="_5">其他<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">改变模板<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ol>
+<li>如果你觉得默认模板不好看，可以通过GitHub下载喜欢的模板，例如：  <ul>
+<li><a href="https://github.com/davidshimjs/jaguarjs-jsdoc">jaguarjs-jsdoc</a>  </li>
+<li><a href="https://github.com/docstrap/docstrap">DocStrap</a> (<a href="https://docstrap.github.io/docstrap">example</a>)  </li>
+<li><a href="https://github.com/DBCDK/jsdoc3Template">jsdoc3Template</a> (<a href="https://github.com/danyg/jsdoc3Template/wiki#wiki-screenshots">example</a>)  </li>
+<li><a href="https://github.com/Nijikokun/minami">minami</a>  </li>
+<li><a href="https://github.com/clenemt/docdash">docdash</a> (<a href="http://clenemt.github.io/docdash/">example</a>)  </li>
+<li><a href="https://github.com/nhnent/tui.jsdoc-template">tui-jsdoc-template</a></li>
+<li><a href="https://github.com/SoftwareBrothers/better-docs">better-docs</a></li>
+</ul>
+</li>
+<li>将下载好的模板文件夹放入 ./node_modules/jsdoc/templates/ 中  </li>
+<li>变更命令行选项中的 template/-t 选项为新的模板文件夹  </li>
+<li>重新生成jsdoc文档即可  </li>
+</ol>
+<h2 id="_7">添加主页<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>主页中可以添加对项目的描述、使用说明、注意事项等等。稳妥起见，我们不采用jsdoc自动搜索的方式</p>
+<ol>
+<li>在合适的目录下新建md文件，如 ./doc/HOMEPAGE.md  </li>
+<li>变更命令行选项中的 readme/-r 为新建的文件 ./doc/HOMEPAGE.md  </li>
+<li>重新生成jsdoc文档即可  </li>
+</ol>
+<h2 id="npm_1">通过npm命令生成文档<a class="headerlink" href="#npm_1" title="Permanent link">&para;</a></h2>
+<p>如果你仍不满足使用conf.json配置后的命令行简洁程度，可以看过来
+ 1. 打开项目的package.json<br />
+ 2. 在scripts中添加一行 "jsdoc": "node_modules/.bin/jsdoc -r -c doc/conf.json -R doc/HOMEPAGE.md"<br />
+ 3. 执行 npm run jsdoc 即可  </p>
+<h2 id="gulpjsdocgulp-jsdoc3">gulp中的JSDoc插件：gulp-jsdoc3<a class="headerlink" href="#gulpjsdocgulp-jsdoc3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>安装：npm install --save-dev gulp-jsdoc3  </li>
+<li>使用：
+    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kd">var</span><span class="w"> </span><span class="nx">jsdoc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gulp-jsdoc3&#39;</span><span class="p">);</span><span class="w">  </span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1">// jsdoc的配置文件  </span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="kd">var</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./doc/conf.json&#39;</span><span class="p">);</span><span class="w">  </span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">([</span><span class="s1">&#39;README.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;./src/**/*.js&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="nx">read</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">jsdoc</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span><span class="w"> </span><span class="nx">cb</span><span class="p">));</span><span class="w">  </span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="p">});</span>
+</code></pre></div></td></tr></table></div></li>
+</ul>
+<p>传送门<br />
+官网：<a href="https://jsdoc.app/">https://jsdoc.app/</a><br />
+GitHub：<a href="https://github.com/jsdoc/jsdoc">https://github.com/jsdoc/jsdoc</a><br />
+npm：<a href="https://www.npmjs.com/package/jsdoc">https://www.npmjs.com/package/jsdoc</a><br />
+中文文档：<a href="https://www.html.cn/doc/jsdoc/about-namepaths.html">https://www.html.cn/doc/jsdoc/about-namepaths.html</a>  </p>
+<p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
+作者: <br />
+来源： <a href="https://www.cnblogs.com/onesea/p/13282511.html">https://www.cnblogs.com/onesea/p/13282511.html</a></p>
 
 
   
@@ -5049,41 +5220,6 @@ console.log("ad banner");
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="footer.title">
-        
-          <a href="../VUE/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  上一页
-                </span>
-                VUE资料目录
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../ml/matrix/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  下一页
-                </span>
-                机器学习与矩阵,numpy,sklearn等工具
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -5124,12 +5260,12 @@ console.log("ad banner");
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "navigation.path", "navigation.prune", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "navigation.path", "navigation.prune", "navigation.top", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.726fbb30.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.726fbb30.min.js"></script>
       
-        <script src="../../javascripts/config.js"></script>
+        <script src="../../../javascripts/config.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
