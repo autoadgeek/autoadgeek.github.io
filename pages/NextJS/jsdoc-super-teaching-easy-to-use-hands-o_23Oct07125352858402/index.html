@@ -5019,12 +5019,16 @@ console.log("ad banner");
 <li>若出现权限问题，如 EACCES报错，最佳实践为用node版本管理器（nvm等）重装npm  </li>
 </ul>
 </li>
-<li>本地安装：<code>yarn add jsdoc -D</code> 或者 <code>npm --save-dev jsdoc</code>  <ul>
+<li>本地安装：<code>yarn add jsdoc -D</code> 或者 <code>npm --save-dev jsdoc</code>    <ul>
+<li>为了能处理typescript,需要安装 <code>yarn add -D better-docs</code> 或者 <code>npm install --save-dev better-docs</code>,</li>
+<li>安装 <code>yarn add -D taffydb</code></li>
 <li>命令行工具目录：<code>./node_modules/.bin/jsdoc</code>  </li>
 </ul>
 </li>
 </ul>
 <p>鉴于JSDoc的文档生成工具的本质，建议使用 <code>--save-dev</code> 的本地安装模式</p>
+<p>用于 jsdoc 生成文档的漂亮工具箱 - 带有“typescript”、“category”和“component”插件: <br />
+<a href="https://github.com/SoftwareBrothers/better-docs">better-docs</a></p>
 <h2 id="_3">使用<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="jsdoc_1">书写JSDoc标签<a class="headerlink" href="#jsdoc_1" title="Permanent link">&para;</a></h3>
 <p>jsdoc的使用方式非常简单，在编写代码时根据jsdoc的规则在块级注释中添加相应标签即可：</p>
@@ -5063,16 +5067,18 @@ console.log("ad banner");
 <a id="__codelineno-1-3" name="__codelineno-1-3"></a>//<span class="w"> </span>本地安装<span class="w">  </span>
 <a id="__codelineno-1-4" name="__codelineno-1-4"></a>./node_modules/.bin/jsdoc<span class="w"> </span>yourSourceCodeFile.js
 </code></pre></div></td></tr></table></div>
- - jsdoc提供了大量命令行选项满足使用需求，这里列出一些常用选项：
-   - -c 或 --configure：指定JSDoc配置文件的路径。默认为安装JSDoc目录下的conf.json或conf.json.EXAMPLE<br />
-   - -d 或 --destination：指定输出生成文档的文件夹路径。JSDoc内置的Haruki模板，使用console 将数据转储到控制台。默认为 ./out<br />
-   - -r 或 --recurse：扫描源文件和导览时递归到子目录<br />
-   - -R 或 --readme：用来包含到生成文档的README.md文件。默认为在源路径中找到的第一个README.md文件<br />
-   - -t 或 --template：用于生成输出文档的模板的路径。默认为templates/default，JSDoc内置的默认模板<br />
-   - -v 或 --version：显示jsdoc版本号  </p>
+jsdoc提供了大量命令行选项满足使用需求，这里列出一些常用选项：</p>
+<ul>
+<li>-c 或 --configure：指定JSDoc配置文件的路径。默认为安装JSDoc目录下的conf.json或conf.json.EXAMPLE  </li>
+<li>-d 或 --destination：指定输出生成文档的文件夹路径。JSDoc内置的Haruki模板，使用console 将数据转储到控制台。默认为 ./out  </li>
+<li>-r 或 --recurse：扫描源文件和导览时递归到子目录  </li>
+<li>-R 或 --readme：用来包含到生成文档的README.md文件。默认为在源路径中找到的第一个README.md文件  </li>
+<li>-t 或 --template：用于生成输出文档的模板的路径。默认为templates/default，JSDoc内置的默认模板  </li>
+<li>-v 或 --version：显示jsdoc版本号  </li>
+</ul>
 <p>更多选项可通过 -h 或 --help选项查看，或通过传送门到<a href="https://jsdoc.app/">官网</a>或<a href="https://www.html.cn/doc/jsdoc/about-namepaths.html">中文文档</a>查看</p>
 <p>每次都输入一长串命令行太过繁琐，可在配置文件中的opts参数中指定这些选项<br />
-用conf.json配置JSDoc  </p>
+用jsdoc_conf.json配置JSDoc  </p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
@@ -5096,50 +5102,62 @@ console.log("ad banner");
 <span class="normal"><a href="#__codelineno-2-21">21</a></span>
 <span class="normal"><a href="#__codelineno-2-22">22</a></span>
 <span class="normal"><a href="#__codelineno-2-23">23</a></span>
-<span class="normal"><a href="#__codelineno-2-24">24</a></span>
-<span class="normal"><a href="#__codelineno-2-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">{</span><span class="w">  </span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nt">&quot;allowUnknownTags&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="p">},</span><span class="w">  </span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="nt">&quot;include&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./src&quot;</span><span class="p">],</span><span class="w">  </span>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="nt">&quot;includePattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.+\\\\.js(doc|x)?$&quot;</span><span class="p">,</span><span class="w">  </span>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="nt">&quot;excludePattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(^|\\\/|\\\\\\\\)_&quot;</span><span class="p">,</span><span class="w">  </span>
-<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="nt">&quot;exclude&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./src/index.js&quot;</span><span class="p">]</span><span class="w">  </span>
-<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="p">},</span><span class="w">  </span>
-<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="nt">&quot;plugins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">  </span>
-<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="nt">&quot;opts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./doc/templates/docdash&quot;</span><span class="p">,</span><span class="w">  </span>
-<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;utf8&quot;</span><span class="p">,</span><span class="w">  </span>
-<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="nt">&quot;destination&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./doc/doc-page/&quot;</span><span class="p">,</span><span class="w">  </span>
-<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="nt">&quot;recurse&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span>
-<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="p">},</span><span class="w">  </span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">{</span><span class="w">  </span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;allowUnknownTags&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">},</span><span class="w">  </span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="nt">&quot;include&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./app&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="nt">&quot;includePattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.+\\.(jsx|js|ts|tsx)$&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="nt">&quot;excludePattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(^|\\/|\\\\)_&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="nt">&quot;exclude&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="p">},</span><span class="w"> </span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="nt">&quot;plugins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./node_modules/better-docs/typescript&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="nt">&quot;recurseDepth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="nt">&quot;opts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./node_modules/better-docs&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">    </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;utf8&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">    </span><span class="nt">&quot;destination&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./docs/doc-page/&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">    </span><span class="nt">&quot;readme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;docs/HOMEPAGE.md&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">    </span><span class="nt">&quot;recurse&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">},</span>
 <a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="nt">&quot;templates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="nt">&quot;cleverLinks&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  </span>
-<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="nt">&quot;monospaceLinks&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  </span>
-<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="nt">&quot;outputSourceFiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span>
-<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="p">}</span><span class="w">  </span>
-<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="p">}</span><span class="w">  </span>
-<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="p">}</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">    </span><span class="nt">&quot;cleverLinks&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">    </span><span class="nt">&quot;monospaceLinks&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">    </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">        </span><span class="nt">&quot;outputSourceFiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>其中：
+<p>其中： <br />
  - tags：控制那些标签允许被使用和解析<br />
- - source：指定要用jsdoc生成文档的文件<br />
-    - include：路径组成的数组，jsdoc将为它们生成文档<br />
-    - exclude：路径组成的数组，jsdoc应忽略的路径<br />
-    - includePattern：正则表达式字符串，只有文件名匹配的文件才会被jsdoc扫描。默认为 .+.js(doc)?$ 即 .js 或 .jsdoc 结尾的文件才会被扫描<br />
-    - excludePattern：正则表达式字符串，文件名匹配的文件将被jsdoc忽略。默认为 (^|\\/|\\\\)_ 即下划线开头的文件或下划线开头的目录下的所有文件<br />
-    - 结合起来，jsdoc的执行过程是：<br />
-       - 扫描include中的所有文件（若使用了 -r 命令将在子目录中递归搜索）<br />
-       - 在上一步搜索到的文件中，使用includePattern匹配文件名，只保留相匹配的文件<br />
-       - 在上一步匹配到的文件中，使用excludePattern匹配文件名，剔除相匹配的文件<br />
-       - 在上一部生于的文件中，如果文件路径在exclude中，该文件将被剔除<br />
-       - 最终剩下的文件将通过jsdoc进行解析<br />
- - opts：配置命令行选项，与上面讲的选项相对应<br />
- - plugins：要启用的插件，在数组中添加插件相对于JSDoc文件夹的路径即可<br />
- - templates：配置jsdoc所生成的文档的模板<br />
-配置完成后使用 <code>./node_modules/.bin/jsdoc -c path/to/yourconf.json</code> 生成jsdoc文档即可</p>
+ - source：指定要用jsdoc生成文档的文件</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code> + include：路径组成的数组，jsdoc将为它们生成文档  
+ + exclude：路径组成的数组，jsdoc应忽略的路径  
+ + includePattern：正则表达式字符串，只有文件名匹配的文件才会被jsdoc扫描。默认为 .+.js(doc)?$ 即 .js 或 .jsdoc 结尾的文件才会被扫描  
+ + excludePattern：正则表达式字符串，文件名匹配的文件将被jsdoc忽略。默认为 (^|\\\/|\\\\\\\\)_ 即下划线开头的文件或下划线开头的目录下的所有文件  
+ + 结合起来，jsdoc的执行过程是：
+
+    * 扫描include中的所有文件（若使用了 -r 命令将在子目录中递归搜索）  
+    * 在上一步搜索到的文件中，使用includePattern匹配文件名，只保留相匹配的文件  
+    * 在上一步匹配到的文件中，使用excludePattern匹配文件名，剔除相匹配的文件  
+    * 在上一部生于的文件中，如果文件路径在exclude中，该文件将被剔除  
+    * 最终剩下的文件将通过jsdoc进行解析
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>opts：配置命令行选项，与上面讲的选项相对应  </li>
+<li>plugins：要启用的插件，在数组中添加插件相对于JSDoc文件夹的路径即可  </li>
+<li>templates：配置jsdoc所生成的文档的模板<br />
+配置完成后使用 <code>./node_modules/.bin/jsdoc -c path/to/yourconf.json</code> 生成jsdoc文档即可</li>
+</ul>
 <h2 id="_5">其他<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <h3 id="_6">改变模板<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <ol>
@@ -5165,9 +5183,9 @@ console.log("ad banner");
 <li>重新生成jsdoc文档即可  </li>
 </ol>
 <h2 id="npm_1">通过npm命令生成文档<a class="headerlink" href="#npm_1" title="Permanent link">&para;</a></h2>
-<p>如果你仍不满足使用conf.json配置后的命令行简洁程度，可以看过来
+<p>如果你仍不满足使用jsdoc_conf.json配置后的命令行简洁程度
  1. 打开项目的package.json<br />
- 2. 在scripts中添加一行 "jsdoc": "node_modules/.bin/jsdoc -r -c doc/conf.json -R doc/HOMEPAGE.md"<br />
+ 2. 在scripts中添加一行 <code>"jsdoc": "node_modules/.bin/jsdoc -r -c jsdoc_conf.json"</code><br />
  3. 执行 npm run jsdoc 即可  </p>
 <h2 id="gulpjsdocgulp-jsdoc3">gulp中的JSDoc插件：gulp-jsdoc3<a class="headerlink" href="#gulpjsdocgulp-jsdoc3" title="Permanent link">&para;</a></h2>
 <ul>
