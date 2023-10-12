@@ -4,21 +4,21 @@
   <head>
     
 
-   <meta charset="UTF-8">
+   <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <meta name="description" content="使用的一些Git,Vercel工具集合，文档">
+  <meta name="description" content="持久中间件使你能够将 Zustand 状态存储在storage中（例如`localStorage`, `AsyncStorage`, `IndexedDB`等），从而持久化它的数据。">
 
 
-  <link rel="canonical" href="https://geek.digiasset.org/pages/NextJS/git_usage/">
+  <link rel="canonical" href="https://geek.digiasset.org/pages/NextJS/persistent-middleware_23Oct12212755949809/">
 
 
 <link rel="shortcut icon" href="/assets/images/favicon.png">
 
     
       
-        <title>Git,Vercel使用指南 - 广告流程自动化</title>
+        <title>持久化中间件 - 广告流程自动化</title>
       
     
     
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gitvercel" class="md-skip">
+        <a href="#zustand" class="md-skip">
           跳转至
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Git,Vercel使用指南
+              持久化中间件
             
           </span>
         </div>
@@ -392,12 +392,10 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../../medicine/classification_hepatoprotective_drugs_usage/" class="md-tabs__link">
           
   
@@ -4776,8 +4774,6 @@
       
   
   
-    
-  
   
     
     
@@ -4787,12 +4783,14 @@
       
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
@@ -4806,7 +4804,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             其他知识
@@ -4957,29 +4955,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Git,Vercel使用指南
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../git_usage/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4988,74 +4966,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#git" class="md-nav__link">
-    Git 使用
-  </a>
-  
-    <nav class="md-nav" aria-label="Git 使用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#git_1" class="md-nav__link">
-    基本 Git 命令
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    参与现有存储库
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#github" class="md-nav__link">
-    启动新存储库并将其发布到 GitHub
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#github_1" class="md-nav__link">
-    为 GitHub 的现有分支做出贡献
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vercel" class="md-nav__link">
-    Vercel 使用
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5117,28 +5027,10 @@ console.log("ad banner");
 </div>
 
 
-<h1 id="gitvercel">Git,Vercel使用指南<a class="headerlink" href="#gitvercel" title="Permanent link">&para;</a></h1>
-<h2 id="git">Git 使用<a class="headerlink" href="#git" title="Permanent link">&para;</a></h2>
-<h3 id="git_1">基本 Git 命令<a class="headerlink" href="#git_1" title="Permanent link">&para;</a></h3>
-<p>为使用 Git，开发人员使用特定命令来复制、创建、更改和合并代码。 这些命令可以直接从命令行执行，也可以使用 GitHub Desktop等应用程序执行。 以下是使用 Git 的一些常用命令：</p>
-<p>git init 初始化一个全新的 Git 存储库并开始跟踪现有目录。 它在现有目录中添加一个隐藏的子文件夹，该子文件夹包含版本控制所需的内部数据结构。</p>
-<p>git clone 创建远程已存在的项目的本地副本。 克隆包括项目的所有文件、历史记录和分支。</p>
-<p>git add 暂存更改。 Git 跟踪对开发人员代码库的更改，但有必要暂存更改并拍摄更改的快照，以将其包含在项目的历史记录中。 此命令执行暂存，即该两步过程的第一部分。 暂存的任何更改都将成为下一个快照的一部分，并成为项目历史记录的一部分。 通过单独暂存和提交，开发人员可以完全控制其项目的历史记录，而无需更改其编码和工作方式。</p>
-<p>git commit 将快照保存到项目历史记录中并完成更改跟踪过程。 简言之，提交就像拍照一样。 任何使用 git add 暂存的内容都将成为使用 git commit 的快照的一部分。</p>
-<p>git status 将更改的状态显示为未跟踪、已修改或已暂存。</p>
-<p>git branch 显示正在本地处理的分支。</p>
-<p>git merge 将开发线合并在一起。 此命令通常用于合并在两个不同分支上所做的更改。 例如，当开发人员想要将功能分支中的更改合并到主分支以进行部署时，他们会合并。</p>
-<p>git pull 使用远程对应项的更新来更新本地开发线。 如果队友已向远程上的分支进行了提交，并且他们希望将这些更改反映到其本地环境中，则开发人员将使用此命令。</p>
-<p>git push 使用本地对分支所做的任何提交来更新远程存储库。</p>
-<p>有关详细信息，请参阅 <a href="https://git-scm.com/docs">Git 命令的完整参考指南</a>。</p>
-<p>Git 全局设置:</p>
-<p><code>git config --global user.name "********"</code></p>
-<p><code>git config --global user.email "********@***.com"</code></p>
-<p><strong>参考</strong> <br />
-1. <a href="https://docs.github.com/zh/get-started/using-git/about-git">Git</a> <br />
-2. <a href="https://zhuanlan.zhihu.com/p/566193701">玩转Git，需要记住那些命令</a> <br />
-3. <a href="https://blog.51cto.com/u_7075695/3025728">将本地项目push到github上</a></p>
-<h3 id="_1">参与现有存储库<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h1 id="zustand">zustand 持久化中间件<a class="headerlink" href="#zustand" title="Permanent link">&para;</a></h1>
+<p>译者注: 因为在状态管理中直接持久化太过耦合,不够灵活,所以个人建议最好外部使用单独的自定义或第三方组件来处理本地的数据持久化</p>
+<p>持久中间件使你能够将 Zustand 状态存储在storage中（例如<code>localStorage</code>, <code>AsyncStorage</code>, <code>IndexedDB</code>等），从而持久化它的数据。 请注意，此中间件确实支持同步存储（例如 <code>localStorage</code>）和异步存储（例如 <code>AsyncStorage</code>），但使用异步存储确实会带来成本。 有关更多详细信息，请参阅 水合作用和异步存储 。</p>
+<p>快速示例:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -5151,126 +5043,498 @@ console.log("ad banner");
 <span class="normal"><a href="#__codelineno-0-10">10</a></span>
 <span class="normal"><a href="#__codelineno-0-11">11</a></span>
 <span class="normal"><a href="#__codelineno-0-12">12</a></span>
-<span class="normal"><a href="#__codelineno-0-13">13</a></span>
-<span class="normal"><a href="#__codelineno-0-14">14</a></span>
-<span class="normal"><a href="#__codelineno-0-15">15</a></span>
-<span class="normal"><a href="#__codelineno-0-16">16</a></span>
-<span class="normal"><a href="#__codelineno-0-17">17</a></span>
-<span class="normal"><a href="#__codelineno-0-18">18</a></span>
-<span class="normal"><a href="#__codelineno-0-19">19</a></span>
-<span class="normal"><a href="#__codelineno-0-20">20</a></span>
-<span class="normal"><a href="#__codelineno-0-21">21</a></span>
-<span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1"># download a repository on GitHub to our machine</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="c1"># Replace `owner/repo` with the owner and name of the repository to clone</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/owner/repo.git
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="c1"># change into the `repo` directory</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nb">cd</span><span class="w"> </span>repo
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="c1"># create a new branch to store any new changes</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a>git<span class="w"> </span>branch<span class="w"> </span>my-branch
-<a id="__codelineno-0-10" name="__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="c1"># switch to that branch (line of development)</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12"></a>git<span class="w"> </span>checkout<span class="w"> </span>my-branch
-<a id="__codelineno-0-13" name="__codelineno-0-13"></a>
-<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="c1"># make changes, for example, edit `file1.md` and `file2.md` using the text editor</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15"></a>
-<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="c1"># stage the changed files</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17"></a>git<span class="w"> </span>add<span class="w"> </span>file1.md<span class="w"> </span>file2.md
-<a id="__codelineno-0-18" name="__codelineno-0-18"></a>
-<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="c1"># take a snapshot of the staging area (anything that&#39;s been added)</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;my snapshot&quot;</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21"></a>
-<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="c1"># push changes to github</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23"></a>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>my-branch
+<span class="normal"><a href="#__codelineno-0-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">create</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;zustand&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">persist</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;zustand/middleware&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="nx">fishes</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="nx">addAFish</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">set</span><span class="p">({</span><span class="w"> </span><span class="nx">fishes</span><span class="o">:</span><span class="w"> </span><span class="nx">get</span><span class="p">().</span><span class="nx">fishes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">  </span><span class="p">}),</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;food-storage&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// name of item in the storage (must be unique)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="nx">getStorage</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">sessionStorage</span><span class="p">,</span><span class="w"> </span><span class="c1">// (optional) by default the &#39;localStorage&#39; is used</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="p">))</span>
+</code></pre></div></td></tr></table></div></p>
+<h2 id="_1">选项<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>name:  这是唯一的必填选项选项。 给定的名称将是用于在store中存储你的 Zustand 状态的键，因此它必须是唯一的。</li>
+<li>getStorage: 值: <code>() =&gt; localStorage</code> 使你能够使用自己的storage。 只需传递一个函数，该函数返回你要使用的store。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">  </span><span class="p">}),</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="nx">getStorage</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">AsyncStorage</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="github">启动新存储库并将其发布到 GitHub<a class="headerlink" href="#github" title="Permanent link">&para;</a></h3>
-<p>首先，您需要在 GitHub 上创建一个新存储库。 有关详细信息，请参阅<a href="https://docs.github.com/zh/get-started/quickstart/hello-world">Hello World</a>。 不要使用 README、.gitignore 或 License 文件初始化存储库。 这个空存储库将等待您的代码。</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-1-10">10</a></span>
-<span class="normal"><a href="#__codelineno-1-11">11</a></span>
-<span class="normal"><a href="#__codelineno-1-12">12</a></span>
-<span class="normal"><a href="#__codelineno-1-13">13</a></span>
-<span class="normal"><a href="#__codelineno-1-14">14</a></span>
-<span class="normal"><a href="#__codelineno-1-15">15</a></span>
-<span class="normal"><a href="#__codelineno-1-16">16</a></span>
-<span class="normal"><a href="#__codelineno-1-17">17</a></span>
-<span class="normal"><a href="#__codelineno-1-18">18</a></span>
-<span class="normal"><a href="#__codelineno-1-19">19</a></span>
-<span class="normal"><a href="#__codelineno-1-20">20</a></span>
-<span class="normal"><a href="#__codelineno-1-21">21</a></span>
-<span class="normal"><a href="#__codelineno-1-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># create a new directory, and initialize it with git-specific functions</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2"></a>git<span class="w"> </span>init<span class="w"> </span>my-repo
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1"># change into the `my-repo` directory</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="nb">cd</span><span class="w"> </span>my-repo
-<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c1"># create the first file in the project</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a>touch<span class="w"> </span>README.md
-<a id="__codelineno-1-9" name="__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="c1"># git isn&#39;t aware of the file, stage it</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11"></a>git<span class="w"> </span>add<span class="w"> </span>README.md
-<a id="__codelineno-1-12" name="__codelineno-1-12"></a>
-<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="c1"># take a snapshot of the staging area</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add README to initial commit&quot;</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15"></a>
-<a id="__codelineno-1-16" name="__codelineno-1-16"></a>git<span class="w"> </span>branch<span class="w"> </span>-M<span class="w"> </span>main
-<a id="__codelineno-1-17" name="__codelineno-1-17"></a>
-<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="c1"># provide the path for the repository you created on github</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git
-<a id="__codelineno-1-20" name="__codelineno-1-20"></a>
-<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="c1"># push changes to github</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22"></a>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>main
+<p>给定的storage必须匹配以下接口: <br />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kr">interface</span><span class="w"> </span><span class="nx">Storage</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">  </span><span class="nx">getItem</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="o">&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="nx">setItem</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nx">removeItem</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<h2 id="serialize">serialize<a class="headerlink" href="#serialize" title="Permanent link">&para;</a></h2>
+<p>::: info类型: <code>(state: Object) =&gt; string | Promise&lt;string&gt;</code> :::</p>
+<p>默认值: <code>(state) =&gt; JSON.stringify(state)</code></p>
+<p>由于将对象存储在storage中的唯一方法是通过字符串，你可以使用此选项提供自定义函数以将你的状态序列化为字符串。</p>
+<p>例如，如果你想将状态存储在 base64 中：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span>
+<span class="normal"><a href="#__codelineno-3-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">  </span><span class="p">}),</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">    </span><span class="nx">serialize</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">state</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">btoa</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">state</span><span class="p">)),</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="p">))</span>
+</code></pre></div></td></tr></table></div></p>
+<p>请注意，你还需要一个自定义<code>deserialize</code> (反序列化)函数才能使其正常工作。</p>
+<ul>
+<li>类型: <code>(str: string) =&gt; Object | Promise&lt;Object&gt;</code></li>
+<li>默认值: <code>(str) =&gt; JSON.parse(str)</code></li>
+</ul>
+<p>如果你传递自定义序列化函数，则很可能还需要传递自定义反序列化函数。 要继续上面的示例，你可以使用以下命令反序列化 base64 值：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span>
+<span class="normal"><a href="#__codelineno-4-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">  </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="p">}),</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="nx">deserialize</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">atob</span><span class="p">(</span><span class="nx">str</span><span class="p">)),</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="p">))</span>
+</code></pre></div></td></tr></table></div></p>
+<h2 id="partialize">partialize<a class="headerlink" href="#partialize" title="Permanent link">&para;</a></h2>
+<ul>
+<li>类型: <code>(state: Object) =&gt; Object</code></li>
+<li>默认值: <code>(state) =&gt; state</code></li>
+</ul>
+<p>使你能够排除一些要存储在storage中的状态字段。 你可以使用以下方法排除多个字段：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">  </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="nx">bar</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">  </span><span class="p">}),</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">    </span><span class="nx">partialize</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">state</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">      </span><span class="nb">Object</span><span class="p">.</span><span class="nx">fromEntries</span><span class="p">(</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">        </span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">state</span><span class="p">).</span><span class="nx">filter</span><span class="p">(([</span><span class="nx">key</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="o">!</span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">].</span><span class="nx">includes</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">      </span><span class="p">),</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="p">))</span>
+</code></pre></div></td></tr></table></div></p>
+<p>或者你可以只允许使用如下的特定字段：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">  </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="nx">bar</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">  </span><span class="p">}),</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="nx">partialize</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">state</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">foo</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="p">))</span><span class="w">  </span>
+</code></pre></div></td></tr></table></div></p>
+<h2 id="onrehydratestorage">onRehydrateStorage<a class="headerlink" href="#onrehydratestorage" title="Permanent link">&para;</a></h2>
+<ul>
+<li>类型: <code>(state: Object) =&gt; ((state?: Object, error?: Error) =&gt; void) | void</code> 此选项使你能够传递将在存储storage水合时调用的侦听器函数。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">  </span><span class="p">}),</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">    </span><span class="nx">onRehydrateStorage</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">state</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hydration starts&quot;</span><span class="p">);</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">      </span><span class="c1">// optional</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="nx">state</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="w">          </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;an error happened during hydration&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">)</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">          </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;hydration finished&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="github_1">为 GitHub 的现有分支做出贡献<a class="headerlink" href="#github_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-2-10">10</a></span>
-<span class="normal"><a href="#__codelineno-2-11">11</a></span>
-<span class="normal"><a href="#__codelineno-2-12">12</a></span>
-<span class="normal"><a href="#__codelineno-2-13">13</a></span>
-<span class="normal"><a href="#__codelineno-2-14">14</a></span>
-<span class="normal"><a href="#__codelineno-2-15">15</a></span>
-<span class="normal"><a href="#__codelineno-2-16">16</a></span>
-<span class="normal"><a href="#__codelineno-2-17">17</a></span>
-<span class="normal"><a href="#__codelineno-2-18">18</a></span>
-<span class="normal"><a href="#__codelineno-2-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># change into the `repo` directory</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>repo
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1"># update all remote tracking branches, and the currently checked out branch</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a>git<span class="w"> </span>pull
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1"># change into the existing branch called `feature-a`</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a>git<span class="w"> </span>checkout<span class="w"> </span>feature-a
-<a id="__codelineno-2-9" name="__codelineno-2-9"></a>
-<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="c1"># make changes, for example, edit `file1.md` using the text editor</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11"></a>
-<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="c1"># stage the changed file</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13"></a>git<span class="w"> </span>add<span class="w"> </span>file1.md
-<a id="__codelineno-2-14" name="__codelineno-2-14"></a>
-<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="c1"># take a snapshot of the staging area</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;edit file1&quot;</span>
-<a id="__codelineno-2-17" name="__codelineno-2-17"></a>
-<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="c1"># push changes to github</span>
-<a id="__codelineno-2-19" name="__codelineno-2-19"></a>git<span class="w"> </span>push
+<h2 id="version">version<a class="headerlink" href="#version" title="Permanent link">&para;</a></h2>
+<ul>
+<li>类型: <code>number</code>
+    &gt; 默认值: <code>0</code>
+    &gt; 如果要在storage中引入重大更改（例如重命名字段），可以指定新版本号。 默认情况下，如果storage中的版本与代码中的版本不匹配，则存储的值不会被使用。 有关处理重大更改的更多详细信息，请参阅下面的<code>migrate</code>选项。</li>
+</ul>
+<h2 id="migrate">migrate<a class="headerlink" href="#migrate" title="Permanent link">&para;</a></h2>
+<ul>
+<li>类型: <code>(persistedState: Object, version: number) =&gt; Object | Promise&lt;Object&gt;</code>
+    &gt; 默认值: <code>(persistedState) =&gt; persistedState</code>
+    &gt; 你可以使用此选项来处理版本迁移。 migrate 函数将持久化状态和版本号作为参数。它必须返回符合最新版本（代码中的版本）的状态。 例如，如果要重命名字段，可以使用以下命令：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="nx">newField</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="c1">// let&#39;s say this field was named otherwise in version 0</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">  </span><span class="p">}),</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">    </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="c1">// a migration will be triggered if the version in the storage mismatches this one</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span><span class="nx">migrate</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">persistedState</span><span class="p">,</span><span class="w"> </span><span class="nx">version</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">version</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">        </span><span class="c1">// if the stored value is in version 0, we rename the field to the new name</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">        </span><span class="nx">persistedState</span><span class="p">.</span><span class="nx">newField</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">persistedState</span><span class="p">.</span><span class="nx">oldField</span><span class="p">;</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">        </span><span class="ow">delete</span><span class="w"> </span><span class="nx">persistedState</span><span class="p">.</span><span class="nx">oldField</span><span class="p">;</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">persistedState</span><span class="p">;</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="vercel">Vercel 使用<a class="headerlink" href="#vercel" title="Permanent link">&para;</a></h2>
+<h2 id="merge">merge<a class="headerlink" href="#merge" title="Permanent link">&para;</a></h2>
+<ul>
+<li>类型: <code>(persistedState: Object, currentState: Object) =&gt; Object</code>
+     &gt; 默认值: <code>(persistedState, currentState) =&gt; ({ ...currentState, ...persistedState })</code>
+     &gt; 在某些情况下，你可能希望使用自定义合并函数将持久值与当前状态合并。 默认情况下，中间件进行浅合并。 如果你部分持久化了嵌套对象，那么浅层合并可能还不够。 例如，如果storage包含以下内容：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="nx">bar</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>但是你的 Zustand store包含：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">  </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">    </span><span class="nx">bar</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">    </span><span class="nx">baz</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>浅合并将从<code>foo</code>对象中删除 <code>baz</code>字段。 解决此问题的一种方法是提供自定义深度合并功能：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="w">  </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w">    </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w">      </span><span class="nx">bar</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">      </span><span class="nx">baz</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">  </span><span class="p">}),</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">    </span><span class="nx">merge</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">persistedState</span><span class="p">,</span><span class="w"> </span><span class="nx">currentState</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">deepMerge</span><span class="p">(</span><span class="nx">currentState</span><span class="p">,</span><span class="w"> </span><span class="nx">persistedState</span><span class="p">),</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="p">))</span><span class="w"> </span>
+</code></pre></div></td></tr></table></div></p>
+<h2 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Version: &gt;=3.6.3
+     &gt; 持久化api使你能够从 React 组件的内部或外部与持久中间件进行大量交互。</li>
+</ul>
+<h2 id="setoptions">setOptions<a class="headerlink" href="#setoptions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>类型: <code>(newOptions: PersistOptions) =&gt; void</code>
+    &gt; 此方法使你能够更改中间件选项。请注意，新选项将与当前选项合并。
+    &gt; 例如，这可用于更改storage名称：
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="nx">useStore</span><span class="p">.</span><span class="nx">persist</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">({</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;new-name&quot;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="p">});</span>
+</code></pre></div></td></tr></table></div>
+    &gt; 甚至更改storage引擎：
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="nx">useStore</span><span class="p">.</span><span class="nx">persist</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">({</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="nx">getStorage</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">sessionStorage</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="p">});</span>
+</code></pre></div></td></tr></table></div></li>
+</ul>
+<h2 id="clearstorage">clearStorage<a class="headerlink" href="#clearstorage" title="Permanent link">&para;</a></h2>
+<ul>
+<li>类型: <code>() =&gt; void</code>
+     &gt; 这个方法用于完全清除storage中的持久值。
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="nx">useStore</span><span class="p">.</span><span class="nx">persist</span><span class="p">.</span><span class="nx">clearStorage</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div></li>
+</ul>
+<h2 id="rehydrate">rehydrate<a class="headerlink" href="#rehydrate" title="Permanent link">&para;</a></h2>
+<ul>
+<li>类型: <code>() =&gt; Promise&lt;void&gt;</code>
+     &gt; 在某些情况下，你可能希望手动触发水合作用。 这可以通过调用 <code>rehydrate</code>方法来完成。
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">useStore</span><span class="p">.</span><span class="nx">persist</span><span class="p">.</span><span class="nx">rehydrate</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div></li>
+</ul>
+<h2 id="_2">水合和异步存储<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>要解释异步存储的“成本”是什么，你需要了解什么是水合作用。 简而言之，水合是从storage中检索持久状态并将其与当前状态合并的过程。 persist 中间件执行两种 hydration：同步和异步。 如果给定的storage是同步的（例如<code>localStorage</code>），则 hydration 将同步完成，如果给定的存储是异步的（例如 <code>AsyncStorage</code>），则 hydration 将异步完成......🥁。</p>
+<p>但问题是什么？ 好吧，在同步水合中，Zustand storage将在其创建时进行水合。 在异步水合中，Zustand storage将在稍后的微任务中水合。 为什么这有关系？ 异步水合可能会导致一些意外行为。 例如，如果你在 React 应用程序中使用 Zustand，store将不会在初始渲染时加水。如果你的应用程序依赖于页面加载时的持久值，你可能希望等到store已被水合后再显示任何内容（例如，你的应用可能认为用户未登录，因为这是默认值，而实际上store还没有被水合）。 </p>
+<p>如果你的应用确实依赖于页面加载时的持久状态，请参阅如何检查我的store是否已加水？</p>
+<p>有几种不同的方法可以做到这一点。 你可以使用 <code>onRehydrateStorage</code> 选项来更新store中的字段：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span>
+<span class="normal"><a href="#__codelineno-16-14">14</a></span>
+<span class="normal"><a href="#__codelineno-16-15">15</a></span>
+<span class="normal"><a href="#__codelineno-16-16">16</a></span>
+<span class="normal"><a href="#__codelineno-16-17">17</a></span>
+<span class="normal"><a href="#__codelineno-16-18">18</a></span>
+<span class="normal"><a href="#__codelineno-16-19">19</a></span>
+<span class="normal"><a href="#__codelineno-16-20">20</a></span>
+<span class="normal"><a href="#__codelineno-16-21">21</a></span>
+<span class="normal"><a href="#__codelineno-16-22">22</a></span>
+<span class="normal"><a href="#__codelineno-16-23">23</a></span>
+<span class="normal"><a href="#__codelineno-16-24">24</a></span>
+<span class="normal"><a href="#__codelineno-16-25">25</a></span>
+<span class="normal"><a href="#__codelineno-16-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="w">  </span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">    </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="w">      </span><span class="c1">// ...</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="w">      </span><span class="nx">_hasHydrated</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="w">    </span><span class="p">}),</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="w">      </span><span class="c1">// ...</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="w">      </span><span class="nx">onRehydrateStorage</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="w">        </span><span class="nx">useStore</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="w"> </span><span class="nx">_hasHydrated</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13"></a><span class="w">  </span><span class="p">)</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14"></a><span class="p">);</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15"></a>
+<a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">hasHydrated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useStore</span><span class="p">(</span><span class="nx">state</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">state</span><span class="p">.</span><span class="nx">_hasHydrated</span><span class="p">);</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18"></a>
+<a id="__codelineno-16-19" name="__codelineno-16-19"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">hasHydrated</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22"></a>
+<a id="__codelineno-16-23" name="__codelineno-16-23"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-16-24" name="__codelineno-16-24"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-16-25" name="__codelineno-16-25"></a><span class="w">  </span><span class="p">);</span>
+<a id="__codelineno-16-26" name="__codelineno-16-26"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>你还可以创建自定义使用 <code>Hydration</code> hook：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span>
+<span class="normal"><a href="#__codelineno-17-11">11</a></span>
+<span class="normal"><a href="#__codelineno-17-12">12</a></span>
+<span class="normal"><a href="#__codelineno-17-13">13</a></span>
+<span class="normal"><a href="#__codelineno-17-14">14</a></span>
+<span class="normal"><a href="#__codelineno-17-15">15</a></span>
+<span class="normal"><a href="#__codelineno-17-16">16</a></span>
+<span class="normal"><a href="#__codelineno-17-17">17</a></span>
+<span class="normal"><a href="#__codelineno-17-18">18</a></span>
+<span class="normal"><a href="#__codelineno-17-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(...))</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">useHydration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">hydrated</span><span class="p">,</span><span class="w"> </span><span class="nx">setHydrated</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="nx">useStore</span><span class="p">.</span><span class="nx">persist</span><span class="p">.</span><span class="nx">hasHydrated</span><span class="p">)</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a>
+<a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">unsubHydrate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useStore</span><span class="p">.</span><span class="nx">persist</span><span class="p">.</span><span class="nx">onHydrate</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setHydrated</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span><span class="w"> </span><span class="c1">// Note: this is just in case you want to take into account manual rehydrations. You can remove this if you don&#39;t need it/don&#39;t want it.</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">unsubFinishHydration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useStore</span><span class="p">.</span><span class="nx">persist</span><span class="p">.</span><span class="nx">onFinishHydration</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setHydrated</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9"></a>
+<a id="__codelineno-17-10" name="__codelineno-17-10"></a><span class="w">    </span><span class="nx">setHydrated</span><span class="p">(</span><span class="nx">useStore</span><span class="p">.</span><span class="nx">persist</span><span class="p">.</span><span class="nx">hasHydrated</span><span class="p">())</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11"></a>
+<a id="__codelineno-17-12" name="__codelineno-17-12"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13"></a><span class="w">      </span><span class="nx">unsubHydrate</span><span class="p">()</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14"></a><span class="w">      </span><span class="nx">unsubFinishHydration</span><span class="p">()</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16"></a><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[])</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17"></a>
+<a id="__codelineno-17-18" name="__codelineno-17-18"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">hydrated</span>
+<a id="__codelineno-17-19" name="__codelineno-17-19"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>如果你要使用的storage与预期的 API 不匹配，你可以创建自己的存储:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-18-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-18-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-18-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-18-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-18-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-18-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-18-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-18-10">10</a></span>
+<span class="normal"><a href="#__codelineno-18-11">11</a></span>
+<span class="normal"><a href="#__codelineno-18-12">12</a></span>
+<span class="normal"><a href="#__codelineno-18-13">13</a></span>
+<span class="normal"><a href="#__codelineno-18-14">14</a></span>
+<span class="normal"><a href="#__codelineno-18-15">15</a></span>
+<span class="normal"><a href="#__codelineno-18-16">16</a></span>
+<span class="normal"><a href="#__codelineno-18-17">17</a></span>
+<span class="normal"><a href="#__codelineno-18-18">18</a></span>
+<span class="normal"><a href="#__codelineno-18-19">19</a></span>
+<span class="normal"><a href="#__codelineno-18-20">20</a></span>
+<span class="normal"><a href="#__codelineno-18-21">21</a></span>
+<span class="normal"><a href="#__codelineno-18-22">22</a></span>
+<span class="normal"><a href="#__codelineno-18-23">23</a></span>
+<span class="normal"><a href="#__codelineno-18-24">24</a></span>
+<span class="normal"><a href="#__codelineno-18-25">25</a></span>
+<span class="normal"><a href="#__codelineno-18-26">26</a></span>
+<span class="normal"><a href="#__codelineno-18-27">27</a></span>
+<span class="normal"><a href="#__codelineno-18-28">28</a></span>
+<span class="normal"><a href="#__codelineno-18-29">29</a></span>
+<span class="normal"><a href="#__codelineno-18-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">create</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;zustand&quot;</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">persist</span><span class="p">,</span><span class="w"> </span><span class="nx">StateStorage</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;zustand/middleware&quot;</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">get</span><span class="p">,</span><span class="w"> </span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">del</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;idb-keyval&#39;</span><span class="w"> </span><span class="c1">// can use anything: IndexedDB, Ionic Storage, etc.</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="c1">// Custom storage object</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">storage</span><span class="o">:</span><span class="w"> </span><span class="nx">StateStorage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="w">  </span><span class="nx">getItem</span><span class="o">:</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="o">&gt;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;has been retrieved&quot;</span><span class="p">);</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">get</span><span class="p">(</span><span class="nx">name</span><span class="p">))</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="w">  </span><span class="nx">setItem</span><span class="o">:</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;with value&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;has been saved&quot;</span><span class="p">);</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13"></a><span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">set</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15"></a><span class="w">  </span><span class="nx">removeItem</span><span class="o">:</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;has been deleted&quot;</span><span class="p">);</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17"></a><span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">del</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19"></a><span class="p">}</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20"></a>
+<a id="__codelineno-18-21" name="__codelineno-18-21"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="p">(</span><span class="nx">persist</span><span class="p">(</span>
+<a id="__codelineno-18-22" name="__codelineno-18-22"></a><span class="w">  </span><span class="p">(</span><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">get</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<a id="__codelineno-18-23" name="__codelineno-18-23"></a><span class="w">    </span><span class="nx">fishes</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<a id="__codelineno-18-24" name="__codelineno-18-24"></a><span class="w">    </span><span class="nx">addAFish</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">set</span><span class="p">({</span><span class="w"> </span><span class="nx">fishes</span><span class="o">:</span><span class="w"> </span><span class="nx">get</span><span class="p">().</span><span class="nx">fishes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-18-25" name="__codelineno-18-25"></a><span class="w">  </span><span class="p">}),</span>
+<a id="__codelineno-18-26" name="__codelineno-18-26"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-18-27" name="__codelineno-18-27"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;food-storage&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// unique name</span>
+<a id="__codelineno-18-28" name="__codelineno-18-28"></a><span class="w">    </span><span class="nx">getStorage</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">storage</span><span class="p">,</span>
+<a id="__codelineno-18-29" name="__codelineno-18-29"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-18-30" name="__codelineno-18-30"></a><span class="p">))</span>
+</code></pre></div></td></tr></table></div></p>
+<p>凡本网注明"来源：XXX "的文/图/视频等稿件，本网转载出于传递更多信息之目的，并不意味着赞同其观点或证实其内容的真实性。如涉及作品内容、版权和其它问题，请与本网联系，我们将在第一时间删除内容！ <br />
+作者: <br />
+来源： <a href="https://3rcd.com/wiki/zustand/Persisting-the-stores-data/">https://3rcd.com/wiki/zustand/Persisting-the-stores-data/</a></p>
 
 
   
@@ -5295,41 +5559,6 @@ console.log("ad banner");
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="footer.title">
-        
-          <a href="../../AI/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  上一页
-                </span>
-                AIGC教程目录
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../../../about/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  下一页
-                </span>
-                关于
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
