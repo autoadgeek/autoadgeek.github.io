@@ -1,0 +1,6059 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+
+   <meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta name="description" content="一看就会的Nextjs App Router版 -- Routing">
+
+
+  <link rel="canonical" href="https://geek.digiasset.org/pages/NextJS/nextjs-routing--router_23Oct13162052783033/">
+
+
+<link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    
+      
+        <title>一看就会的Next.js App Router版 -- Routing(上) - 广告流程自动化</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.d451bc0e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a5377069.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-HS6FYDNKSV"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-HS6FYDNKSV",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-HS6FYDNKSV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+    <!-- <script async src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>-->
+    
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nextjs-app-router-routing" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="广告流程自动化" class="md-header__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            广告流程自动化
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              一看就会的Next.js App Router版 -- Routing(上)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/" class="md-tabs__link">
+          
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../html5/" class="md-tabs__link">
+          
+  
+  HTML5/CSS/VUE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ml/matrix/" class="md-tabs__link">
+          
+  
+  机器学习
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-tabs__link">
+          
+  
+  数学基础
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../nlp/nlp/" class="md-tabs__link">
+          
+  
+  自然语言处理
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../affiliate/seo_competitor_analyze/" class="md-tabs__link">
+          
+  
+  广告程序化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../affiliate/long-tail-keywords-in-article/" class="md-tabs__link">
+          
+  
+  网站SEO优化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../rpa/tool-reptile-mobile-method-introduction_21Oct26195529728646/" class="md-tabs__link">
+          
+  
+  自动化与爬虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../quant/" class="md-tabs__link">
+          
+  
+  量化
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../medicine/classification_hepatoprotective_drugs_usage/" class="md-tabs__link">
+          
+  
+  其他知识
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  关于
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="广告流程自动化" class="md-nav__button md-logo" aria-label="广告流程自动化" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    广告流程自动化
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python 基础教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-lexicalstructure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 语法结构
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-datatypes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 数据类型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-strings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 字符串
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-fstring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python f 字符串
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-lists/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 列表
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-dictionaries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 字典
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 集合
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-map/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 映射
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-operators/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 运算符
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-keywords/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 关键字
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-forloop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python for 循环
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-itergener/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 迭代器和生成器
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-listcomprehensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 列表推导式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-reverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 反转
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-regularexpressions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 正则表达式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-oop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 面向对象编程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 模块
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 中的软件包
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-exceptions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 异常
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-introspection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 自省
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-lambda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Lambda 函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 日志教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-simplejson/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python JSON 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-faker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Faker 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-feedparser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python feedparser 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-bcrypt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python bcrypt 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-socket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 套接字教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-smtplib/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python smtplib 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-yaml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python YAML 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-hashing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 哈希教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-configparser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python ConfigParser 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-argparse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python argparse 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-sqlite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python SQLite 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-cerberus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Cerberus 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pymysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python PyMySQL 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-peewee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Peewee 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pydal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python pyDAL 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pytest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Pytest 单元测试教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-beautifulsoup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BeautifulSoup 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pyquery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python pyquery 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-sympy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SymPy 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pandas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-matplotlib/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Matplotlib 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-pillow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pillow 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-ftp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python FTP 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Requests 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-arrow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Arrow 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-magicmethods/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 魔术方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-run-job-orchestrator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python Uipath Orchestrator Cloud API 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/calculate-calculus-newton-iteration-solve-high-order-equations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用python算微积分及牛顿迭代求解高阶方程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/py-setuptools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python打包分发工具setuptools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/python-processing-modules-handy-dandy-da_21Apr13181713428312/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用于数据处理的Python工具(Numerizer,Faker,Missingno,emot,Arrow)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/single-line-file-tables-python-extract-c_21Apr21115440307019/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用 Python Camelot从 PDF 文件中提取表格
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/ipiprequestsscrapy_downdawn-csdn_21Oct18105139565977/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多ip服务器绑定ip发送请求（requests和scrapy）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pytutorial/workers-threadpoolexecutor-configure_22May22102214296245/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ThreadPoolExecutor 如何选择最大工作线程数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    HTML5/CSS/VUE
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            HTML5/CSS/VUE
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html_5_intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html-head/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 头部
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html_5_video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 视频
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html-tables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 表格
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html-images/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 图像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html_5_geolocation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 地理定位
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/html_5_webworkers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTML5 Worker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../html5/thinkphp-template-syntax_21Apr18100959778030/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ThinkPHP 模板语法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VUE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VUE资料目录
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NextJS资料
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/matrix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习与矩阵,numpy,sklearn等工具
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/python-tsne4dimensional-reduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python – 如何使用 t-SNE 進行降維
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/basic/eigenvalue-singular-value-decomposition-pca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征值分解、奇异值分解、PCA概念
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/numpy/numpy-matrix-calculation-module-linalg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Numpy中矩阵计算模块linalg的常用函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/function-relu-silent-moon-cold-gelu_-sof_21Mar05214438987767/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    深度学习的激活函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/training-speeding-scikit-learn-model_21Mar06152857982617/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    加快Scikit-Learn训练
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/throw-selection-data-away-feature-accura_21Apr21145323697988/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征选择,如何丢掉95%的数据并获得95%的准确率
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/pandas/speed-pandas-line-couple-significantly-c_21May12202229315527/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用几行代码显著加快pandas速度的6种方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/pandas/-pandas-joblib_22Apr09101730660571/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 joblib 对 Pandas 数据进行并行处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/pandas/series-example-analysis-forecasting-time_22Apr09120943456879/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    时间序列分析和预测
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/pandas/time-series-determination-analysis-trend_22Apr09135816740900/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    时间序列的趋势判断
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/imblearn-unbalanced-sample-categories-deeling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    imblearn SMOTE算法处理样本类别不平衡
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/rating-gridsearchcv_22Apr25090121978278/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gridSearchCV(网格搜索)的参数、方法及示例
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/recallcompleteness-accuracyaccuracy-valu_22Apr25102517019011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    混淆矩阵、准确率、精确率/查准率、召回率/查全率、F1值、ROC曲线的AUC值
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/basic/xgboost-starter-series-lecture-first_22May06135159845512/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XGBoost介绍
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/xgboost-tutorial-start-easy_22May07104546887754/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XGBoost 使用讲解
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/sklearn/technique-nuclear-linearity-inseparable_22Sep11093830253879/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    讲解绘图与支持向量机(support vector machine)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    数学基础
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            数学基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/mean-formula-exponential-distribution_21Mar04200956862982/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    指数分布公式的含义
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/mathematical-lesson-layout-latex-formula_21Mar05193828436946/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTeX 数学公式排版
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/statistical-python-probability-distribut_21Mar05202631292241/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    常见概率统计分布及Python实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/correlation-co-variances-variance-coeffi_21Mar07115144053588/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    期望值、方差、协方差、相关系数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/explain-_softmax_21Mar10194153839999/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    softmax详解
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/least-squares-polynomial-curve-fitting-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    最小二乘法多项式曲线拟合及其python实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/loss-cross-entropy-_22Aug21144655921227/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    交叉熵损失函数一
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/loss-function-entropy-cross_21Mar15132523114094/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    损失函数 - 交叉熵损失函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/vector-measurement-feature-distance_21Mar17192854214137/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    向量的距离度量
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/whitening-deviation-variance-standard-se_21Mar17204632155755/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    协方差、PCA、样本中心化,白化、方差、标准差、BN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/variance-sample-cost-reconstruction-mini_21Mar17213251482233/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    降维基础知识(样本均值、样本方差、中心矩阵)与PCA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/principle-judgment-analysis-linear-summa_21Mar18175822435322/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何画lda投影结果_线性判别分析(LDA)原理总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/translation-matrix-interpretation-geomet_21Mar21114422593344/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    协方差矩阵的几何解释
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/subspace-matrix-four-connection_21Apr04201538274672/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    从sympy求最简形矩阵到矩阵的四个子空间及其联系
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/understanding-convolutions_21Apr05213206391248/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    了解卷积
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/within-vector-significance-product-geome_21Apr08174255708682/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    向量内积外积的几何意义
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/learning-function-deep-csdn-common-blog-_21Nov09082415645481/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    收集16个激活函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/numpy_21Dec04212656270821/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NumPy数组的四种乘法的使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/-csdn_pandas-_-pandas_21Dec05085221730822/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pandas 数据的归一化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/used-method-data-analytical-commonly-ana_22Mar21153258903810/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据分析常用的9种分析方法-判断分布
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mathbasic/maximum-likelihood-estimation-probabilit_22Aug20181839890939/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    贝叶斯估计、最大似然估计、最大后验概率估计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    自然语言处理
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            自然语言处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自然语言处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-new-entry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP 新手上路
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-hanlp-dictionary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP HanNLP 词典分词
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/ml-precision-recall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    评价指标：准确率(Precision)、召回率(Recall)、F值(F-Measure)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/keywords_extract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文本关键词提取
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/topicextract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用Python从海量文本抽取主题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-tookits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nlp常用工具集
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/hands-on-guide-to-pattern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP pattern库 hands on
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-summarization-pretrained-ncoders/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于预训练模型的文本摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/server-less-textsummary-keywords-extract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serverless 实战：如何结合 NLP 实现文本摘要和关键词提取?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/opensource-projects-2020list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    开源项目，涵盖 11 类 AI 学习框架、平台
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nltk-basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自然语言处理工具包之NLTK
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/information-extract-basedon-rule-search-engin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于规则的信息提取，搜索引擎如何检索结果：spaCy简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/bert-text-summarizer-chinese/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bert-extractive-summarizer 中文文章的抽取式摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/cnn-nlp-understand/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    理解NLP中的CNN卷积神经网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/nlp-dependency-parsing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    依存分析与依存树 dependency parse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/keywords-auto-extract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关键词与文章相关性, 关键词自动标注与提取
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/website-categorization-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python 使用 Google NLP API进行网站分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/automated-web-crawling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 AI 自动执行 Web 爬网
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/classification-of-websites-by-machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通过机器学习对网站进行分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/textrank-pagerank-algorithmus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TextRank算法简述
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/extract-keywords-nltk-textrank/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLTK TextRank实现英文关键词提取
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/extract-keywords-using-spacy-fuzzywuzzy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Spacy和 FuzzyWuzzy 构建关键字提取API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/cosine-similarity-algorithm2calculate-text-similarity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用余弦相似度算法计算文本相似度
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/word-sentence-embed-best-technique-count_21Mar06141722360993/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    细数2018年最好的词嵌入和句嵌入技术
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-start-multiclass-finish-classificat_21Mar06184345839969/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    从头开始多标签文本分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/training-text-model-classification-bert_21Mar13104632238439/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    没有模型训练情况下用BERT做文本分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-feature-engineering-analysis_21Mar13141607854162/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用 NLP 做文本分析和特征工程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/using-similarity-sentence-bert-word2vec-_21Apr13202631442339/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何使用 BERT 和 Word2Vec 计算句子相似性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/text-similarity-measuring-bert_21May08200617801479/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT用于计算句子文本相似度
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/topic-modeling-interactive-bertopic_21Apr27173610787396/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用BERTopic进行交互式主题建模
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/structured-data-processing-practice20211007/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    结构化数据提取实践
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/summary-long-extract-bert-article_21Oct23115502660035/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT时代下的摘要提取长文总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/csdn-blog-_nlp-summary_miner_zhu-summary_21Oct23175443667734/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP之文章摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/gentle-introduction-to-text-summarization_ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于词频计算句子权重的文本自动摘要
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/text-task-summarize-incomplete-auto-summ_21Oct24165632331849/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文本自动摘要任务的“不完全”心得总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/topic-entity-model-name-recognition-base_21Oct24174759876009/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基于主题模型和命名实体识别的自动摘要方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/word-vector-one-hotsvdnnlmword2vecglove_21Oct24183706851403/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    词向量(one-hot/SVD/NNLM/Word2Vec/GloVe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/practical-guide-generative-examples_21Oct25174535026003/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP文本摘要实操 - 具有生成示例的实用指南
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/tokenizer-spacy-extract-custom-keywords-_22Jul06185024871770/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    向 spaCy 添加指定分词器(Jieba,CKIP Transformers)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpinfo/spacy-python-information-extraction_22Jul07203415699453/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Python 和 spaCy 进行信息提取简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/nlpex/extraction-event_22Sep08161543208256/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    事件抽取简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    广告程序化
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            广告程序化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/seo_competitor_analyze/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    围绕SEO开展竞争对手分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/select-products-from-hottrend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shopify独立站的几套选品方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/semantic-search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    什么是语义搜索？它是如何影响SEO的
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/meta-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何编写完美的元描述
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/keywords-opportunities-with-google-trends-ahrefs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Google Trend、Python 和 Ahrefs 查找关键字商机
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/facebook-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Python 进行 Facebook 抓取和情绪分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/instagram-scraping-and-sentiment-analysis-with-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instagram 爬虫
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/find-search-volume-ceiling-for-keyword-categories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用 Python 查找关键字类别的搜索量上限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/visualizing-products-amazon_21Mar06142625123432/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    可视化 100，000 亚马逊产品
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/text-simhash-good-re-process-deep_21Apr03114628313403/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用SimHash进行海量文本去重流程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/submit-website-to-search-engines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何把网站提交给搜索引擎
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/sitemaps-to-be-crawled-with-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    动态网站使用 Python 向 Google 自动提交站点地图
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/seo_open_graph_protocol/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO 优化: Open Graph protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/seo_json_ld_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO 优化: 添加 JSON-LD 数据
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    网站SEO优化
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            网站SEO优化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/long-tail-keywords-in-article/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    长尾词优化入网页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/keyword-difficulty/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关键词难度：如何确认你在 Google 获得排名的机会
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/how-to-get-on-the-first-page-of-google/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何让网站排名进入谷歌首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/amazon-affiliate-marketing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何搭建一个成功的亚马逊联盟网站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/seo-backlink-website-directories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO之网站分类目录外链推广工具, 高质量外链来源和技巧
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/how-to-analyze-pages-to-generate-content/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    抓了10万个头条数据，分析了1万爆文，写出了10万阅读量的内容
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/how-to-start-seo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEO每日流量如何从0到10000
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/use-python-to-get-keywords/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python与SEO 词库完整指南
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/use-python-to-get-keywords2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python百度下拉框关键词采集
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../affiliate/adsense/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hexo个人next主题博客接入谷歌广告
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    自动化与爬虫
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            自动化与爬虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpa/tool-reptile-mobile-method-introduction_21Oct26195529728646/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    移动端爬虫工具与方法介绍
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpa/sharp-reptile-playwright-generation_22Mar16150047139054/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    新一代爬虫工具 -- Playwright
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpa/thing-grab_23Jun14171058520489/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安卓、苹果的全局代理以及抓包
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    量化
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            量化
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/strength-resistance-support-relative-tim_22Mar09144910644904/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RSRS(阻力支撑相对强度)择时策略研究
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/world-stock-select-afraid_22Mar11102617879419/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多因子模型选股,配RSRS择时方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/strong-quantificationhow-onel-find-pytho_22Mar11115955383426/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    利用欧奈尔的RPS寻找强势股
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/regression-model-line-code-author_22Mar16105340028529/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lazy Predict 如何用几行代码运行 40 个回归模型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/_22Mar15205312018057/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    巴菲特的Alpha:利用机器学习量化『股票基本面』
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/correlation-nlpnlu-matrix-vectorspace-da_22Mar16152147921647/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用矢量空间AI NLP / NLU相关矩阵数据集生成阿尔法:股票与周期性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/trading-quantitative-factor-evaluation-s_22Apr25121650255339/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化交易入门——因子的评价体系和IC、IR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/series-brief-introduction-primer-simple-_22Apr28144022194446/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（二）——简单策略初探
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/series-primer-investing-capm-risk-quanti_22Apr28145508941654/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（三）——CAPM与风险
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/series-quantitative-primer-investing-bar_22Apr28150803767664/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（四）——APT与BARRA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/series-portfolio-construction-primer-bas_22Apr28152227119078/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（五）——基于BARRA的组合构建
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/technical-factor-series-analysis-primer-_22Apr28154753258404/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（六）——技术性因子分析与遗传算法生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/trend-stock-series-prediction-primer-bas_22Apr28155928476282/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（七）——基于机器学习的股票走势预测
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/trend-stock-series-prediction-investing-_22Apr28160755545143/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（八）——基于神经网络的股票走势预测
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/lhr/tabnet-series-investment-entry-quantitat_22Apr28161224255196/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    量化投资入门系列（九）——TabNet解析与使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/time-series-forecasting-moving-methods-b_22May03131956778461/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    时间序列预测基本方法--移动平均（SMA、EMA、WMA）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quant/stocks/trading-indicator-macd-clearly-people-ex_22May03162310791780/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MACD交易指标
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    其他知识
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            其他知识
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../medicine/classification_hepatoprotective_drugs_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    保肝药的分类及其使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ubuntu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ubuntu系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ai_ml_testlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI实验平台小技巧
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    工具集合文档
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/tutorial-socks5-android_23Jun14102027281268/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安卓机使用socks5教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/proxy-http-center-socks5-green-availabil_23Jun15205449339580/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    测试socks5 和http 代理IP 的可用性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AIGC教程目录
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git_usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git,Vercel使用指南
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+
+
+<script type="text/javascript">
+//September 26, 2023 添加广告 banner
+console.log("ad banner");
+</script>
+<div>
+  <a href="https://www.aijiaolian.chat/midjourney?puid=6056" target="_blank">
+  <img src="/img/onekeyAIGC.jpg" class="img" alt="人工智能一键成图"/>
+  <p style="color:red;font-size:28px;width: 100%;display: block;text-align: center;">AIGC Midjourney 智能一键生成图片</p>
+  </a>
+</div>
+
+
+<h1 id="nextjs-app-router-routing">一看就会的Next.js App Router版 -- Routing(上)<a class="headerlink" href="#nextjs-app-router-routing" title="Permanent link">&para;</a></h1>
+<h2 id="routing-fundamentals">Routing Fundamentals<a class="headerlink" href="#routing-fundamentals" title="Permanent link">&para;</a></h2>
+<p>每个应用程序的骨架都是路由。这一页将向你介绍网络路由的基本概念，以及如何在Next.js中处理路由。</p>
+<h2 id="terminology"><a href="https://nextjs.org/docs/app/building-your-application/routing#terminology">Terminology</a><a class="headerlink" href="#terminology" title="Permanent link">&para;</a></h2>
+<p>首先，您将看到这些术语在整个文档中使用。这里有一个快速参考:</p>
+<p><img alt="术语参考图" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162059224327_1.png" title="路由骨架" /></p>
+<ul>
+<li>
+<p><strong>Tree:</strong>  A convention for visualizing a hierarchical structure. For example, a component tree with parent and children components, a folder structure, etc.  </p>
+</li>
+<li>
+<p><strong>Subtree:</strong>  Part of a tree, starting at a new root (first) and ending at the leaves (last).  </p>
+</li>
+<li>
+<p><strong>Root</strong>: The first node in a tree or subtree, such as a root layout.  </p>
+</li>
+<li>
+<p><strong>Leaf:</strong>  Nodes in a subtree that have no children, such as the last segment in a URL path.  </p>
+</li>
+<li>
+<p><strong>URL Segment:</strong>  Part of the URL path delimited by slashes.Part of the URL path delimited by slashes. URL路径的一部分，用斜杠分隔  </p>
+</li>
+<li>
+<p><strong>URL Path:</strong>  Part of the URL that comes after the domain (composed of segments). 域名之后的URL的一部分(由段组成)。  </p>
+</li>
+</ul>
+<p><img alt="URL分段" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162102696469_1.png" title="URL分段" /></p>
+<h2 id="the-app-directory"><a href="https://nextjs.org/docs/app/building-your-application/routing#the-app-router">The <code>app</code> Directory</a><a class="headerlink" href="#the-app-directory" title="Permanent link">&para;</a></h2>
+<p>在版本 13 中，Next.js 引入了一个基于 <a href="https://nextjs.org/docs/app/building-your-application/rendering/server-components">React Server Components</a>构建的新 App Router，它支持共享布局、嵌套路由、加载状态、错误处理等。</p>
+<p>App Router 在一个名为 app 的新目录中工作。 app 目录与 pages 目录一起工作以允许增量采用。这允许您将应用程序的某些路由选择为新行为，同时将其他路由保留在页面目录中以用于先前的行为。如果您的应用程序使用 pages 目录，另请参阅 <a href="https://nextjs.org/docs/pages/building-your-application/routing">Pages Router</a> 文档。</p>
+<blockquote>
+<p>提示：App Router 优先于 Pages Router。跨目录的路由不应解析为相同的 URL 路径，并且会导致构建时错误以防止冲突。</p>
+</blockquote>
+<p><img alt="目录树" src="images/app_router_page_router.png" title="目录" /></p>
+<p>默认情况下，app 中的组件是 <a href="https://nextjs.org/docs/app/building-your-application/rendering/server-components">React Server Components</a>。这是一种性能优化，可以让您轻松采用它们，您还可以使用<a href="https://nextjs.org/docs/app/building-your-application/rendering/client-components">客户端组件 Client Components</a>.。</p>
+<blockquote>
+<p>建议：如果您不熟悉服务器组件，请查看<a href="https://nextjs.org/docs/app/building-your-application/rendering">服务器和客户端组件</a>页面。</p>
+</blockquote>
+<h2 id="roles-of-folders-and-files"><a href="https://nextjs.org/docs/app/building-your-application/routing#roles-of-folders-and-files">Roles of Folders and Files</a><a class="headerlink" href="#roles-of-folders-and-files" title="Permanent link">&para;</a></h2>
+<p>文件夹和文件的作用</p>
+<p>In the App Router:</p>
+<p>在应用路由器中：</p>
+<ul>
+<li>文件夹用于定义路线。路由是嵌套文件夹的单个路径，遵循从根文件夹到包含 <code>page.js</code> 文件的最终叶文件夹的层次结构。</li>
+<li>文件用于创建为路线段显示的 UI。见<a href="https://nextjs.org/docs/app/building-your-application/routing#file-conventions">特殊文件</a>。</li>
+</ul>
+<h2 id="route-segments"><a href="https://nextjs.org/docs/app/building-your-application/routing#route-segments">Route Segments</a><a class="headerlink" href="#route-segments" title="Permanent link">&para;</a></h2>
+<p>路线段</p>
+<p>路线中的每个文件夹代表一个路线段。每个路由段都映射到 URL 路径中的相应段。</p>
+<p><img alt="app route segement" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162130006003_1.png" title="app route segement" /></p>
+<h2 id="nested-routes"><a href="https://nextjs.org/docs/app/building-your-application/routing#nested-routes">Nested Routes</a><a class="headerlink" href="#nested-routes" title="Permanent link">&para;</a></h2>
+<p>嵌套路由</p>
+<p>要创建嵌套路由，您可以将文件夹相互嵌套。例如，您可以通过在 app 目录中嵌套两个新文件夹来添加新的 <code>/dashboard/settings</code> 路由。</p>
+<p><code>/dashboard/settings</code> 路由由三个部分组成：</p>
+<ul>
+<li><code>/</code> (Root segment) /（根段）</li>
+<li><code>dashboard</code> (Segment) 仪表板（部分）</li>
+<li><code>settings</code> (Leaf segment) 设置（叶段）</li>
+</ul>
+<h2 id="file-conventions"><a href="https://nextjs.org/docs/app/building-your-application/routing#file-conventions">File Conventions</a><a class="headerlink" href="#file-conventions" title="Permanent link">&para;</a></h2>
+<p>Next.js 提供了一组特殊文件来创建在嵌套路由中具有特定行为的 UI：</p>
+<ul>
+<li>
+<p><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages">page.js</a>: 创建路由的唯一 UI 并使路径可公开访问。</p>
+</li>
+<li>
+<p><a href="https://nextjs.org/docs/app/building-your-application/routing/route-handlers">route.js</a>: 为路由创建服务器端 API 端点。</p>
+</li>
+<li>
+<p><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts">layout.js</a>: 为段及其子段创建共享 UI。布局包裹页面或子段。</p>
+</li>
+<li>
+<p><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#templates">template.js</a>: 类似于layout.js，只是在navigation上挂载了一个新的组件实例。除非您需要这种行为，否则请使用布局。</p>
+</li>
+<li>
+<p><a href="https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming">loading.js</a>: 为片段及其子片段创建加载 UI。 <code>loading.js</code>在<a href="https://react.dev/reference/react/Suspense#suspense">React Suspense Boundary</a>中包装页面或子段  ，在加载时显示加载 UI</p>
+</li>
+<li>
+<p><a href="https://nextjs.org/docs/app/building-your-application/routing/error-handling">error.js</a>: 将页面或子段包装在<a href="https://legacy.reactjs.org/docs/error-boundaries.html">React Error Boundary</a>错误边界中如果捕获到错误，则显示错误 UI。</p>
+</li>
+<li>
+<p><a href="https://nextjs.org/docs/app/building-your-application/routing/error-handling">global-error.js</a>: 类似于 error.js，但专门用于捕获根 layout.js 中的错误。</p>
+</li>
+</ul>
+<p><a href="https://nextjs.org/docs/app/api-reference/file-conventions/not-found">not-found.js</a>: 创建 UI 以显示何时在路由段内抛出 <a href="https://nextjs.org/docs/app/api-reference/functions/not-found"><code>notFound</code></a> 函数或何时 URL 与任何路由都不匹配。   </p>
+<blockquote>
+<p>提示：.js、.jsx 或 .tsx 文件扩展名可用于特殊文件。</p>
+</blockquote>
+<h2 id="component-hierarchy"><a href="https://nextjs.org/docs/app/building-your-application/routing#component-hierarchy">Component Hierarchy</a><a class="headerlink" href="#component-hierarchy" title="Permanent link">&para;</a></h2>
+<p>组件层次结构</p>
+<p>在路由段的特殊文件中定义的 React 组件在特定的层次结构中呈现：</p>
+<ul>
+<li><code>layout.js</code></li>
+<li>布局.js</li>
+<li><code>template.js</code></li>
+<li>模板.js</li>
+<li><code>error.js</code> (React error boundary)</li>
+<li>error.js（反应错误边界）</li>
+<li><code>loading.js</code> (React suspense boundary)</li>
+<li>loading.js（React悬念边界）</li>
+<li><code>not-found.js</code> (React error boundary)</li>
+<li>not-found.js（反应错误边界）</li>
+<li><code>page.js</code> or nested <code>layout.js</code></li>
+<li>page.js 或嵌套 layout.js</li>
+</ul>
+<p><img alt="组件层次结构" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162141785461_1.png" title="组件层次结构" /></p>
+<p>在嵌套路由中，段的组件将嵌套在其父段的组件内。</p>
+<p><img alt="setting segement in dashboard segement" src="images/setting_segement_in_dashboard_segement.png" title="setting segement in dashboard segement" /></p>
+<h2 id="colocation"><a href="https://nextjs.org/docs/app/building-your-application/routing#colocation">Colocation</a><a class="headerlink" href="#colocation" title="Permanent link">&para;</a></h2>
+<p>托管</p>
+<p>除了特殊文件之外，您还可以选择将自己的文件放在文件夹中。例如，样式表、测试、组件等。</p>
+<p><img alt="其他文件放在文件夹中" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162205269268_1.png" title="其他文件放在文件夹中" /></p>
+<p>This is because while folders define routes, only the contents returned by <code>page.js</code> or <code>route.js</code> are publicly addressable.</p>
+<p><img alt="不可路由" src="images/publicly_addressable_and_not_routable.avif" title="不可路由" /></p>
+<p><strong>Learn more about <a href="https://nextjs.org/docs/app/building-your-application/routing/colocation">Project Organization and Colocation</a></strong></p>
+<h2 id="server-centric-routing-with-client-side-navigation">Server-Centric Routing with Client-side Navigation<a class="headerlink" href="#server-centric-routing-with-client-side-navigation" title="Permanent link">&para;</a></h2>
+<p>具有客户端导航的以服务器为中心的路由</p>
+<p>与使用客户端路由的页面目录不同，App Router 使用以服务器为中心的路由来与服务器上的服务器组件和数据获取保持一致。使用以服务器为中心的路由，客户端不必下载路由映射，并且可以使用对服务器组件的相同请求来查找路由。此优化对所有应用程序都有用，但对具有许多路由的应用程序影响更大。</p>
+<p>尽管路由是以服务器为中心的，但路由器使用带有<a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#linking">链接组件</a>的<code>客户端导航</code>——类似于单页应用程序的行为。这意味着当用户导航到新路由时，浏览器不会重新加载页面。相反，URL 将被更新并且 Next.js 将只呈现更改的段。</p>
+<p>此外，当用户在应用程序中导航时，路由器会将 React 服务器组件负载的结果存储在内存中的客户端缓存中。缓存由路由段分割，允许在任何级别失效并确保 React 的<a href="https://react.dev/blog/2022/03/29/react-v18#what-is-concurrent-react">并发渲染</a>之间的一致性。这意味着在某些情况下，可以重新使用先前获取的段的缓存，从而进一步提高性能。</p>
+<p>查看<a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating">链接和导航</a>页面以了解如何使用链接组件。</p>
+<h2 id="partial-rendering">Partial Rendering<a class="headerlink" href="#partial-rendering" title="Permanent link">&para;</a></h2>
+<p>局部渲染</p>
+<p>在同级路由之间导航时（例如下面的 <code>/dashboard/settings</code> 和 /dashboard/analytics），Next.js 将只获取和渲染路由中发生变化的布局和页面。它不会重新获取或重新呈现子树中段上方的任何内容。这意味着在共享布局的路由中，当用户在同级页面之间导航时，布局将被保留。</p>
+<p><img alt="局部渲染" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162208907504_1.png" title="局部渲染" /></p>
+<p>如果没有部分呈现，每次导航都会导致整个页面在服务器上重新呈现。仅渲染正在更新的片段可减少传输的数据量和执行时间，从而提高性能。</p>
+<h2 id="advanced-routing-patterns"><a href="https://nextjs.org/docs/app/building-your-application/routing#advanced-routing-patterns">Advanced Routing Patterns</a><a class="headerlink" href="#advanced-routing-patterns" title="Permanent link">&para;</a></h2>
+<p>高级路由模式</p>
+<p>App Router 还提供了一组约定来帮助您实现更高级的路由模式。这些包括：</p>
+<ul>
+<li><a href="https://nextjs.org/docs/app/building-your-application/routing/parallel-routes">并行路由</a>: 允许您在同一视图中同时显示两个或多个可以独立导航的页面。您可以将它们用于具有自己的子导航的拆分视图。例如。仪表板。</li>
+<li><a href="https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes">Intercepting Routes拦截路线</a>: 允许您截取一条路线并将其显示在另一条路线的上下文中。当保持当前页面的上下文很重要时，您可以使用它们。例如。在编辑一个任务或展开提要中的一张照片时查看所有任务。</li>
+</ul>
+<p>这些模式允许您构建更丰富和更复杂的 UI，使小型团队和个人开发人员过去难以实现的功能民主化。</p>
+<h2 id="defining-routes">Defining Routes<a class="headerlink" href="#defining-routes" title="Permanent link">&para;</a></h2>
+<p>我们建议在继续之前阅读<a href="https://nextjs.org/docs/app/building-your-application/routing">路由基础知识</a>页面。</p>
+<p>此页面将指导您完成如何在 Next.js 应用程序中定义和组织路由。</p>
+<h3 id="creating-routes"><a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Fdefining-routes%23creating-routes">Creating Routes</a><a class="headerlink" href="#creating-routes" title="Permanent link">&para;</a></h3>
+<p>创建路线</p>
+<p>在 app 目录中，文件夹用于定义路由。 <br />
+每个文件夹代表一个映射到 URL 段的<a href="https://nextjs.org/docs/app/building-your-application/routing#route-segments">路由段</a>。要创建<a href="https://nextjs.org/docs/app/building-your-application/routing#nested-routes">嵌套路由</a>，您可以将文件夹相互嵌套。</p>
+<p><img alt="app route segement" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162130006003_1.png" title="app route segement" /></p>
+<p>一个特殊的 <a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages">page.js</a> 文件用于使路由段可公开访问。</p>
+<p><img alt="page.js使路由段可公开访问" src="images/page_4_public_access.png" title="page.js使路由段可公开访问" /></p>
+<p>在此示例中，<code>/dashboard/analytics</code> URL 路径不可公开访问，因为它没有对应的 <code>page.js</code> 文件。此文件夹可用于存储组件、样式表、图像或其他位于同一位置的文件。</p>
+<blockquote>
+<p>提示：.js、.jsx 或 .tsx 文件扩展名可用于特殊文件。</p>
+</blockquote>
+<h2 id="creating-ui"><a href="https://nextjs.org/docs/app/building-your-application/routing/defining-routes#creating-ui">Creating UI</a><a class="headerlink" href="#creating-ui" title="Permanent link">&para;</a></h2>
+<p>创建用户界面</p>
+<p><a href="https://nextjs.org/docs/app/building-your-application/routing#file-conventions">特殊文件</a>约定用于为每个路由段创建 UI。最常见的是<a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages">pages</a>显示某路线特有 UI 的页面，以及显示跨多个路线共享的 UI 的<a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts">布局</a>。</p>
+<p>例如，要创建您的第一个页面，请在 app 目录中添加一个 page.js 文件并导出一个 React 组件：</p>
+<p><code>app/page.js</code> <br />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>export default function Page() {  return &lt;h1&gt;Hello, Next.js!&lt;/h1&gt;;}
+</code></pre></div></td></tr></table></div></p>
+<p>了解有关创建<a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages">页面</a>和<a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts">布局</a>的更多信息。</p>
+<h2 id="pages-and-layouts">Pages and Layouts<a class="headerlink" href="#pages-and-layouts" title="Permanent link">&para;</a></h2>
+<p>我们建议在继续之前阅读<a href="https://nextjs.org/docs/app/building-your-application/routing">路由基础</a>知识和定义<a href="https://nextjs.org/docs/app/building-your-application/routing/defining-routes">路由</a>。</p>
+<p>Next.js 13 中的 App Router 引入了新的文件约定，可以轻松创建页面、共享布局和模板。本页将指导您了解如何在 Next.js 应用程序中使用这些特殊文件。</p>
+<h3 id="pages"><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages">Pages</a><a class="headerlink" href="#pages" title="Permanent link">&para;</a></h3>
+<p>页面是路线特有的 UI。您可以通过从 <code>page.js</code> 文件导出组件来定义页面。使用嵌套文件夹定义<a href="https://nextjs.org/docs/app/building-your-application/routing/defining-routes">路线</a>和 <code>page.js</code> 文件以使路由可公开访问。</p>
+<p>通过在 <code>app</code> 目录中添加 <code>page.js</code> 文件来创建您的第一个页面：</p>
+<p><img alt="首页" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162234360225_1.png" title="首页" /></p>
+<p><code>app/page.js</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>// `app/page.js` is the UI for the root `/` URL
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>export default function Page() {  return &lt;h1&gt;Hello, Next.js!&lt;/h1&gt;;}
+</code></pre></div></td></tr></table></div></p>
+<p><strong>Good to know:</strong></p>
+<ul>
+<li>页面始终是路由子树的叶子。</li>
+<li><code>.js</code>、<code>.jsx</code> 或 <code>.tsx</code> 文件扩展名可用于页面。</li>
+<li>需要一个 <code>page.js</code> 文件来使路由段可公开访问。</li>
+<li>默认情况下，页面是<a href="https://nextjs.org/docs/app/building-your-application/rendering">服务器组件</a>，但可以设置为<a href="https://nextjs.org/docs/app/building-your-application/rendering/client-components">客户端组件</a>。</li>
+<li>页面可以<a href="https://nextjs.org/docs/app/building-your-application/data-fetching">获取数据</a>。查看数据获取部分了解更多信息。</li>
+</ul>
+<h2 id="layouts"><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts">Layouts</a><a class="headerlink" href="#layouts" title="Permanent link">&para;</a></h2>
+<p>布局</p>
+<p>布局是在多个页面之间共享的 UI。在导航时，布局会保留状态、保持交互并且不会重新呈现。<a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#nesting-layouts">布局也可以嵌套</a>。</p>
+<p>您可以默认从 <code>layout.js</code> 文件导出 React 组件来定义布局。该组件应该接受一个 <code>children</code> 属性，该属性将在渲染期间填充子布局（如果存在）或子页面。</p>
+<p><img alt="布局嵌套" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162236366177_1.png" title="布局嵌套" /></p>
+<p><code>app/dashboard/layout.tsx</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>export default function DashboardLayout({
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>  children, // will be a page or nested layout
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>}: {
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>  children: React.ReactNode;
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>}) {
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>  return (
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>    &lt;section&gt;
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>      {/* Include shared UI here e.g. a header or sidebar */}
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>      &lt;nav&gt;&lt;/nav&gt;
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>      {children}
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>    &lt;/section&gt;
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>  );
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>}
+</code></pre></div></td></tr></table></div></p>
+<ul>
+<li>最顶层的布局称为<a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required">根布局</a>。这个必需的布局在应用程序的所有页面之间共享。根布局必须包含 <code>html</code> 和 <code>body</code> 标签。</li>
+<li>任何路线段都可以选择定义<a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#nesting-layouts">自己的布局</a>。这些布局将在该段的所有页面中共享。</li>
+<li>默认情况下，路由中的布局是嵌套的。每个父布局都使用 React <code>children</code> 属性将子布局包裹在其下方。</li>
+<li>您可以使用<a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups">路线组</a>选择特定路线段进出共享布局。</li>
+<li>默认情况下，布局是<a href="https://nextjs.org/docs/app/building-your-application/rendering/server-components">服务器组件</a>，但可以设置为<a href="https://nextjs.org/docs/app/building-your-application/rendering/client-components">客户端组件</a>。</li>
+<li>布局可以获取数据。</li>
+<li>无法在父布局与其子布局之间传递数据。但是，您可以在一条路由中多次获取相同的数据，React 会自动对请求进行<a href="https://nextjs.org/docs/app/building-your-application/data-fetching#automatic-fetch-request-deduping">重复数据删除</a>，而不会影响性能。</li>
+<li>布局无权访问当前路线段。要访问路线段，您可以在客户端组件中使用 <a href="https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segment">useSelectedLayoutSegment</a> 或 <a href="https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segments">useSelectedLayoutSegments</a> 。</li>
+<li>.js、.jsx 或 .tsx 文件扩展名可用于布局。</li>
+<li>layout.js 和 page.js 文件可以定义在同一个文件夹中。布局将包装页面。</li>
+</ul>
+<h3 id="root-layout-required"><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required">Root Layout (Required)</a><a class="headerlink" href="#root-layout-required" title="Permanent link">&para;</a></h3>
+<p>根布局（必需）</p>
+<p>根布局定义在应用程序<code>app</code>目录的顶层，适用于所有路由。此布局使您能够修改从服务器返回的初始 <code>HTML</code>。</p>
+<p><code>app/layout.tsx</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>export default function RootLayout({
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>  children,
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>}: {
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>  children: React.ReactNode,
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>}) {
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>  return (
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>    &lt;html lang=&quot;en&quot;&gt;
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>      &lt;body&gt;{children}&lt;/body&gt;{&quot; &quot;}
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>    &lt;/html&gt;
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>  );
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>}
+</code></pre></div></td></tr></table></div>
+-   应用程序目录必须包含根布局。
+-   根布局必须定义<code>&lt;html&gt;</code>  和 <code>&lt;body&gt;</code> 标签，因为 Next.js 不会自动创建它们。
+-   您可以使用内置的 <a href="https://nextjs.org/docs/app/building-your-application/optimizing/metadata#seo">built-in SEO support</a> 支持来管理 <code>&lt;head&gt;</code> HTML 元素，例如 <code>&lt;title&gt;</code> 元素。
+-   您可以使用<a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups">路由组</a>来创建多个根布局。请在此处查看<a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups#examples">示例</a>。
+-   默认情况下，根布局是一个服务器组件，不能设置为客户端组件。</p>
+<h3 id="nesting-layouts"><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#nesting-layouts">Nesting Layouts</a><a class="headerlink" href="#nesting-layouts" title="Permanent link">&para;</a></h3>
+<p>嵌套布局</p>
+<p>在文件夹内定义的布局（例如 <code>app/dashboard/layout.js</code>）适用于特定的路线段（例如 <code>acme.com/dashboard</code>）并在这些段处于活动状态时呈现。默认情况下，文件层次结构中的布局是嵌套的，这意味着它们通过 children 属性包装子布局。</p>
+<p><img alt="app/dashboard/layout.js" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162239534550_1.png" title="app/dashboard/layout.js" /></p>
+<p><code>app/dashboard/layout.tsx</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>export default function DashboardLayout({
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>  children,
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>}: {
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>  children: React.ReactNode,
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>}) {
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>  return &lt;section&gt;{children}&lt;/section&gt;;
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>}
+</code></pre></div></td></tr></table></div></p>
+<p>If you were to combine the two layouts above, the root layout (<code>app/layout.js</code>) would wrap the dashboard layout (<code>app/dashboard/layout.js</code>), which would wrap route segments inside <code>app/dashboard/*</code>.</p>
+<p>如果您要组合上面的两个布局，根布局 (<code>app/layout.js</code>) 将包装仪表板布局 (<code>app/dashboard/layout.js</code>)，这会将路由段包装在 <code>app/dashboard/*</code> 内。</p>
+<p>这两个布局将嵌套如下：</p>
+<p><img alt="布局嵌套" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162243459411_1.png" title="布局嵌套" /></p>
+<p>您可以使用<a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups">路线组</a>选择特定路线段进出共享布局。</p>
+<h2 id="templates"><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#templates">Templates</a><a class="headerlink" href="#templates" title="Permanent link">&para;</a></h2>
+<p>模板</p>
+<p>模板类似于布局，因为它们包装每个子布局或页面。与跨路由持续存在并保持状态的布局不同，模板在导航时为它们的每个子元素创建一个新实例。这意味着当用户在共享模板的路由之间导航时，将安装组件的新实例，重新创建 DOM 元素，不保留状态，并重新同步效果。</p>
+<p>在某些情况下，您可能需要那些特定的行为，而模板将是比布局更合适的选择。例如：</p>
+<ul>
+<li>使用 CSS 或动画库进入/退出动画。</li>
+<li>依赖于 <code>useEffect</code>（例如记录页面视图）和 <code>useState</code>（例如每页反馈表）的功能。</li>
+<li>更改默认框架行为。例如，布局中的 Suspense Boundaries 仅在第一次加载布局时显示后备，而不是在切换页面时显示。对于模板，后备显示在每个导航中。</li>
+</ul>
+<blockquote>
+<p>建议：我们建议使用布局，除非您有使用模板的特定原因。</p>
+</blockquote>
+<p>可以通过从 <code>template.js</code> 文件导出默认的 React 组件来定义模板。该组件应该接受一个 <code>children</code> 属性，这将是嵌套的段。</p>
+<p><img alt="template.js" src="images/nextjs-routing--router_23Oct131620527830_23Oct13162246449594_1.png" title="template.js" /></p>
+<p><code>app/template.tsx</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>export default function Template({ children }: { children: React.ReactNode }) {
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>  return &lt;div&gt;{children}&lt;/div&gt;;
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>}
+</code></pre></div></td></tr></table></div></p>
+<p>具有布局和模板的路由段的渲染输出将如下所示：</p>
+<p>Output <br />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>&lt;Layout&gt;
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>  {/* Note that the template is given a unique key. */}{&quot; &quot;}
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>  &lt;Template key={routeParam}&gt;{children}&lt;/Template&gt;
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>&lt;/Layout&gt;;
+</code></pre></div></td></tr></table></div></p>
+<h2 id="modifying-head"><a href="https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#modifying-head">Modifying <code>&lt;head&gt;</code></a><a class="headerlink" href="#modifying-head" title="Permanent link">&para;</a></h2>
+<p>修改<code>&lt;head&gt;</code>元素</p>
+<p>在应用程序目录中，您可以使用内置的<a href="https://nextjs.org/docs/app/building-your-application/optimizing/metadata#seo">built-in SEO support</a>支持修改  HTML 元素，例如标题和元数据。</p>
+<p>可以通过在 <a href="https://nextjs.org/docs/app/api-reference/file-conventions/layout">layout.js</a> 或 <a href="https://nextjs.org/docs/app/api-reference/file-conventions/page">page.js</a> 文件中导出<a href="https://nextjs.org/docs/app/api-reference/file-conventions/metadata">元数据对象</a>或 <a href="https://nextjs.org/docs/app/api-reference/functions/generate-metadata">generateMetadata</a> 函数来定义元数据。</p>
+<p><code>app/page.tsx</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>export const metadata = { title: &quot;Next.js&quot; };
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>export default function Page() {
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>  return &quot;...&quot;;
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>}
+</code></pre></div></td></tr></table></div></p>
+<blockquote>
+<p>提示：您不应该手动添加<code>&lt;head&gt;</code> 标签，例如<code>&lt;title&gt;</code> 和 <code>&lt;meta&gt;</code> 到根布局。相反，您应该使用<a href="https://nextjs.org/docs/app/api-reference/file-conventions/metadata">元数据 Metadata API</a>，它会自动处理高级要求，例如流式处理和去重<code>&lt;head&gt;</code>元素。</p>
+</blockquote>
+<p>在 API 参考中了解有关可用元数据选项的更多信息。</p>
+<h2 id="linking-and-navigating">Linking and Navigating<a class="headerlink" href="#linking-and-navigating" title="Permanent link">&para;</a></h2>
+<p>链接和导航</p>
+<p>Next.js 路由器使用以<a href="https://nextjs.org/docs/app/building-your-application/routing">服务器为中心server-centric routing</a>的路由和<a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#how-navigation-works">客户端导航 client-side navigation</a>。它支持<a href="https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming">即时加载状态 instant loading states</a>和<a href="https://react.dev/reference/react/startTransition">并发渲染concurrent rendering</a></p>
+<p>这意味着导航保持客户端状态，避免昂贵的重新渲染，是可中断的，并且不会导致竞争条件。</p>
+<p>There are two ways to navigate between routes:</p>
+<p>有两种方法可以在路线之间导航：</p>
+<ul>
+<li><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#link-component"><code>&lt;Link&gt;</code> Component</a> 组件</li>
+<li><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#userouter-hook"><code>useRouter</code> Hook</a></li>
+</ul>
+<p>本页将介绍如何使用<code>&lt;Link&gt;</code>, <code>useRouter()</code>，并深入探讨导航的工作原理。</p>
+<h2 id="the-link-component"><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#link-component">The <code>&lt;Link&gt;</code> Component</a><a class="headerlink" href="#the-link-component" title="Permanent link">&para;</a></h2>
+<p><code>&lt;Link&gt;</code> 组件</p>
+<p><code>&lt;Link&gt;</code> 是一个 React 组件，它扩展了 HTML <code>&lt;a&gt;</code>元素以提供路由之间的<a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#1-prefetching">预取</a>和客户端导航。这是在 Next.js 中的路由之间导航的主要方式。</p>
+<p>要使用 <code>&lt;Link&gt;</code>，请从<code>next/link</code> 导入它，并将 <code>href</code> prop 传递给组件</p>
+<p><code>app/page.tsx</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>import Link from &#39;next/link&#39;;
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>export default function Page() {
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>  return &lt;Link href=&quot;/dashboard&quot;&gt;Dashboard&lt;/Link&gt;;
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>}
+</code></pre></div></td></tr></table></div></p>
+<p>您可以将可选属性传递给<code>&lt;Link&gt;</code> 。有关详细信息，请参阅 <a href="https://nextjs.org/docs/app/api-reference/components/link">API 参考</a>。</p>
+<h2 id="examples"><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#examples">Examples</a><a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h3 id="linking-to-dynamic-segments"><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#linking-to-dynamic-segments">Linking to Dynamic Segments</a><a class="headerlink" href="#linking-to-dynamic-segments" title="Permanent link">&para;</a></h3>
+<p>链接到动态片段</p>
+<p>链接到<a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#convention">动态段</a>时，您可以使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">模板文字和插值</a>生成链接列表。例如，要生成博客文章列表：</p>
+<p><code>app/blog/PostList.jsx</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>import Link from &#39;next/link&#39;;
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>export default function PostList({ posts }) {
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>  return (
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>    &lt;ul&gt;
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>      {posts.map((post) =&gt; (
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>        &lt;li key={post.id}&gt;
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>          &lt;Link href={`/blog/${post.slug}`}&gt;{post.title}&lt;/Link&gt;
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>        &lt;/li&gt;
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>      ))}
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>    &lt;/ul&gt;
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>  );
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a>}
+</code></pre></div></td></tr></table></div></p>
+<h3 id="checking-active-links"><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#checking-active-links">Checking Active Links</a><a class="headerlink" href="#checking-active-links" title="Permanent link">&para;</a></h3>
+<p>检查活动链接</p>
+<p>您可以使用 <a href="https://nextjs.org/docs/app/api-reference/functions/use-pathname"><code>usePathname()</code></a> 来确定链接是否处于活动状态。例如，要将一个类添加到活动链接，您可以检查当前路径名<code>pathname</code>是否与链接的 <code>href</code> 匹配：</p>
+<p><code>app/components/links.tsx</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span>
+<span class="normal"><a href="#__codelineno-10-17">17</a></span>
+<span class="normal"><a href="#__codelineno-10-18">18</a></span>
+<span class="normal"><a href="#__codelineno-10-19">19</a></span>
+<span class="normal"><a href="#__codelineno-10-20">20</a></span>
+<span class="normal"><a href="#__codelineno-10-21">21</a></span>
+<span class="normal"><a href="#__codelineno-10-22">22</a></span>
+<span class="normal"><a href="#__codelineno-10-23">23</a></span>
+<span class="normal"><a href="#__codelineno-10-24">24</a></span>
+<span class="normal"><a href="#__codelineno-10-25">25</a></span>
+<span class="normal"><a href="#__codelineno-10-26">26</a></span>
+<span class="normal"><a href="#__codelineno-10-27">27</a></span>
+<span class="normal"><a href="#__codelineno-10-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>&#39;use client&#39;
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>import { usePathname } from &#39;next/navigation&#39;
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>import Link from &#39;next/link&#39;
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a>export function Links() {
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a>  const pathname = usePathname()
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a>  return (
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a>    &lt;nav&gt;
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a>      &lt;ul&gt;
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a>        &lt;li&gt;
+<a id="__codelineno-10-13" name="__codelineno-10-13"></a>          &lt;Link className={`link ${pathname === &#39;/&#39; ? &#39;active&#39; : &#39;&#39;}`} href=&quot;/&quot;&gt;
+<a id="__codelineno-10-14" name="__codelineno-10-14"></a>            Home
+<a id="__codelineno-10-15" name="__codelineno-10-15"></a>          &lt;/Link&gt;
+<a id="__codelineno-10-16" name="__codelineno-10-16"></a>        &lt;/li&gt;
+<a id="__codelineno-10-17" name="__codelineno-10-17"></a>        &lt;li&gt;
+<a id="__codelineno-10-18" name="__codelineno-10-18"></a>          &lt;Link
+<a id="__codelineno-10-19" name="__codelineno-10-19"></a>            className={`link ${pathname === &#39;/about&#39; ? &#39;active&#39; : &#39;&#39;}`}
+<a id="__codelineno-10-20" name="__codelineno-10-20"></a>            href=&quot;/about&quot;
+<a id="__codelineno-10-21" name="__codelineno-10-21"></a>          &gt;
+<a id="__codelineno-10-22" name="__codelineno-10-22"></a>            About
+<a id="__codelineno-10-23" name="__codelineno-10-23"></a>          &lt;/Link&gt;
+<a id="__codelineno-10-24" name="__codelineno-10-24"></a>        &lt;/li&gt;
+<a id="__codelineno-10-25" name="__codelineno-10-25"></a>      &lt;/ul&gt;
+<a id="__codelineno-10-26" name="__codelineno-10-26"></a>    &lt;/nav&gt;
+<a id="__codelineno-10-27" name="__codelineno-10-27"></a>  )
+<a id="__codelineno-10-28" name="__codelineno-10-28"></a>}
+</code></pre></div></td></tr></table></div></p>
+<h3 id="scrolling-to-an-id"><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#scrolling-to-an-id">Scrolling to an <code>id</code></a><a class="headerlink" href="#scrolling-to-an-id" title="Permanent link">&para;</a></h3>
+<p>滚动到一个 id</p>
+<p><code>&lt;Link&gt;</code> 的默认行为是滚动到已更改的路线段的顶部。当 <code>href</code> 中定义了 <code>id</code> 时，它会滚动到特定的 <code>id</code>，类似于普通的<code>&lt;a&gt;</code>标签(<a href="https://link.juejin.cn/?target=">https://link.juejin.cn/?target=</a>)</p>
+<p>为了防止滚动到路由段的顶部，设置 <code>scroll={false}</code> 并将添加一个哈希 <code>id</code> 传递给 <code>href</code>, 或者用<code>router.push()</code>/<code>router.replace()</code>添加<code>scroll: false</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>// next/link
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>&lt;Link href=&quot;/dashboard&quot; scroll={false}&gt;
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>  Dashboard
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>&lt;/Link&gt;
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>// useRouter
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>import { useRouter } from &#39;next/navigation&#39;
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>const router = useRouter()
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a>router.push(&#39;/dashboard&#39;, { scroll: false })
+</code></pre></div></td></tr></table></div>
+<h2 id="the-userouter-hook"><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#userouter-hook">The <code>useRouter()</code> Hook</a><a class="headerlink" href="#the-userouter-hook" title="Permanent link">&para;</a></h2>
+<p>useRouter() 钩子</p>
+<p>useRouter 挂钩允许您以编程方式更改客户端组件内的路由。</p>
+<p>要使用 <code>useRouter</code>，请从 <code>next/navigation</code> 导入它，并在您的客户端组件中调用钩子：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>&#39;use client&#39;;
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>import { useRouter } from &#39;next/navigation&#39;;
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>export default function Page() {
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>  const router = useRouter();
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a>  return (
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a>    &lt;button type=&quot;button&quot; onClick={() =&gt; router.push(&#39;/dashboard&#39;)}&gt;
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a>      Dashboard
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a>    &lt;/button&gt;
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a>  );
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a>}
+</code></pre></div></td></tr></table></div>
+<p><code>useRouter</code> 提供了 <code>push()</code>、<code>refresh()</code> 等方法。有关详细信息，请参阅 <a href="https://nextjs.org/docs/app/api-reference/functions/use-router">API 参考</a>。</p>
+<blockquote>
+<p>建议：使用 <code>&lt;Link&gt;</code> 组件在路由之间导航，除非您有使用 <code>useRouter</code> 的特定要求。</p>
+</blockquote>
+<h2 id="how-navigation-works"><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#how-routing-and-navigation-works">How Navigation Works</a><a class="headerlink" href="#how-navigation-works" title="Permanent link">&para;</a></h2>
+<p>导航的工作原理</p>
+<ul>
+<li>使用<code>&lt;Link&gt;</code>或调用 <code>router.push()</code> 启动路由转换。</li>
+<li>路由器更新浏览器地址栏中的 URL。</li>
+<li>路由器通过重新使用客户端缓存中未更改的段（例如共享布局）来避免不必要的工作。这也称为<a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#3-partial-rendering">部分渲染</a>。</li>
+<li>如果满足软导航的条件，则路由器从缓存而不是服务器中获取新段。如果不是，路由器将执行硬导航并从服务器获取服务器组件有效负载。</li>
+<li>如果已创建，则会在获取有效负载时从服务器显示<a href="https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming">加载 UI</a>。</li>
+<li>路由器使用缓存的或新的有效负载在客户端上呈现新的段。</li>
+</ul>
+<h3 id="client-side-caching-of-rendered-server-components">[Client-side Caching of Rendered Server Components]<a class="headerlink" href="#client-side-caching-of-rendered-server-components" title="Permanent link">&para;</a></h3>
+<p>渲染服务器组件的客户端缓存</p>
+<blockquote>
+<p>提示：此客户端缓存不同于服务器端 Next.js HTTP 缓存</p>
+</blockquote>
+<p>新路由器有一个内存中的客户端缓存，用于存储服务器组件（有效负载）的渲染结果。缓存按路由段拆分，允许在任何级别失效并确保并发渲染之间的一致性。</p>
+<p>当用户在应用程序中导航时，路由器会将先前获取的段和<a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#1-prefetching">预取段</a>的有效负载存储在缓存中。</p>
+<p>这意味着，在某些情况下，路由器可以重新使用缓存而不是向服务器发出新请求。这通过避免不必要地重新获取数据和重新渲染组件来提高性能。</p>
+<h3 id="invalidating-the-cache"><a href="https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#revalidating-data">Invalidating the Cache</a><a class="headerlink" href="#invalidating-the-cache" title="Permanent link">&para;</a></h3>
+<p>使缓存失效</p>
+<p><a href="https://nextjs.org/docs/app/building-your-application/data-fetching/forms-and-mutations#how-server-actions-work">服务器操作</a>可用于通过路径 <a href="https://nextjs.org/docs/app/api-reference/functions/revalidatePath"><code>revalidatePath</code></a> 或缓存标记 <a href="https://nextjs.org/docs/app/api-reference/functions/revalidateTag"><code>revalidateTag</code></a>按需重新验证数据。</p>
+<h3 id="prefetching"><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#1-prefetching">Prefetching</a><a class="headerlink" href="#prefetching" title="Permanent link">&para;</a></h3>
+<p>预取是一种在访问路由之前在后台预加载路由的方法。预取路由的渲染结果被添加到路由器的客户端缓存中。这使得导航到预取路线近乎即时。</p>
+<p>默认情况下，当使用<code>&lt;Link&gt;</code>组件时，路由在viewport中可见时会被预取。这可能会在页面首次加载或滚动时发生。也可以使用<a href="https://nextjs.org/docs/app/api-reference/functions/use-router#userouter"><code>useRouter()</code> hook</a>的预取方法以编程方式预取路由。</p>
+<p><strong>静态和动态路由</strong>：</p>
+<ul>
+<li>如果路由是静态的，路由段的所有服务器组件负载都将被预取。</li>
+<li>
+<p>如果路由是动态的，则预取从第一个共享布局到第一个 <code>loading.js</code> 文件的有效负载。这降低了动态预取整个路由的成本，并允许动态路由的<a href="https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#instant-loading-states"><code>即时加载状态</code></a>。</p>
+</li>
+<li>
+<p>预取仅在生产中启用。</p>
+</li>
+<li>可以通过将 <code>prefetch={false}</code> 传递给<code>&lt;Link&gt;</code>来禁用预取。</li>
+</ul>
+<h3 id="_1">硬导航<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>在导航时，缓存失效，服务器重新获取数据并重新呈现更改的段。</p>
+<h3 id="soft-navigation"><a href="https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#4-soft-navigation">Soft Navigation</a><a class="headerlink" href="#soft-navigation" title="Permanent link">&para;</a></h3>
+<p>在导航时，更改段的缓存将被重用（如果存在），并且不会向服务器发出新的数据请求。</p>
+<h4 id="_2">软导航的条件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>在导航方面，如果您导航到的路线已被预取，并且不包含动态段或具有与当前路线相同的动态参数，则 Next.js 将使用软导航。</p>
+<p>例如，考虑以下包含动态 <code>[team]</code> 段的路由：<code>/dashboard/[team]/*</code>。 当<code>[team]</code>参数发生变化时<code>/dashboard/[team]/*</code>之下面的缓存段失效。
+-   从 <code>/dashboard/team-red/*</code> 导航到 <code>/dashboard/team-red/*</code>将是一个软导航。
+-   从 <code>/dashboard/team-red/*</code>导航到 <code>/dashboard/team-blue/*</code>将是硬导航。</p>
+<h3 id="_3">后退/前进导航<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>前后导航<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/popstate_event">popstate event事件</a>具有软导航行为。这意味着，客户端缓存被重新使用，导航几乎是即时的。</p>
+<h2 id="convention"><a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups#convention">Convention</a><a class="headerlink" href="#convention" title="Permanent link">&para;</a></h2>
+<p>可以通过将文件夹名称括在括号中来创建路由组：<code>(folderName)</code></p>
+<h2 id="examples_1"><a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups#examples">Examples</a><a class="headerlink" href="#examples_1" title="Permanent link">&para;</a></h2>
+<p>例子</p>
+<h3 id="url">在不影响 URL 路径的情况下组织路由<a class="headerlink" href="#url" title="Permanent link">&para;</a></h3>
+<p>要在不影响 URL 的情况下组织路由，请创建一个组以将相关路由放在一起。括号中的文件夹将从 URL 中省略（例如 <code>(marketing)</code> 或 <code>(shop)</code>）。</p>
+<p><img alt="路由组" src="images/routingGroup_marketing_shop.png" title="路由组" /></p>
+<p>即使 <code>(marketing)</code> 和 <code>(shop)</code> 中的路由共享相同的 URL 层次结构，您也可以通过在其文件夹中添加 layout.js 文件来为每个组创建不同的布局。</p>
+<p><img alt="每个组创建不同的布局" src="images/route-group-multiple-layouts.avif" title="每个组创建不同的布局" /></p>
+<h3 id="_4"><a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups#opting-specific-segments-into-a-layout">将特定段选择到布局中</a><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>要将特定路线选择到布局中，请创建一个新路线组（例如<code>(shop)</code>）并将共享相同布局的路线移动到该组中（例如 <code>account</code> and <code>cart</code>）。组外的路线不会共享布局（例如<code>checkout</code>）。</p>
+<p><img alt="组外的路线不会共享布局" src="images/routingGroup_different_checkout_layout.png" title="组外的路线不会共享布局" /></p>
+<h3 id="_5"><a href="https://nextjs.org/docs/app/building-your-application/routing/route-groups#creating-multiple-root-layouts">创建多个根布局</a><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>要创建多个根布局，请删除顶级 <code>layout.js</code> 文件，并在每个路由组中添加一个 <code>layout.js</code> 文件。这对于将应用程序划分为具有完全不同的 UI 或体验的部分非常有用。<code>&lt;html&gt;</code> 和<code>&lt;body&gt;</code>标签需要添加到每个根布局。</p>
+<ul>
+<li>路由组的命名除了组织之外没有特殊意义。它们不影响 URL 路径。</li>
+<li>路由组内的路由不应解析为相同的 URL 路径。例如，由于路由组不影响 URL 结构，<code>(marketing)/about/page.js</code> 和 <code>(shop)/about/page.js</code> 都会解析为 <code>/about</code> 并导致错误。</li>
+<li>跨多个根布局导航将导致整个页面加载（与客户端导航相反）。例如，从使用 <code>app/(shop)/layout.js</code> 的 <code>/cart</code> 导航到使用 <code>app/(marketing)/layout.js</code> 的 <code>/blog</code> 将导致整个页面加载。这仅适用于多根布局。</li>
+</ul>
+<h2 id="_6">动态路由<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>当您事先不知道确切的路段名称并希望从动态数据创建路线时，您可以使用在请求时填写或在构建时<a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#generating-static-params">prerendered</a>的动态路段。</p>
+<h2 id="convention_1"><a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#convention">Convention约定</a><a class="headerlink" href="#convention_1" title="Permanent link">&para;</a></h2>
+<p>可以通过将文件夹名称括在方括号中来创建动态细分：<code>[folderName]</code>。例如，<code>[id]</code> 或<code>[slug]</code>。</p>
+<p>动态细分作为 <code>params</code> 属性传递给<a href="https://nextjs.org/docs/app/api-reference/file-conventions/layout">布局</a>、<a href="https://nextjs.org/docs/app/api-reference/file-conventions/page">页面</a>、<a href="https://nextjs.org/docs/app/building-your-application/routing/route-handlers">路由</a>和<a href="https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function"><code>generateMetadata</code></a>。</p>
+<h2 id="_7"><a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#example">例子</a><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>例如，博客可以包含以下路由 <code>app/blog/[slug]/page.js</code>，其中 <code>[slug]</code> 是博客文章的动态部分。</p>
+<p><code>app/blog/[slug]/page.tsx</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>export default function Page({ params }: { params: { slug: string } }) {
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>  return &lt;div&gt;My Post: {params.slug}&lt;/div&gt;
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a>}
+</code></pre></div></td></tr></table></div>
+<p>请参阅 <a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#generating-static-params">generateStaticParams()</a> 页面以了解如何为段生成参数。</p>
+<h2 id="_8"><a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#generating-static-params">生成静态参数</a><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p><code>generateStaticParams</code> 函数可以与动态路由段结合使用，以在构建时静态生成路由，而不是在请求时按需生成路由。</p>
+<p><code>app/blog/[slug]/page.tsx</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>export async function generateStaticParams() {
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>  const posts = await fetch(&#39;https://.../posts&#39;).then((res) =&gt; res.json())
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>  return posts.map((post) =&gt; ({
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>    slug: post.slug,
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>  }))
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a>}
+</code></pre></div></td></tr></table></div>
+<p><code>generateStaticParams</code> 函数的主要好处是它可以智能检索数据。如果使用<code>fetch</code>请求在 <code>generateStaticParams</code> 函数中提取内容，则会自动对请求进行重复数据删除。这意味着跨多个 <code>generateStaticParams</code>, <code>Layouts</code> 和 <code>Pages</code> 的具有相同参数的<code>fetch</code>请求将只会发出一次，从而减少了构建时间。</p>
+<p>有关更多信息和高级用例，请参阅 <a href="https://nextjs.org/docs/app/api-reference/functions/generate-static-params">generateStaticParams 服务器</a> 服务器函数文档。</p>
+<h2 id="catch-all-segments"><a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#catch-all-segments">Catch-all Segments</a><a class="headerlink" href="#catch-all-segments" title="Permanent link">&para;</a></h2>
+<p>通过在方括号 <code>[...folderName]</code> 内添加省略号，可以将动态段扩展为包含所有后续段。</p>
+<p>例如，<code>app/shop/[...slug]/page.js</code> 将匹配 <code>/shop/clothes</code>，但也匹配 <code>/shop/clothes/tops</code>, <code>/shop/clothes/tops/t-shirts</code> 等。</p>
+<h2 id="optional-catch-all-segments"><a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#optional-catch-all-segments">Optional Catch-all Segments</a><a class="headerlink" href="#optional-catch-all-segments" title="Permanent link">&para;</a></h2>
+<p>通过在双方括号中包含参数，可以使 Catch-all Segments 成为可选的：<code>[[...folderName]]</code>。</p>
+<p>比如<code>app/shop/[[...slug]]/page.js</code>也会匹配<code>/shop</code>，也包括<code>/shop/clothes</code>, <code>/shop/clothes/tops</code>, <code>/shop/clothes/tops/t-shirts</code>.</p>
+<p>catch-all 和 optional catch-all segments 的区别在于，使用 optional 时，不带参数的路由也会被匹配（上例中的<code>/shop</code>）。</p>
+<h2 id="typescript"><a href="https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#typescript">TypeScript</a><a class="headerlink" href="#typescript" title="Permanent link">&para;</a></h2>
+<p>使用 TypeScript 时，您可以根据配置的路由段为<code>params</code>添加类型。</p>
+<p><code>app/blog/[slug]/page.tsx</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>export default function Page({ params }: { params: { slug: string } }) {
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a>  return &lt;h1&gt;My Page&lt;/h1&gt;
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a>}
+</code></pre></div></td></tr></table></div>
+<table><thead><tr><th>Route</th><th><code>params</code> Type Definition</th></tr></thead><tbody><tr><td><code>app/blog/[slug]/page.js</code></td><td><code>{ slug: string }</code></td></tr><tr><td><code>app/shop/[...slug]/page.js</code></td><td><code>{ slug: string[] }</code></td></tr><tr><td><code>app/[categoryId]/[itemId]/page.js</code></td><td><code>{ categoryId: string, itemId: string }</code></td></tr></tbody></table>
+
+<blockquote>
+<p>注意：这可能会在未来由 <a href="https://nextjs.org/docs/app/building-your-application/configuring/typescript#typescript-plugin">TypeScript 插件</a>自动完成。</p>
+</blockquote>
+<h2 id="ui">加载 UI 和流式传输<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h2>
+<p>The special file <code>loading.js</code> helps you create meaningful Loading UI with <a href="https://link.juejin.cn/?target=https%3A%2F%2Freact.dev%2Freference%2Freact%2FSuspense">React Suspense</a>. With this convention, you can show an <a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Floading-ui-and-streaming%23instant-loading-states">instant loading state</a> from the server while the content of a route segment loads, the new content is automatically swapped in once rendering is complete.</p>
+<p>特殊文件 loading.js 可帮助您使用 React Suspense 创建有意义的加载 UI</p>
+<p>.使用此约定，您可以在加载路由段的内容时显示来自服务器的即时加载状态，一旦渲染完成，新内容将自动交换。</p>
+<h2 id="instant-loading-states"><a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Floading-ui-and-streaming%23instant-loading-states">Instant Loading States</a><a class="headerlink" href="#instant-loading-states" title="Permanent link">&para;</a></h2>
+<p>即时加载状态</p>
+<p>An instant loading state is fallback UI that is shown immediately upon navigation. You can pre-render loading indicators such as skeletons and spinners, or a small but meaningful part of future screens such as a cover photo, title, etc. This helps users understand the app is responding and provides a better user experience.</p>
+<p>即时加载状态是在导航时立即显示的回退 UI。您可以预渲染加载指示器，如骨架和微调器，或未来屏幕的一小部分但有意义的部分，如封面照片、标题等。这有助于用户了解应用程序正在响应并提供更好的用户体验。</p>
+<p>Create a loading state by adding a <code>loading.js</code> file inside a folder.</p>
+<p>通过在文件夹中添加 loading.js 文件来创建加载状态。</p>
+<p><img alt="image.png" src="https://ucc.alicdn.com/pic/developer-ecology/35fae4lzi25ho_6aa7d011b6ce42318dc22950352ad48e.png" title="image.png" /></p>
+<p>app/dashboard/loading.tsx</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>export default function Loading() {
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a>  // You can add any UI inside Loading, including a Skeleton.
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a>  return &lt;LoadingSkeleton /&gt;;
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a>}
+</code></pre></div></td></tr></table></div>
+<p>In the same folder, <code>loading.js</code> will be nested inside <code>layout.js</code>. It will automatically wrap the <code>page.js</code> file and any children below in a <code>&lt;Suspense&gt;</code> boundary.</p>
+<p>在同一文件夹中，loading.js 将嵌套在 layout.js 中。它会自动将 page.js 文件和下面的任何子文件包装在  边界中。</p>
+<p><img alt="image.png" src="https://ucc.alicdn.com/pic/developer-ecology/35fae4lzi25ho_0323c48c94af4e97809d667d24bf00a9.png" title="image.png" /></p>
+<p><strong>Good to know:</strong></p>
+<p>很高兴知道：</p>
+<ul>
+<li>Navigation is immediate, even with <a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%23server-centric-routing-with-client-side-navigation">server-centric routing</a>.</li>
+<li>导航是即时的，即使使用以服务器为中心的路由也是如此。</li>
+<li>Navigation is interruptible, meaning changing routes does not need to wait for the content of the route to fully load before navigating to another route.</li>
+<li>导航是可中断的，这意味着更改路线不需要等待路线内容完全加载后再导航到另一条路线。</li>
+<li>Shared layouts remain interactive while new route segments load.</li>
+<li>共享布局在加载新路线段时保持交互。</li>
+</ul>
+<blockquote>
+<p><strong>Recommendation:</strong> Use the <code>loading.js</code> convention for route segments (layouts and pages) as Next.js optimizes this functionality.</p>
+<p>建议：对路由段（布局和页面）使用 loading.js 约定，因为 Next.js 优化了此功能。</p>
+</blockquote>
+<h2 id="streaming-with-suspense"><a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Floading-ui-and-streaming%23streaming-with-suspense">Streaming with Suspense</a><a class="headerlink" href="#streaming-with-suspense" title="Permanent link">&para;</a></h2>
+<p>In addition to <code>loading.js</code>, you can also manually create Suspense Boundaries for your own UI components. The App Router supports streaming with <a href="https://link.juejin.cn/?target=https%3A%2F%2Freact.dev%2Freference%2Freact%2FSuspense">Suspense</a> for both <a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frendering%2Fedge-and-nodejs-runtimes">Node.js and Edge runtimes</a>.</p>
+<p>除了 loading.js 之外，您还可以为自己的 UI 组件手动创建 Suspense Boundaries。 App Router 支持使用 Suspense 进行流式传输 适用于 Node.js 和 Edge 运行时。</p>
+<h3 id="what-is-streaming"><a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Floading-ui-and-streaming%23what-is-streaming">What is Streaming?</a><a class="headerlink" href="#what-is-streaming" title="Permanent link">&para;</a></h3>
+<p>什么是流媒体？</p>
+<p>To learn how Streaming works in React and Next.js, it's helpful to understand <strong>Server-Side Rendering (SSR)</strong> and its limitations.</p>
+<p>要了解 Streaming 在 React 和 Next.js 中的工作原理，了解服务器端渲染 (SSR) 及其局限性很有帮助。</p>
+<p>With SSR, there's a series of steps that need to be completed before a user can see and interact with a page:</p>
+<p>使用 SSR，在用户可以查看页面并与之交互之前需要完成一系列步骤：</p>
+<ol>
+<li>
+<p>First, all data for a given page is fetched on the server.<br />
+    首先，在服务器上获取给定页面的所有数据。  </p>
+</li>
+<li>
+<p>The server then renders the HTML for the page.<br />
+    然后服务器呈现页面的 HTML。  </p>
+</li>
+<li>
+<p>The HTML, CSS, and JavaScript for the page are sent to the client.<br />
+    页面的 HTML、CSS 和 JavaScript 被发送到客户端。  </p>
+</li>
+<li>
+<p>A non-interactive user interface is shown using the generated HTML, and CSS.<br />
+    使用生成的 HTML 和 CSS 显示非交互式用户界面。  </p>
+</li>
+<li>
+<p>Finally, React <a href="https://link.juejin.cn/?target=https%3A%2F%2Freact.dev%2Freference%2Freact-dom%2Fclient%2FhydrateRoot%23hydrating-server-rendered-html">hydrates</a> the user interface to make it interactive.<br />
+    最后，React 水合物 用户界面，使其具有交互性。  </p>
+</li>
+</ol>
+<p><img alt="image.png" src="https://ucc.alicdn.com/pic/developer-ecology/35fae4lzi25ho_ddbbe345e16b414dafa153f8391ac0d4.png" title="image.png" /></p>
+<p>These steps are sequential and blocking, meaning the server can only render the HTML for a page once all the data has been fetched. And, on the client, React can only hydrate the UI once the code for all components in the page has been downloaded.</p>
+<p>这些步骤是顺序的和阻塞的，这意味着服务器只能在获取所有数据后才能呈现页面的 HTML。而且，在客户端，React 只能在页面中所有组件的代码都已下载后才能对 UI 进行水合。</p>
+<p>SSR with React and Next.js helps improve the perceived loading performance by showing a non-interactive page to the user as soon as possible.</p>
+<p>使用 React 和 Next.js 的 SSR 通过尽快向用户显示非交互式页面来帮助提高感知加载性能。</p>
+<p><img alt="image.png" src="https://ucc.alicdn.com/pic/developer-ecology/35fae4lzi25ho_0ffc065c1d1a492e89c39b1079f6983f.png" title="image.png" /></p>
+<p>However, it can still be slow as all data fetching on server needs to be completed before the page can be shown to the user.</p>
+<p>但是，它仍然可能很慢，因为需要在页面显示给用户之前完成服务器上的所有数据获取。</p>
+<p><strong>Streaming</strong> allows you to break down the page's HTML into smaller chunks and progressively send those chunks from the server to the client.</p>
+<p>Streaming 允许您将页面的 HTML 分解为更小的块，并逐步将这些块从服务器发送到客户端。</p>
+<p><img alt="image.png" src="https://ucc.alicdn.com/pic/developer-ecology/35fae4lzi25ho_29816735fa98406484d631e9b57bad99.png" title="image.png" /></p>
+<p>This enables parts of the page to be displayed sooner, without waiting for all the data to load before any UI can be rendered.</p>
+<p>这使得部分页面能够更快地显示，而无需等待所有数据加载完毕才能呈现任何 UI。</p>
+<p>Streaming works well with React's component model because each component can be considered a chunk. Components that have higher priority (e.g. product information) or that don't rely on data can be sent first (e.g. layout), and React can start hydration earlier. Components that have lower priority (e.g. reviews, related products) can be sent in the same server request after their data has been fetched.</p>
+<p>Streaming 与 React 的组件模型配合得很好，因为每个组件都可以被视为一个块。优先级较高的组件（例如产品信息）或不依赖数据的组件可以先发送（例如布局），React 可以更早地开始水合。具有较低优先级的组件（例如评论、相关产品）可以在获取数据后在同一服务器请求中发送。</p>
+<p><img alt="image.png" src="https://ucc.alicdn.com/pic/developer-ecology/35fae4lzi25ho_67e5e82fc03943fa97f73832c31d10db.png" title="image.png" /></p>
+<p>Streaming is particularly beneficial when you want to prevent long data requests from blocking the page from rendering as it can reduce the <a href="https://link.juejin.cn/?target=https%3A%2F%2Fweb.dev%2Fttfb%2F">Time To First Byte (TTFB)</a> and <a href="https://link.juejin.cn/?target=https%3A%2F%2Fweb.dev%2Ffirst-contentful-paint%2F">First Contentful Paint (FCP)</a>. It also helps improve <a href="https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.chrome.com%2Fen%2Fdocs%2Flighthouse%2Fperformance%2Finteractive%2F">Time to Interactive (TTI)</a>, especially on slower devices.</p>
+<p>当您想要防止长数据请求阻止页面呈现时，流式处理特别有用，因为它可以减少首字节时间 (TTFB)  和第一内容绘画（FCP）  它还有助于改善交互时间 (TTI)  ，尤其是在速度较慢的设备上。</p>
+<h3 id="example"><a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Floading-ui-and-streaming%23example">Example</a><a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p><code>&lt;Suspense&gt;</code> works by wrapping a component that performs an asynchronous action (e.g. fetch data), showing fallback UI (e.g. skeleton, spinner) while it's happening, and then swapping in your component once the action completes.</p>
+<p><code>&lt;Suspense&gt;</code> 的工作原理是包装一个执行异步操作（例如获取数据）的组件，在它发生时显示回退 UI（例如骨架、微调器），然后在操作完成后交换您的组件。</p>
+<p>app/dashboard/page.tsx</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-18-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-18-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-18-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-18-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-18-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-18-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-18-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-18-10">10</a></span>
+<span class="normal"><a href="#__codelineno-18-11">11</a></span>
+<span class="normal"><a href="#__codelineno-18-12">12</a></span>
+<span class="normal"><a href="#__codelineno-18-13">13</a></span>
+<span class="normal"><a href="#__codelineno-18-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>import { Suspense } from &#39;react&#39;;
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a>import { PostFeed, Weather } from &#39;./Components&#39;;
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a>export default function Posts() {
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a>  return (
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a>    &lt;section&gt;
+<a id="__codelineno-18-6" name="__codelineno-18-6"></a>      &lt;Suspense fallback={&lt;p&gt;Loading feed...&lt;/p&gt;}&gt;
+<a id="__codelineno-18-7" name="__codelineno-18-7"></a>        &lt;PostFeed /&gt;
+<a id="__codelineno-18-8" name="__codelineno-18-8"></a>      &lt;/Suspense&gt;
+<a id="__codelineno-18-9" name="__codelineno-18-9"></a>      &lt;Suspense fallback={&lt;p&gt;Loading weather...&lt;/p&gt;}&gt;
+<a id="__codelineno-18-10" name="__codelineno-18-10"></a>        &lt;Weather /&gt;
+<a id="__codelineno-18-11" name="__codelineno-18-11"></a>      &lt;/Suspense&gt;
+<a id="__codelineno-18-12" name="__codelineno-18-12"></a>    &lt;/section&gt;
+<a id="__codelineno-18-13" name="__codelineno-18-13"></a>  );
+<a id="__codelineno-18-14" name="__codelineno-18-14"></a>}
+</code></pre></div></td></tr></table></div>
+<p>By using Suspense, you get the benefits of:</p>
+<p>通过使用 Suspense，您可以获得以下好处：</p>
+<ol>
+<li>
+<p><strong>Streaming Server Rendering</strong> - Progressively rendering HTML from the server to the client. Streaming Server Rendering - 从服务器到客户端逐步渲染 HTML。  </p>
+</li>
+<li>
+<p><strong>Selective Hydration</strong> - React prioritizes what components to make interactive first based on user interaction. Selective Hydration - React 根据用户交互优先考虑哪些组件首先进行交互。  </p>
+</li>
+</ol>
+<p>For more Suspense examples and use cases, please see the <a href="https://link.juejin.cn/?target=https%3A%2F%2Freact.dev%2Freference%2Freact%2FSuspense">React Documentation</a>.</p>
+<p>有关更多 Suspense 示例和用例，请参阅 React 文档</p>
+<h3 id="seo"><a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Floading-ui-and-streaming%23seo">SEO</a><a class="headerlink" href="#seo" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Next.js will wait for data fetching inside <a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fapi-reference%2Ffile-conventions%2Fmetadata"><code>generateMetadata</code></a> to complete before streaming UI to the client. This guarantees the first part of a streamed response includes <code>&lt;head&gt;</code> tags.  </p>
+</li>
+<li>
+<p>Next.js 将等待 generateMetadata 中的数据获取完成，然后再将 UI 流式传输到客户端。这保证了流式响应的第一部分包含  标签。  </p>
+</li>
+<li>
+<p>Since streaming is server-rendered, it does not impact SEO. You can use the <a href="https://link.juejin.cn/?target=https%3A%2F%2Fsearch.google.com%2Ftest%2Fmobile-friendly">Mobile Friendly Test</a> tool from Google to see how your page appears to Google's web crawlers and view the serialized HTML (<a href="https://link.juejin.cn/?target=https%3A%2F%2Fweb.dev%2Frendering-on-the-web%2F%23seo-considerations">source</a>).  </p>
+</li>
+<li>
+<p>由于流式传输是服务器呈现的，因此不会影响 SEO。您可以使用移动友好测试<br />
+    来自 Google 的工具，用于查看您的页面如何出现在 Google 的网络爬虫中并查看序列化的 HTML（来源 ).  </p>
+</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<p>错误处理</p>
+<p>The <code>error.js</code> file convention allows you to gracefully handle runtime errors in <a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%23nested-routes">nested routes</a>.</p>
+<p>error.js 文件约定允许您优雅地处理嵌套路由中的运行时错误。</p>
+<ul>
+<li>Automatically wrap a route segment and its nested children in a <a href="https://link.juejin.cn/?target=https%3A%2F%2Freact.dev%2Freference%2Freact%2FComponent%23catching-rendering-errors-with-an-error-boundary">React Error Boundary</a>.</li>
+<li>自动将路由段及其嵌套子项包装在 React 错误边界中</li>
+<li>Create error UI tailored to specific segments using the file-system hierarchy to adjust granularity.</li>
+<li>使用文件系统层次结构来创建针对特定细分量身定制的错误 UI 以调整粒度。</li>
+<li>Isolate errors to affected segments while keeping the rest of the app functional.</li>
+<li>将错误隔离到受影响的部分，同时保持应用程序的其余部分正常运行。</li>
+<li>Add functionality to attempt to recover from an error without a full page reload.</li>
+<li>添加功能以尝试在不重新加载整页的情况下从错误中恢复。</li>
+</ul>
+<p>Create error UI by adding an <code>error.js</code> file inside a route segment and exporting a React component:</p>
+<p>通过在路由段内添加 error.js 文件并导出 React 组件来创建错误 UI：</p>
+<p><img alt="image.png" src="https://ucc.alicdn.com/pic/developer-ecology/35fae4lzi25ho_f8f25a4a9c5a41ada2787456214777c3.png" title="image.png" /></p>
+<p>app/dashboard/error.tsx</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-19-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-19-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-19-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-19-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-19-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-19-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-19-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-19-10">10</a></span>
+<span class="normal"><a href="#__codelineno-19-11">11</a></span>
+<span class="normal"><a href="#__codelineno-19-12">12</a></span>
+<span class="normal"><a href="#__codelineno-19-13">13</a></span>
+<span class="normal"><a href="#__codelineno-19-14">14</a></span>
+<span class="normal"><a href="#__codelineno-19-15">15</a></span>
+<span class="normal"><a href="#__codelineno-19-16">16</a></span>
+<span class="normal"><a href="#__codelineno-19-17">17</a></span>
+<span class="normal"><a href="#__codelineno-19-18">18</a></span>
+<span class="normal"><a href="#__codelineno-19-19">19</a></span>
+<span class="normal"><a href="#__codelineno-19-20">20</a></span>
+<span class="normal"><a href="#__codelineno-19-21">21</a></span>
+<span class="normal"><a href="#__codelineno-19-22">22</a></span>
+<span class="normal"><a href="#__codelineno-19-23">23</a></span>
+<span class="normal"><a href="#__codelineno-19-24">24</a></span>
+<span class="normal"><a href="#__codelineno-19-25">25</a></span>
+<span class="normal"><a href="#__codelineno-19-26">26</a></span>
+<span class="normal"><a href="#__codelineno-19-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>&#39;use client&#39;; // Error components must be Client components
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a>import { useEffect } from &#39;react&#39;;
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a>export default function Error({
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a>  error,
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a>  reset,
+<a id="__codelineno-19-6" name="__codelineno-19-6"></a>}: {
+<a id="__codelineno-19-7" name="__codelineno-19-7"></a>  error: Error;
+<a id="__codelineno-19-8" name="__codelineno-19-8"></a>  reset: () =&gt; void;
+<a id="__codelineno-19-9" name="__codelineno-19-9"></a>}) {
+<a id="__codelineno-19-10" name="__codelineno-19-10"></a>  useEffect(() =&gt; {
+<a id="__codelineno-19-11" name="__codelineno-19-11"></a>    // Log the error to an error reporting service
+<a id="__codelineno-19-12" name="__codelineno-19-12"></a>    console.error(error);
+<a id="__codelineno-19-13" name="__codelineno-19-13"></a>  }, [error]);
+<a id="__codelineno-19-14" name="__codelineno-19-14"></a>  return (
+<a id="__codelineno-19-15" name="__codelineno-19-15"></a>    &lt;div&gt;
+<a id="__codelineno-19-16" name="__codelineno-19-16"></a>      &lt;h2&gt;Something went wrong!&lt;/h2&gt;
+<a id="__codelineno-19-17" name="__codelineno-19-17"></a>      &lt;button
+<a id="__codelineno-19-18" name="__codelineno-19-18"></a>        onClick={
+<a id="__codelineno-19-19" name="__codelineno-19-19"></a>          // Attempt to recover by trying to re-render the segment
+<a id="__codelineno-19-20" name="__codelineno-19-20"></a>          () =&gt; reset()
+<a id="__codelineno-19-21" name="__codelineno-19-21"></a>        }
+<a id="__codelineno-19-22" name="__codelineno-19-22"></a>      &gt;
+<a id="__codelineno-19-23" name="__codelineno-19-23"></a>        Try again
+<a id="__codelineno-19-24" name="__codelineno-19-24"></a>      &lt;/button&gt;
+<a id="__codelineno-19-25" name="__codelineno-19-25"></a>    &lt;/div&gt;
+<a id="__codelineno-19-26" name="__codelineno-19-26"></a>  );
+<a id="__codelineno-19-27" name="__codelineno-19-27"></a>}
+</code></pre></div></td></tr></table></div>
+<h3 id="how-errorjs-works"><a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Ferror-handling%23how-errorjs-works">How <code>error.js</code> Works</a><a class="headerlink" href="#how-errorjs-works" title="Permanent link">&para;</a></h3>
+<p>error.js 是如何工作的</p>
+<p><img alt="image.png" src="https://ucc.alicdn.com/pic/developer-ecology/35fae4lzi25ho_b578c06496f34341832c4e4d16a9ef4f.png" title="image.png" /></p>
+<ul>
+<li><code>error.js</code> automatically creates an <a href="https://link.juejin.cn/?target=https%3A%2F%2Freact.dev%2Freference%2Freact%2FComponent%23catching-rendering-errors-with-an-error-boundary">React Error Boundary</a> that <strong>wraps</strong> a nested child segment or <code>page.js</code> component.</li>
+<li>error.js 自动创建一个 React 错误边界包装嵌套的子段或 page.js 组件。</li>
+<li>The React component exported from the <code>error.js</code> file is used as the <strong>fallback</strong> component.</li>
+<li>从 error.js 文件导出的 React 组件用作回退组件。</li>
+<li>If an error is thrown within the error boundary, the error is <strong>contained</strong>, and the fallback component is <strong>rendered</strong>.</li>
+<li>如果在错误边界内抛出错误，则包含错误，并呈现回退组件。</li>
+<li>When the fallback error component is active, layouts <strong>above</strong> the error boundary <strong>maintain</strong> their state and <strong>remain</strong> interactive, and the error component can display functionality to recover from the error.</li>
+<li>当回退错误组件处于活动状态时，错误边界上方的布局会保持其状态并保持交互，并且错误组件可以显示从错误中恢复的功能。</li>
+</ul>
+<h3 id="recovering-from-errors"><a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Ferror-handling%23recovering-from-errors">Recovering From Errors</a><a class="headerlink" href="#recovering-from-errors" title="Permanent link">&para;</a></h3>
+<p>从错误中恢复</p>
+<p>The cause of an error can sometimes be temporary. In these cases, simply trying again might resolve the issue.</p>
+<p>错误的原因有时可能是暂时的。在这些情况下，只需重试即可解决问题。</p>
+<p>An error component can use the <code>reset()</code> function to prompt the user to attempt to recover from the error. When executed, the function will try to re-render the Error boundary's contents. If successful, the fallback error component is replaced with the result of the re-render.</p>
+<p>错误组件可以使用 reset() 函数来提示用户尝试从错误中恢复。执行时，该函数将尝试重新呈现错误边界的内容。如果成功，回退错误组件将替换为重新渲染的结果。</p>
+<p>app/dashboard/error.ts</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-20-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-20-10">10</a></span>
+<span class="normal"><a href="#__codelineno-20-11">11</a></span>
+<span class="normal"><a href="#__codelineno-20-12">12</a></span>
+<span class="normal"><a href="#__codelineno-20-13">13</a></span>
+<span class="normal"><a href="#__codelineno-20-14">14</a></span>
+<span class="normal"><a href="#__codelineno-20-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>&#39;use client&#39;;
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a>export default function Error({
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a>  error,
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a>  reset,
+<a id="__codelineno-20-5" name="__codelineno-20-5"></a>}: {
+<a id="__codelineno-20-6" name="__codelineno-20-6"></a>  error: Error;
+<a id="__codelineno-20-7" name="__codelineno-20-7"></a>  reset: () =&gt; void;
+<a id="__codelineno-20-8" name="__codelineno-20-8"></a>}) {
+<a id="__codelineno-20-9" name="__codelineno-20-9"></a>  return (
+<a id="__codelineno-20-10" name="__codelineno-20-10"></a>    &lt;div&gt;
+<a id="__codelineno-20-11" name="__codelineno-20-11"></a>      &lt;h2&gt;Something went wrong!&lt;/h2&gt;
+<a id="__codelineno-20-12" name="__codelineno-20-12"></a>      &lt;button onClick={() =&gt; reset()}&gt;Try again&lt;/button&gt;
+<a id="__codelineno-20-13" name="__codelineno-20-13"></a>    &lt;/div&gt;
+<a id="__codelineno-20-14" name="__codelineno-20-14"></a>  );
+<a id="__codelineno-20-15" name="__codelineno-20-15"></a>}
+</code></pre></div></td></tr></table></div>
+<h3 id="nested-routes_1"><a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Ferror-handling%23nested-routes">Nested Routes</a><a class="headerlink" href="#nested-routes_1" title="Permanent link">&para;</a></h3>
+<p>嵌套路由</p>
+<p>React components created through <a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%23file-conventions">special files</a> are rendered in a <a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%23component-hierarchy">specific nested hierarchy</a>.</p>
+<p>通过特殊文件创建的 React 组件在特定的嵌套层次结构中呈现。</p>
+<p>For example, a nested route with two segments that both include <code>layout.js</code> and <code>error.js</code> files are rendered in the following <em>simplified</em> component hierarchy:</p>
+<p>例如，包含两个段的嵌套路由都包含 layout.js 和 error.js 文件，在以下简化的组件层次结构中呈现：</p>
+<p><img alt="image.png" src="https://ucc.alicdn.com/pic/developer-ecology/35fae4lzi25ho_adaf046cbe524c789751ec8384406bb5.png" title="image.png" /></p>
+<p>The nested component hierarchy has implications for the behavior of <code>error.js</code> files across a nested route:</p>
+<p>嵌套组件层次结构对跨嵌套路由的 error.js 文件的行为有影响：</p>
+<ul>
+<li>Errors bubble up to the nearest parent error boundary. This means an <code>error.js</code> file will handle errors for all its nested child segments. More or less granular error UI can be achieved by placing <code>error.js</code> files at different levels in the nested folders of a route.</li>
+<li>错误冒泡到最近的父错误边界。这意味着 error.js 文件将处理其所有嵌套子段的错误。通过将 error.js 文件放置在路由的嵌套文件夹中的不同级别，可以实现或多或少的粒度错误 UI。</li>
+<li>An <code>error.js</code> boundary will <strong>not</strong> handle errors thrown in a <code>layout.js</code> component in the <strong>same</strong> segment because the error boundary is nested <strong>inside</strong> that layouts component.</li>
+<li>error.js 边界不会处理同一段中 layout.js 组件中抛出的错误，因为错误边界嵌套在该布局组件内。</li>
+</ul>
+<h3 id="handling-errors-in-layouts"><a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Ferror-handling%23handling-errors-in-layouts">Handling Errors in Layouts</a><a class="headerlink" href="#handling-errors-in-layouts" title="Permanent link">&para;</a></h3>
+<p>处理布局中的错误</p>
+<p><code>error.js</code> boundaries do <strong>not</strong> catch errors thrown in <code>layout.js</code> or <code>template.js</code> components of the same segment. This <a href="https://link.juejin.cn/?target=https%3A%2F%2Fnextjs.org%2Fdocs%2Fapp%2Fbuilding-your-application%2Frouting%2Ferror-handling%23nested-routes">intentional hierarchy</a> keeps important UI that is shared between sibling routes (such as navigation) visible and functional when an error occurs.</p>
+<p>error.js 边界不会捕获在同一段的 layout.js 或 template.js 组件中抛出的错误。当发生错误时，这种有意的层次结构使兄弟路由（例如导航）之间共享的重要 UI 保持可见和正常运行。</p>
+<p>To handle errors within a specific layout or template, place an <code>error.js</code> file in the layouts parent segment.</p>
+<p>要处理特定布局或模板中的错误，请将 error.js 文件放在布局父段中。</p>
+<p>To handle errors within the root layout or template, use a variation of <code>error.js</code> called <code>global-error.js</code>.</p>
+<p>要处理根布局或模板中的错误，请使用称为 global-error.js 的 error.js 变体。</p>
+<h3 id="handling-errors-in-root-layouts"><a href="https://nextjs.org/docs/app/building-your-application/routing/error-handling#handling-errors-in-root-layouts">Handling Errors in Root Layouts</a><a class="headerlink" href="#handling-errors-in-root-layouts" title="Permanent link">&para;</a></h3>
+<p>处理根布局中的错误</p>
+<p>根 <code>app/error.js</code> 边界不会捕获根 <code>app/layout.js</code> 或 <code>app/template.js</code> 组件中抛出的错误。</p>
+<p>要专门处理这些根组件中的错误，请使用位于应用程序根目录中的名为 <code>app/global-error.js</code> 的 <code>error.js</code> 变体。</p>
+<p>与根 <code>error.js</code> 不同，<code>global-error.js</code> 错误边界包裹了整个应用程序，其回退组件在活动时替换根布局。因此，请务必注意 <code>global-error.js</code> 必须定义自己的<code>&lt;html&gt;</code>和<code>&lt;body&gt;</code>标签。</p>
+<p><code>global-error.js</code> 是最小粒度的错误 UI，可以被认为是整个应用程序的“包罗万象catch-all”的错误处理。它不太可能经常被触发，因为根组件通常不太动态，并且其他 <code>error.js</code> 边界会捕获大多数错误。</p>
+<p>即使定义了 <code>global-error.js</code>，仍然建议定义一个根 <code>error.js</code>，其回退组件将在根布局中呈现，其中包括全局共享的 UI 和品牌。</p>
+<p><code>app/global-error.tsx</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-21-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-21-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-21-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-21-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-21-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-21-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-21-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-21-10">10</a></span>
+<span class="normal"><a href="#__codelineno-21-11">11</a></span>
+<span class="normal"><a href="#__codelineno-21-12">12</a></span>
+<span class="normal"><a href="#__codelineno-21-13">13</a></span>
+<span class="normal"><a href="#__codelineno-21-14">14</a></span>
+<span class="normal"><a href="#__codelineno-21-15">15</a></span>
+<span class="normal"><a href="#__codelineno-21-16">16</a></span>
+<span class="normal"><a href="#__codelineno-21-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>&#39;use client&#39;;
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a>export default function GlobalError({
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a>  error,
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a>  reset,
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a>}: {
+<a id="__codelineno-21-6" name="__codelineno-21-6"></a>  error: Error;
+<a id="__codelineno-21-7" name="__codelineno-21-7"></a>  reset: () =&gt; void;
+<a id="__codelineno-21-8" name="__codelineno-21-8"></a>}) {
+<a id="__codelineno-21-9" name="__codelineno-21-9"></a>  return (
+<a id="__codelineno-21-10" name="__codelineno-21-10"></a>    &lt;html&gt;
+<a id="__codelineno-21-11" name="__codelineno-21-11"></a>      &lt;body&gt;
+<a id="__codelineno-21-12" name="__codelineno-21-12"></a>        &lt;h2&gt;Something went wrong!&lt;/h2&gt;
+<a id="__codelineno-21-13" name="__codelineno-21-13"></a>        &lt;button onClick={() =&gt; reset()}&gt;Try again&lt;/button&gt;
+<a id="__codelineno-21-14" name="__codelineno-21-14"></a>      &lt;/body&gt;
+<a id="__codelineno-21-15" name="__codelineno-21-15"></a>    &lt;/html&gt;
+<a id="__codelineno-21-16" name="__codelineno-21-16"></a>  );
+<a id="__codelineno-21-17" name="__codelineno-21-17"></a>}
+</code></pre></div></td></tr></table></div>
+<h3 id="handling-server-errors"><a href="https://nextjs.org/docs/app/building-your-application/routing/error-handling#handling-server-errors">Handling Server Errors</a><a class="headerlink" href="#handling-server-errors" title="Permanent link">&para;</a></h3>
+<p>处理服务器错误</p>
+<p>如果在数据获取期间或服务器组件内部抛出错误，Next.js 会将生成的 Error 对象作为错误 prop 转发到最近的 error.js 文件。</p>
+<p>运行 <code>next dev</code> 时，错误将被序列化并从服务器组件转发到客户端 error.js。为确保在生产中运行 <code>next start</code> 时的安全性，一般错误消息将与包含错误消息哈希的 <code>.digest</code> 一起转发给 error。此哈希可用于对应于服务器日志。</p>
+<p><a href="../nextjs-started--router-getting_23Oct13155930192473/">上一课 开始</a></p>
+<p>Any text/graphics/videos and other articles on this website that indicate "Source: xxx" are reprinted on this website for the purpose of transmitting more information, which does not mean that we agree with their views or confirm the authenticity of their content. If you are involved in the content of the work, copyright and other issues, please contact this website, we will delete the content in the first time! <br />
+Author: <br />
+Source: <a href="https://developer.aliyun.com/article/1262221">https://developer.aliyun.com/article/1262221</a> , <a href="https://developer.aliyun.com/article/1262222">https://developer.aliyun.com/article/1262222</a></p>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </button>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright md-footer-copyright-mid">
+        
+      </div>
+      <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/autoadgeek" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/autoadgeek" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand", "navigation.path", "navigation.prune", "navigation.top", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.726fbb30.min.js"></script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
