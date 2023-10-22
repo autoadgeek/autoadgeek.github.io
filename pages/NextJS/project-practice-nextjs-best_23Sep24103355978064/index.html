@@ -5023,9 +5023,9 @@
 <p>正如上文的介绍，Next.js 是一个非常全面的现代全栈应用构建方案。它包含了非常优雅的 TypeScript 和 React 支持，同时提供了现代应用常见的需求解决方案，例如：路由，API，PostCSS 工具和代码分割等。</p>
 <p>与此同时它也支持静态站点生成（用于可以在任何地方托管的高性能静态 HTML 页面）或者是通过 Vercel / AWS 等部署 Node.js 服务来进行数据按需加载的服务端渲染页面</p>
 <p>Next.js 已迅速成为 Web 开发领域最抢手的技能之一。本教程旨在充当 <a href="https://nextjs.org/docs/getting-started" title="https://nextjs.org/docs/getting-started">Next.js文档</a> 的 “ 实用 ” 延伸，并帮助你使用大量最佳实践来开发项目，这将有利于你在今后对项目实施进一步的扩展。</p>
-<h1 id="_1">介绍<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_1">介绍<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>本教程不是为了替代官方文档，因为官方文档已经写得非常简单易懂了。我强烈推荐你在学习本文之前先大致过一下 <a href="https://nextjs.org/docs/basic-features/pages" title="https://nextjs.org/docs/basic-features/pages">这一章</a> 的内容，这样你对文中的术语和工具会比较熟悉，他们提供的一些组件与普通 HTML 组件相似，但通常是“更强大”的版本。</p>
-<h1 id="_2">项目创建<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<h2 id="_2">项目创建<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>我们将使用 TypeScript 模版来创建一个默认的 Next.js 应用
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
@@ -5043,7 +5043,7 @@
 </code></pre></div></td></tr></table></div></p>
 <p>首先我们试试这个项目能不能正常运行。我们在这个例子中会使用 yarn ，当然你也可以用 NPM 或其他的工具<code>yarn dev</code></p>
 <p>你可以打开 <code>http://localhost:3000/</code> 看到这个 demo 已经成功运行</p>
-<h1 id="_3">引擎锁定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
+<h2 id="_3">引擎锁定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>我们在本项目中使用的 v16 的 Node.js。你可以通过 <code>node --version</code> 检查版本。打开 <code>package.json</code> engines 字段是你指定所使用工具的特定版本的地方。
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
@@ -5097,7 +5097,7 @@
 <a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
-<h1 id="git">Git 配置<a class="headerlink" href="#git" title="Permanent link">&para;</a></h1>
+<h2 id="git">Git 配置<a class="headerlink" href="#git" title="Permanent link">&para;</a></h2>
 <p>这将是我们第一次提交到远程仓库的好时机，以确保更改得到备份，并遵循最佳实践将相关更改分组在一个提交中，然后再做新的修改。</p>
 <p>默认情况下，你的 Next.js 项目已经初始化了一个 repo。 你可以使用 <code>git status</code> 检查你所在的分支。 它应该会显示类似下面的文案
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
@@ -5142,7 +5142,7 @@
 <p>请注意，从这一点开始，我们将使用 <a href="https://www.conventionalcommits.org/en/v1.0.0/#summary">Conventional Commits</a> 标准，特别是 <a href="https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type">此处描述</a> 的 Angular 约定</p>
 <p>原因与该项目中的许多其他功能一样，只是为所有开发人员设置一个 <strong>一致</strong> 的标准，以便在为项目做出贡献时最大程度地减少培训时间。我个人不太关心选择什么标准，只要每个人都同意遵循它，才是最重要的。</p>
 <p>一致性就是一切 ！！！</p>
-<h1 id="_4">代码格式化和质量工具<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
+<h2 id="_4">代码格式化和质量工具<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>为了设定一个标准，供项目的所有贡献者使用，以保持代码风格一致并遵循基本的最佳实践，我们将使用两个工具：</p>
 <ul>
 <li><a href="https://eslint.org/">eslint</a> - 代码规范的最佳实践</li>
@@ -5229,7 +5229,7 @@
 <p>你可以运行<code>yarn prettier</code></p>
 <p>自动格式化、修复和保存项目中你未忽略的所有文件。 默认情况下，我的格式化程序更新了大约 5 个文件。 你可以在 VS Code 左侧的源代码管理选项卡中的已更改文件列表中看到它们。</p>
 <p>让我们在这时候进行一次提交，带上信息 <code>build: implement prettier</code></p>
-<h1 id="git-hooks">Git Hooks<a class="headerlink" href="#git-hooks" title="Permanent link">&para;</a></h1>
+<h2 id="git-hooks">Git Hooks<a class="headerlink" href="#git-hooks" title="Permanent link">&para;</a></h2>
 <p>在我们开始进行组件开发之前，还有一节是关于配置的。 请记住，如果你要长期构建该项目，你将希望该项目尽可能坚如磐石，尤其是与其他开发人员团队合作时。 花时间在一开始就把它做好是值得的。</p>
 <p>我们将使用一个叫做 <a href="https://typicode.github.io/husky/#/">Husky</a> 的工具</p>
 <p>Husky 是一个用于在 git 进程的不同阶段运行脚本的工具，例如 add、commit、push 等。我们希望能够设置某些条件，并且只有在我们的代码满足这些条件时才允许提交和推送之类的事情成功，假设这表明我们的项目质量是可以接受的。</p>
@@ -5377,7 +5377,7 @@
 <p><img src='images/002.webp' alt='2.png' /></p>
 <p>如果提交信息格式不正确的话，则会报错</p>
 <p><img src='images/003.webp' alt='3.png' /></p>
-<h1 id="vs-code"><strong>VS Code 配置</strong><a class="headerlink" href="#vs-code" title="Permanent link">&para;</a></h1>
+<h2 id="vs-code"><strong>VS Code 配置</strong><a class="headerlink" href="#vs-code" title="Permanent link">&para;</a></h2>
 <p>现在我们已经实现了 ESLint 和 Prettier，我们可以利用一些便利的 VS Code 功能让它们自动运行。</p>
 <p>在项目的根目录中创建一个名为 .vscode 的目录和一个名为 settings.json 的文件。 这将是一个覆盖已安装 VS 代码默认设置的值列表。</p>
 <p>我们想要将它们放在项目文件夹中的原因是我们可以设置仅适用于该项目的特定设置，并且我们可以通过将它们包含在代码仓库中来与我们团队的其他成员共享它们。</p>
@@ -6708,6 +6708,152 @@
 <p><img src='images/014.webp' alt='14.png' /></p>
 <p>在 Storybook 这边，我们可以独立于应用预览和测试我们的 layout 组件。这个 PrimaryLayout 组件在没有自组件的情况下没有什么作用，而侧边栏则可以完美的显示。</p>
 <p><img src='images/015.webp' alt='15.png' /></p>
+<h2 id="service-worker">注册 Service Worker<a class="headerlink" href="#service-worker" title="Permanent link">&para;</a></h2>
+<h3 id="webmanifest">后缀名<code>.webmanifest</code>文件<a class="headerlink" href="#webmanifest" title="Permanent link">&para;</a></h3>
+<p><code>.webmanifest</code>是一个Web App清单文件的后缀名，用于定义Web应用程序的元数据，如名称、描述、图标和其他相关信息，以便能够将Web应用程序安装到设备上，就像本地应用程序一样。该文件通常位于Web应用程序的根目录下，并使用JSON格式编写。
+<code>display</code>属性指定了Web应用程序如何以全屏模式显示在用户设备上的方式，例如<code>standalone</code>（独立窗口）、<code>fullscreen</code>（全屏）和<code>minimal-ui</code>（最小化UI）。
+在<code>public</code>文件下，存在该目录，同时在主页面<code>link</code>中引入，就能实现打开一个链接，将这个链接保存到手机桌面，下次再次打开这个图标，就再次访问这个链接.</p>
+<p>示范: <code>app/layout.tsx</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-44-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-44-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-44-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-44-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-44-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-44-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-44-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-44-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-44-10">10</a></span>
+<span class="normal"><a href="#__codelineno-44-11">11</a></span>
+<span class="normal"><a href="#__codelineno-44-12">12</a></span>
+<span class="normal"><a href="#__codelineno-44-13">13</a></span>
+<span class="normal"><a href="#__codelineno-44-14">14</a></span>
+<span class="normal"><a href="#__codelineno-44-15">15</a></span>
+<span class="normal"><a href="#__codelineno-44-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1"></a>export default function RootLayout({
+<a id="__codelineno-44-2" name="__codelineno-44-2"></a>  children,
+<a id="__codelineno-44-3" name="__codelineno-44-3"></a>}: {
+<a id="__codelineno-44-4" name="__codelineno-44-4"></a>  children: React.ReactNode;
+<a id="__codelineno-44-5" name="__codelineno-44-5"></a>}) {
+<a id="__codelineno-44-6" name="__codelineno-44-6"></a>  return (
+<a id="__codelineno-44-7" name="__codelineno-44-7"></a>    &lt;html lang=&quot;en&quot;&gt;
+<a id="__codelineno-44-8" name="__codelineno-44-8"></a>      &lt;head&gt;
+<a id="__codelineno-44-9" name="__codelineno-44-9"></a>        &lt;meta name=&quot;config&quot; content={JSON.stringify(getClientConfig())} /&gt;
+<a id="__codelineno-44-10" name="__codelineno-44-10"></a>        &lt;link rel=&quot;manifest&quot; href=&quot;/site.webmanifest&quot;&gt;&lt;/link&gt;
+<a id="__codelineno-44-11" name="__codelineno-44-11"></a>        &lt;script src=&quot;/serviceWorkerRegister.js&quot; defer&gt;&lt;/script&gt;
+<a id="__codelineno-44-12" name="__codelineno-44-12"></a>      &lt;/head&gt;
+<a id="__codelineno-44-13" name="__codelineno-44-13"></a>      &lt;body&gt;{children}&lt;/body&gt;
+<a id="__codelineno-44-14" name="__codelineno-44-14"></a>    &lt;/html&gt;
+<a id="__codelineno-44-15" name="__codelineno-44-15"></a>  );
+<a id="__codelineno-44-16" name="__codelineno-44-16"></a>}
+</code></pre></div></td></tr></table></div>
+<p><code>/site.webmanifest</code> <br />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-45-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-45-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-45-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-45-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-45-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-45-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-45-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-45-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-45-10">10</a></span>
+<span class="normal"><a href="#__codelineno-45-11">11</a></span>
+<span class="normal"><a href="#__codelineno-45-12">12</a></span>
+<span class="normal"><a href="#__codelineno-45-13">13</a></span>
+<span class="normal"><a href="#__codelineno-45-14">14</a></span>
+<span class="normal"><a href="#__codelineno-45-15">15</a></span>
+<span class="normal"><a href="#__codelineno-45-16">16</a></span>
+<span class="normal"><a href="#__codelineno-45-17">17</a></span>
+<span class="normal"><a href="#__codelineno-45-18">18</a></span>
+<span class="normal"><a href="#__codelineno-45-19">19</a></span>
+<span class="normal"><a href="#__codelineno-45-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1"></a><span class="p">{</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2"></a><span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ChatGPT Next Web&quot;</span><span class="p">,</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3"></a><span class="w">    </span><span class="nt">&quot;short_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ChatGPT&quot;</span><span class="p">,</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4"></a><span class="w">    </span><span class="nt">&quot;icons&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5"></a><span class="w">      </span><span class="p">{</span>
+<a id="__codelineno-45-6" name="__codelineno-45-6"></a><span class="w">        </span><span class="nt">&quot;src&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/android-chrome-192x192.png&quot;</span><span class="p">,</span>
+<a id="__codelineno-45-7" name="__codelineno-45-7"></a><span class="w">        </span><span class="nt">&quot;sizes&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192x192&quot;</span><span class="p">,</span>
+<a id="__codelineno-45-8" name="__codelineno-45-8"></a><span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image/png&quot;</span>
+<a id="__codelineno-45-9" name="__codelineno-45-9"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-45-10" name="__codelineno-45-10"></a><span class="w">      </span><span class="p">{</span>
+<a id="__codelineno-45-11" name="__codelineno-45-11"></a><span class="w">        </span><span class="nt">&quot;src&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/android-chrome-512x512.png&quot;</span><span class="p">,</span>
+<a id="__codelineno-45-12" name="__codelineno-45-12"></a><span class="w">        </span><span class="nt">&quot;sizes&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;512x512&quot;</span><span class="p">,</span>
+<a id="__codelineno-45-13" name="__codelineno-45-13"></a><span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image/png&quot;</span>
+<a id="__codelineno-45-14" name="__codelineno-45-14"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-45-15" name="__codelineno-45-15"></a><span class="w">    </span><span class="p">],</span>
+<a id="__codelineno-45-16" name="__codelineno-45-16"></a><span class="w">    </span><span class="nt">&quot;start_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span>
+<a id="__codelineno-45-17" name="__codelineno-45-17"></a><span class="w">    </span><span class="nt">&quot;theme_color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span>
+<a id="__codelineno-45-18" name="__codelineno-45-18"></a><span class="w">    </span><span class="nt">&quot;background_color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span>
+<a id="__codelineno-45-19" name="__codelineno-45-19"></a><span class="w">    </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;standalone&quot;</span>
+<a id="__codelineno-45-20" name="__codelineno-45-20"></a><span class="w">  </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="serviceworkerregister"><code>serviceWorkerRegister</code><a class="headerlink" href="#serviceworkerregister" title="Permanent link">&para;</a></h3>
+<p>还需要设计下载操作 在<code>html</code>的<code>script</code>标签中引入<code>serviceWorkerRegister.js</code>, 
+如<code>&lt;script src="/serviceWorkerRegister.js" defer&gt;&lt;/script&gt;</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span>
+<span class="normal"><a href="#__codelineno-46-2">2</a></span>
+<span class="normal"><a href="#__codelineno-46-3">3</a></span>
+<span class="normal"><a href="#__codelineno-46-4">4</a></span>
+<span class="normal"><a href="#__codelineno-46-5">5</a></span>
+<span class="normal"><a href="#__codelineno-46-6">6</a></span>
+<span class="normal"><a href="#__codelineno-46-7">7</a></span>
+<span class="normal"><a href="#__codelineno-46-8">8</a></span>
+<span class="normal"><a href="#__codelineno-46-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;serviceWorker&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">navigator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2"></a><span class="w">  </span><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3"></a><span class="w">    </span><span class="nx">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">&#39;/serviceWorker.js&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">registration</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-46-4" name="__codelineno-46-4"></a><span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;ServiceWorker registration successful with scope: &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">registration</span><span class="p">.</span><span class="nx">scope</span><span class="p">);</span>
+<a id="__codelineno-46-5" name="__codelineno-46-5"></a><span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-46-6" name="__codelineno-46-6"></a><span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;ServiceWorker registration failed: &#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">);</span>
+<a id="__codelineno-46-7" name="__codelineno-46-7"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-46-8" name="__codelineno-46-8"></a><span class="w">  </span><span class="p">});</span>
+<a id="__codelineno-46-9" name="__codelineno-46-9"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="serviceworker"><code>serviceWorker</code><a class="headerlink" href="#serviceworker" title="Permanent link">&para;</a></h3>
+<p>逻辑,其实是在window窗口<code>load</code>时继续加载<code>serviceWorker.js</code> 而<code>serviceWorker.js</code>的逻辑在窗口为活跃时,监听下载事件。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-47-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-47-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-47-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-47-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-47-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-47-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-47-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-47-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-47-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-47-10">10</a></span>
+<span class="normal"><a href="#__codelineno-47-11">11</a></span>
+<span class="normal"><a href="#__codelineno-47-12">12</a></span>
+<span class="normal"><a href="#__codelineno-47-13">13</a></span>
+<span class="normal"><a href="#__codelineno-47-14">14</a></span>
+<span class="normal"><a href="#__codelineno-47-15">15</a></span>
+<span class="normal"><a href="#__codelineno-47-16">16</a></span>
+<span class="normal"><a href="#__codelineno-47-17">17</a></span>
+<span class="normal"><a href="#__codelineno-47-18">18</a></span>
+<span class="normal"><a href="#__codelineno-47-19">19</a></span>
+<span class="normal"><a href="#__codelineno-47-20">20</a></span>
+<span class="normal"><a href="#__codelineno-47-21">21</a></span>
+<span class="normal"><a href="#__codelineno-47-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">CHATGPT_WEB_CACHE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;chatgpt-vite-web&quot;</span><span class="p">;</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2"></a>
+<a id="__codelineno-47-3" name="__codelineno-47-3"></a><span class="nx">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;activate&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-47-4" name="__codelineno-47-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ServiceWorker activated.&quot;</span><span class="p">);</span>
+<a id="__codelineno-47-5" name="__codelineno-47-5"></a><span class="p">});</span>
+<a id="__codelineno-47-6" name="__codelineno-47-6"></a>
+<a id="__codelineno-47-7" name="__codelineno-47-7"></a><span class="nx">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;install&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-47-8" name="__codelineno-47-8"></a><span class="w">  </span><span class="nx">event</span><span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span>
+<a id="__codelineno-47-9" name="__codelineno-47-9"></a><span class="w">    </span><span class="nx">caches</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">CHATGPT_WEB_CACHE</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">cache</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-47-10" name="__codelineno-47-10"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">cache</span><span class="p">.</span><span class="nx">addAll</span><span class="p">([]);</span>
+<a id="__codelineno-47-11" name="__codelineno-47-11"></a><span class="w">    </span><span class="p">}),</span>
+<a id="__codelineno-47-12" name="__codelineno-47-12"></a><span class="w">  </span><span class="p">);</span>
+<a id="__codelineno-47-13" name="__codelineno-47-13"></a><span class="p">});</span>
+<a id="__codelineno-47-14" name="__codelineno-47-14"></a>
+<a id="__codelineno-47-15" name="__codelineno-47-15"></a><span class="nx">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;fetch&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-47-16" name="__codelineno-47-16"></a><span class="w">  </span><span class="nx">event</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span>
+<a id="__codelineno-47-17" name="__codelineno-47-17"></a><span class="w">    </span><span class="nx">caches</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">)</span>
+<a id="__codelineno-47-18" name="__codelineno-47-18"></a><span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-47-19" name="__codelineno-47-19"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">);</span>
+<a id="__codelineno-47-20" name="__codelineno-47-20"></a><span class="w">      </span><span class="p">})</span>
+<a id="__codelineno-47-21" name="__codelineno-47-21"></a><span class="w">  </span><span class="p">);</span>
+<a id="__codelineno-47-22" name="__codelineno-47-22"></a><span class="p">});</span>
+</code></pre></div></td></tr></table></div>
 <h2 id="_10">部署<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>最后一步将讲解如何部署一个 Next.js 应用</p>
 <p>我们将使用 Vercel，因为它是 Next.js 应用程序最简单、最直接的部署解决方案。</p>
