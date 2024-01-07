@@ -93,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cloudflare-workers-vless" class="md-skip">
+        <a href="#vercel-function-cloundflare-worker" class="md-skip">
           跳转至
         </a>
       
@@ -5514,7 +5514,14 @@
 
 
 
-<h1 id="cloudflare-workers-vless">CloudFlare Workers 部署 VLESS 节点<a class="headerlink" href="#cloudflare-workers-vless" title="Permanent link">&para;</a></h1>
+<h1 id="vercel-function-cloundflare-worker">使用 Vercel function 和 CloundFlare Worker<a class="headerlink" href="#vercel-function-cloundflare-worker" title="Permanent link">&para;</a></h1>
+<hr />
+<ul>
+<li><a href="#cloudflare-workers-部署-vless-节点">CloudFlare Workers 部署 VLESS 节点</a></li>
+<li><a href="#cloudflare-workers中强制设置worker区域">Cloudflare Workers中强制设置worker区域</a></li>
+<li><a href="#为-vercel-function-配置区域">为 Vercel function 配置区域</a></li>
+</ul>
+<h2 id="cloudflare-workers-vless">CloudFlare Workers 部署 VLESS 节点<a class="headerlink" href="#cloudflare-workers-vless" title="Permanent link">&para;</a></h2>
 <p>在近期，大家应该不满足于 CloudFlare WARP 有限的速度，开始去尝试在 CloudFlare 里头研究 workers 节点了。在此感谢 zizifn 和 3Kmfi6HP 大佬的贡献，让我们得以在 CloudFlare Workers 部署 VLESS 节点</p>
 <h2 id="_1">云到底是什么？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>从历史上看，Web应用程序代码已在服务器和浏览器之间分配。它们之间存在着一个巨大的但本质上很简单的网络——点到点传送数据的网络。</p>
@@ -5693,8 +5700,550 @@
 <li>输入你想要绑定的域名（备注：一级域名需要绑定在CloudFlare账号里面）</li>
 </ol>
 <p><img alt="绑定域名" src="images/11.png" title="绑定域名" /></p>
-<h2 id="_5">参考资料<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p><a href="https://blog.misaka.rest/2023/07/29/cf-pages-vless/">在 CloudFlare Pages 部署 vless 节点</a></p>
+<h2 id="cloudflare-workersworker"><code>Cloudflare Workers中强制设置worker区域</code><a class="headerlink" href="#cloudflare-workersworker" title="Permanent link">&para;</a></h2>
+<p>问：构建一个与 API 交互的系统，该系统期望 API key被地理锁定到某个区域(例如英国)。</p>
+<p>回答： Setup an A record <code>gb.yourdomain.com</code> for the IP of one of Cloudflare’s United Kingdom datacenters, such as <code>8.41.7.4</code> which I confirmed working just now. You can use various IP tools to find all the IP’s for Cloudflare’s ASN in which location.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="s1">&#39;strict mode&#39;</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">      </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">      </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">headers</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">      </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">method</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">      </span><span class="nx">redirect</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;manual&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">      </span><span class="nx">cf</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="nx">resolveOverride</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;MAN&#39;</span><span class="p">,</span><span class="s1">&#39;EDI&#39;</span><span class="p">,</span><span class="s1">&#39;LHR&#39;</span><span class="p">].</span><span class="nx">includes</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">cf</span><span class="p">.</span><span class="nx">colo</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">          </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;api.yourdomain.com&#39;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">          </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gb.yourdomain.com&#39;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>To explain whats happening here. Essentially the HTTP request hits Cloudflares IP for the hostname <code>api.yourdomain.com</code> which a Worker script is setup on. The worker then resolves the IP for API to instead be the IP of GB A Record which hits the datacenter in the desired geolocation and since it’s the same hostname (i.e. <code>api.yourdomain.com</code>) it invokes the same Worker script again but from another geolocation, it then hits the IP of your API server.</p>
+<p>Here’s the test, for me I’m in China so the first request hits a datacenter in Hong Kong, and then the worker makes a second request to a datacenter in the United Kingdom. I will provide the logs for both requests below.</p>
+<p>The first request:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span>
+<span class="normal"><a href="#__codelineno-2-35">35</a></span>
+<span class="normal"><a href="#__codelineno-2-36">36</a></span>
+<span class="normal"><a href="#__codelineno-2-37">37</a></span>
+<span class="normal"><a href="#__codelineno-2-38">38</a></span>
+<span class="normal"><a href="#__codelineno-2-39">39</a></span>
+<span class="normal"><a href="#__codelineno-2-40">40</a></span>
+<span class="normal"><a href="#__codelineno-2-41">41</a></span>
+<span class="normal"><a href="#__codelineno-2-42">42</a></span>
+<span class="normal"><a href="#__codelineno-2-43">43</a></span>
+<span class="normal"><a href="#__codelineno-2-44">44</a></span>
+<span class="normal"><a href="#__codelineno-2-45">45</a></span>
+<span class="normal"><a href="#__codelineno-2-46">46</a></span>
+<span class="normal"><a href="#__codelineno-2-47">47</a></span>
+<span class="normal"><a href="#__codelineno-2-48">48</a></span>
+<span class="normal"><a href="#__codelineno-2-49">49</a></span>
+<span class="normal"><a href="#__codelineno-2-50">50</a></span>
+<span class="normal"><a href="#__codelineno-2-51">51</a></span>
+<span class="normal"><a href="#__codelineno-2-52">52</a></span>
+<span class="normal"><a href="#__codelineno-2-53">53</a></span>
+<span class="normal"><a href="#__codelineno-2-54">54</a></span>
+<span class="normal"><a href="#__codelineno-2-55">55</a></span>
+<span class="normal"><a href="#__codelineno-2-56">56</a></span>
+<span class="normal"><a href="#__codelineno-2-57">57</a></span>
+<span class="normal"><a href="#__codelineno-2-58">58</a></span>
+<span class="normal"><a href="#__codelineno-2-59">59</a></span>
+<span class="normal"><a href="#__codelineno-2-60">60</a></span>
+<span class="normal"><a href="#__codelineno-2-61">61</a></span>
+<span class="normal"><a href="#__codelineno-2-62">62</a></span>
+<span class="normal"><a href="#__codelineno-2-63">63</a></span>
+<span class="normal"><a href="#__codelineno-2-64">64</a></span>
+<span class="normal"><a href="#__codelineno-2-65">65</a></span>
+<span class="normal"><a href="#__codelineno-2-66">66</a></span>
+<span class="normal"><a href="#__codelineno-2-67">67</a></span>
+<span class="normal"><a href="#__codelineno-2-68">68</a></span>
+<span class="normal"><a href="#__codelineno-2-69">69</a></span>
+<span class="normal"><a href="#__codelineno-2-70">70</a></span>
+<span class="normal"><a href="#__codelineno-2-71">71</a></span>
+<span class="normal"><a href="#__codelineno-2-72">72</a></span>
+<span class="normal"><a href="#__codelineno-2-73">73</a></span>
+<span class="normal"><a href="#__codelineno-2-74">74</a></span>
+<span class="normal"><a href="#__codelineno-2-75">75</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;outcome&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;scriptName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;worker-weathered-glade-d581&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;diagnosticsChannelEvents&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;exceptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="nt">&quot;logs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;eventTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1694839245034</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.yourdomain.com/&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">      </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">      </span><span class="nt">&quot;headers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">        </span><span class="nt">&quot;accept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*/*&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">        </span><span class="nt">&quot;accept-encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">        </span><span class="nt">&quot;cf-connecting-ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REDACTED&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">        </span><span class="nt">&quot;cf-ipcountry&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CN&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">        </span><span class="nt">&quot;cf-ray&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REDACTED&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">        </span><span class="nt">&quot;cf-visitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;scheme\&quot;:\&quot;https\&quot;}&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">        </span><span class="nt">&quot;connection&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Keep-Alive&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">        </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api.yourdomain.com&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">        </span><span class="nt">&quot;user-agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;curl/8.1.2&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">        </span><span class="nt">&quot;x-forwarded-proto&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">        </span><span class="nt">&quot;x-real-ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REDACTED&quot;</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">      </span><span class="nt">&quot;cf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">        </span><span class="nt">&quot;clientTcpRtt&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">        </span><span class="nt">&quot;longitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;104.05550&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">        </span><span class="nt">&quot;latitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30.64980&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="w">        </span><span class="nt">&quot;tlsCipher&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AEAD-AES256-GCM-SHA384&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a><span class="w">        </span><span class="nt">&quot;continent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AS&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="w">        </span><span class="nt">&quot;asn&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9808</span><span class="p">,</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a><span class="w">        </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CN&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a><span class="w">        </span><span class="nt">&quot;tlsClientAuth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="w">          </span><span class="nt">&quot;certIssuerDNLegacy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a><span class="w">          </span><span class="nt">&quot;certIssuerSKI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a><span class="w">          </span><span class="nt">&quot;certSubjectDNRFC2253&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a><span class="w">          </span><span class="nt">&quot;certSubjectDNLegacy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a><span class="w">          </span><span class="nt">&quot;certFingerprintSHA256&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="w">          </span><span class="nt">&quot;certNotBefore&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a><span class="w">          </span><span class="nt">&quot;certSKI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a><span class="w">          </span><span class="nt">&quot;certSerial&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42"></a><span class="w">          </span><span class="nt">&quot;certIssuerDN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43"></a><span class="w">          </span><span class="nt">&quot;certVerified&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44"></a><span class="w">          </span><span class="nt">&quot;certNotAfter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45"></a><span class="w">          </span><span class="nt">&quot;certSubjectDN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46"></a><span class="w">          </span><span class="nt">&quot;certPresented&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47"></a><span class="w">          </span><span class="nt">&quot;certRevoked&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-48" name="__codelineno-2-48"></a><span class="w">          </span><span class="nt">&quot;certIssuerSerial&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49"></a><span class="w">          </span><span class="nt">&quot;certIssuerDNRFC2253&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-50" name="__codelineno-2-50"></a><span class="w">          </span><span class="nt">&quot;certFingerprintSHA1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-2-52" name="__codelineno-2-52"></a><span class="w">        </span><span class="nt">&quot;tlsExportedAuthenticator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-53" name="__codelineno-2-53"></a><span class="w">          </span><span class="nt">&quot;clientFinished&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6f1b5d862487a8e52cd205c10e0a612872663f5beacac5af8d7a0e018d7fd143864fae0faca91f93a1904b01efb8345b&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-54" name="__codelineno-2-54"></a><span class="w">          </span><span class="nt">&quot;clientHandshake&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;21d13e08a59128ff45aca00b79c467151db3c200783a15cc71728283ae631494dfcf02b9e5e4776236132e2c6a7bf645&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-55" name="__codelineno-2-55"></a><span class="w">          </span><span class="nt">&quot;serverHandshake&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;c1f3740dcda5d22dc31257e52c66c24422c29b37c5c42a7bef419088b7230fe59764ff4b9a4d2c2792b9f20efd325dbf&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-56" name="__codelineno-2-56"></a><span class="w">          </span><span class="nt">&quot;serverFinished&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bd114e5a9ba1ddd4e00132eefed2020942d88c80233f574a4874c7d1040c8b8964fd57e71363e22e57a66c4070eccca9&quot;</span>
+<a id="__codelineno-2-57" name="__codelineno-2-57"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-2-58" name="__codelineno-2-58"></a><span class="w">        </span><span class="nt">&quot;tlsVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TLSv1.3&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-59" name="__codelineno-2-59"></a><span class="w">        </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chengdu&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-60" name="__codelineno-2-60"></a><span class="w">        </span><span class="nt">&quot;timezone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Asia/Shanghai&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-61" name="__codelineno-2-61"></a><span class="w">        </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sichuan&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-62" name="__codelineno-2-62"></a><span class="w">        </span><span class="nt">&quot;requestPriority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weight=16;exclusive=0;group=0;group-weight=0&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-63" name="__codelineno-2-63"></a><span class="w">        </span><span class="nt">&quot;colo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HKG&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-64" name="__codelineno-2-64"></a><span class="w">        </span><span class="nt">&quot;httpProtocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HTTP/2&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-65" name="__codelineno-2-65"></a><span class="w">        </span><span class="nt">&quot;regionCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SC&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-66" name="__codelineno-2-66"></a><span class="w">        </span><span class="nt">&quot;asOrganization&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;China Mobile&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-67" name="__codelineno-2-67"></a><span class="w">        </span><span class="nt">&quot;edgeRequestKeepAliveStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-2-68" name="__codelineno-2-68"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-2-69" name="__codelineno-2-69"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-2-70" name="__codelineno-2-70"></a><span class="w">    </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-71" name="__codelineno-2-71"></a><span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
+<a id="__codelineno-2-72" name="__codelineno-2-72"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-73" name="__codelineno-2-73"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-2-74" name="__codelineno-2-74"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-2-75" name="__codelineno-2-75"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>And the 2<sup>nd</sup> request (made by the Worker).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span>
+<span class="normal"><a href="#__codelineno-3-36">36</a></span>
+<span class="normal"><a href="#__codelineno-3-37">37</a></span>
+<span class="normal"><a href="#__codelineno-3-38">38</a></span>
+<span class="normal"><a href="#__codelineno-3-39">39</a></span>
+<span class="normal"><a href="#__codelineno-3-40">40</a></span>
+<span class="normal"><a href="#__codelineno-3-41">41</a></span>
+<span class="normal"><a href="#__codelineno-3-42">42</a></span>
+<span class="normal"><a href="#__codelineno-3-43">43</a></span>
+<span class="normal"><a href="#__codelineno-3-44">44</a></span>
+<span class="normal"><a href="#__codelineno-3-45">45</a></span>
+<span class="normal"><a href="#__codelineno-3-46">46</a></span>
+<span class="normal"><a href="#__codelineno-3-47">47</a></span>
+<span class="normal"><a href="#__codelineno-3-48">48</a></span>
+<span class="normal"><a href="#__codelineno-3-49">49</a></span>
+<span class="normal"><a href="#__codelineno-3-50">50</a></span>
+<span class="normal"><a href="#__codelineno-3-51">51</a></span>
+<span class="normal"><a href="#__codelineno-3-52">52</a></span>
+<span class="normal"><a href="#__codelineno-3-53">53</a></span>
+<span class="normal"><a href="#__codelineno-3-54">54</a></span>
+<span class="normal"><a href="#__codelineno-3-55">55</a></span>
+<span class="normal"><a href="#__codelineno-3-56">56</a></span>
+<span class="normal"><a href="#__codelineno-3-57">57</a></span>
+<span class="normal"><a href="#__codelineno-3-58">58</a></span>
+<span class="normal"><a href="#__codelineno-3-59">59</a></span>
+<span class="normal"><a href="#__codelineno-3-60">60</a></span>
+<span class="normal"><a href="#__codelineno-3-61">61</a></span>
+<span class="normal"><a href="#__codelineno-3-62">62</a></span>
+<span class="normal"><a href="#__codelineno-3-63">63</a></span>
+<span class="normal"><a href="#__codelineno-3-64">64</a></span>
+<span class="normal"><a href="#__codelineno-3-65">65</a></span>
+<span class="normal"><a href="#__codelineno-3-66">66</a></span>
+<span class="normal"><a href="#__codelineno-3-67">67</a></span>
+<span class="normal"><a href="#__codelineno-3-68">68</a></span>
+<span class="normal"><a href="#__codelineno-3-69">69</a></span>
+<span class="normal"><a href="#__codelineno-3-70">70</a></span>
+<span class="normal"><a href="#__codelineno-3-71">71</a></span>
+<span class="normal"><a href="#__codelineno-3-72">72</a></span>
+<span class="normal"><a href="#__codelineno-3-73">73</a></span>
+<span class="normal"><a href="#__codelineno-3-74">74</a></span>
+<span class="normal"><a href="#__codelineno-3-75">75</a></span>
+<span class="normal"><a href="#__codelineno-3-76">76</a></span>
+<span class="normal"><a href="#__codelineno-3-77">77</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;outcome&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;scriptName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;worker-weathered-glade-d581&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;diagnosticsChannelEvents&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;exceptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">  </span><span class="nt">&quot;logs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">  </span><span class="nt">&quot;eventTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1694839486890</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">  </span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">    </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.yourdomain.com/&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">      </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">      </span><span class="nt">&quot;headers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">        </span><span class="nt">&quot;accept&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*/*&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="w">        </span><span class="nt">&quot;accept-encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="w">        </span><span class="nt">&quot;cf-connecting-ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;162.158.178.8&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="w">        </span><span class="nt">&quot;cf-ipcountry&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HK&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="w">        </span><span class="nt">&quot;cf-ray&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REDACTED&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="w">        </span><span class="nt">&quot;cf-visitor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;scheme\&quot;:\&quot;https\&quot;}&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="w">        </span><span class="nt">&quot;connection&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Keep-Alive&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="w">        </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api.yourdomain.com&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="w">        </span><span class="nt">&quot;user-agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;curl/8.1.2&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="w">        </span><span class="nt">&quot;x-forwarded-for&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REDACTED&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="w">        </span><span class="nt">&quot;x-forwarded-proto&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="w">        </span><span class="nt">&quot;x-real-ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;162.158.178.8&quot;</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="w">      </span><span class="nt">&quot;cf&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="w">        </span><span class="nt">&quot;clientTcpRtt&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">198</span><span class="p">,</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="w">        </span><span class="nt">&quot;longitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;114.17590&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="w">        </span><span class="nt">&quot;latitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;22.28420&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a><span class="w">        </span><span class="nt">&quot;tlsCipher&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AEAD-AES128-GCM-SHA256&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a><span class="w">        </span><span class="nt">&quot;continent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AS&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a><span class="w">        </span><span class="nt">&quot;asn&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13335</span><span class="p">,</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a><span class="w">        </span><span class="nt">&quot;clientAcceptEncoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a><span class="w">        </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HK&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a><span class="w">        </span><span class="nt">&quot;tlsClientAuth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36"></a><span class="w">          </span><span class="nt">&quot;certIssuerDNLegacy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37"></a><span class="w">          </span><span class="nt">&quot;certIssuerSKI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38"></a><span class="w">          </span><span class="nt">&quot;certSubjectDNRFC2253&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39"></a><span class="w">          </span><span class="nt">&quot;certSubjectDNLegacy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40"></a><span class="w">          </span><span class="nt">&quot;certFingerprintSHA256&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41"></a><span class="w">          </span><span class="nt">&quot;certNotBefore&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42"></a><span class="w">          </span><span class="nt">&quot;certSKI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43"></a><span class="w">          </span><span class="nt">&quot;certSerial&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44"></a><span class="w">          </span><span class="nt">&quot;certIssuerDN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45"></a><span class="w">          </span><span class="nt">&quot;certVerified&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46"></a><span class="w">          </span><span class="nt">&quot;certNotAfter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47"></a><span class="w">          </span><span class="nt">&quot;certSubjectDN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48"></a><span class="w">          </span><span class="nt">&quot;certPresented&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49"></a><span class="w">          </span><span class="nt">&quot;certRevoked&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50"></a><span class="w">          </span><span class="nt">&quot;certIssuerSerial&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51"></a><span class="w">          </span><span class="nt">&quot;certIssuerDNRFC2253&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52"></a><span class="w">          </span><span class="nt">&quot;certFingerprintSHA1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-3-54" name="__codelineno-3-54"></a><span class="w">        </span><span class="nt">&quot;tlsExportedAuthenticator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-55" name="__codelineno-3-55"></a><span class="w">          </span><span class="nt">&quot;clientFinished&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;002886b97a97b7ad5e6804419197e5d080c4b8c1da9af19f39603e08caf92403&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-56" name="__codelineno-3-56"></a><span class="w">          </span><span class="nt">&quot;clientHandshake&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0aa5a5eb9cb79e1a0e61c08a4d32476f75e07eca2c7bfd47175a9daa85529e26&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57"></a><span class="w">          </span><span class="nt">&quot;serverHandshake&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;69f056495c64bef187dfe8647da8385d37e7e8123001cc781cf088b8e8753718&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-58" name="__codelineno-3-58"></a><span class="w">          </span><span class="nt">&quot;serverFinished&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2f1e2d2bb395132dfdd7fc0a65d08e9df2c333785f87353519d62872b90a08c4&quot;</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-3-60" name="__codelineno-3-60"></a><span class="w">        </span><span class="nt">&quot;tlsVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TLSv1.3&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61"></a><span class="w">        </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hong Kong&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-62" name="__codelineno-3-62"></a><span class="w">        </span><span class="nt">&quot;timezone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Asia/Hong_Kong&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-63" name="__codelineno-3-63"></a><span class="w">        </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Central and Western District&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-64" name="__codelineno-3-64"></a><span class="w">        </span><span class="nt">&quot;requestPriority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weight=16;exclusive=0;group=0;group-weight=0&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-65" name="__codelineno-3-65"></a><span class="w">        </span><span class="nt">&quot;colo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MAN&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-66" name="__codelineno-3-66"></a><span class="w">        </span><span class="nt">&quot;httpProtocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HTTP/2&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-67" name="__codelineno-3-67"></a><span class="w">        </span><span class="nt">&quot;regionCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HCW&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-68" name="__codelineno-3-68"></a><span class="w">        </span><span class="nt">&quot;asOrganization&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Cloudflare&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-69" name="__codelineno-3-69"></a><span class="w">        </span><span class="nt">&quot;edgeRequestKeepAliveStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-3-70" name="__codelineno-3-70"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-3-71" name="__codelineno-3-71"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-72" name="__codelineno-3-72"></a><span class="w">    </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-73" name="__codelineno-3-73"></a><span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
+<a id="__codelineno-3-74" name="__codelineno-3-74"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-75" name="__codelineno-3-75"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-3-76" name="__codelineno-3-76"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<a id="__codelineno-3-77" name="__codelineno-3-77"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>回答： Here is a simplified version of my code that just acts as a proxy:</p>
+<p>Should note:</p>
+<ul>
+<li>Add a Worker Route to your WARP domain (<code>gb.yourdomain.com</code>) that points to the worker</li>
+<li>Add a Worker Route to your API domain (<code>api.yourdomain.com</code>) that points to the worker</li>
+<li>Make sure api.yourdomain.com has a proxied : A record to <code>188.114.96.3</code></li>
+<li>Make sure your <code>gb.yourdomain.com</code> A record is proxied : and set to <code>8.41.7.4</code></li>
+<li>Update the proxy() function to this to stop it from crashing the entire worker when there is an invalid JSON body</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span>
+<span class="normal"><a href="#__codelineno-4-35">35</a></span>
+<span class="normal"><a href="#__codelineno-4-36">36</a></span>
+<span class="normal"><a href="#__codelineno-4-37">37</a></span>
+<span class="normal"><a href="#__codelineno-4-38">38</a></span>
+<span class="normal"><a href="#__codelineno-4-39">39</a></span>
+<span class="normal"><a href="#__codelineno-4-40">40</a></span>
+<span class="normal"><a href="#__codelineno-4-41">41</a></span>
+<span class="normal"><a href="#__codelineno-4-42">42</a></span>
+<span class="normal"><a href="#__codelineno-4-43">43</a></span>
+<span class="normal"><a href="#__codelineno-4-44">44</a></span>
+<span class="normal"><a href="#__codelineno-4-45">45</a></span>
+<span class="normal"><a href="#__codelineno-4-46">46</a></span>
+<span class="normal"><a href="#__codelineno-4-47">47</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">proxy</span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="nx">Request</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Response</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">response</span><span class="o">:</span><span class="w"> </span><span class="nx">Response</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">undefined</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">            </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">            </span><span class="nx">options</span><span class="o">:</span><span class="w"> </span><span class="nx">RequestInit</span><span class="p">;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">        </span><span class="p">};</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">        </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">body</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">            </span><span class="p">...</span><span class="nx">body</span><span class="p">.</span><span class="nx">options</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">            </span><span class="nx">cf</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">                </span><span class="nx">resolveOverride</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;api.yourdomain.com&#39;</span><span class="p">,</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">            </span><span class="p">},</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">        </span><span class="p">});</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="nx">unknown</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">        </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Response</span><span class="p">(</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">            </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">                </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="ne">Error</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">error</span><span class="p">,</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">                </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Error running worker&#39;</span><span class="p">,</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">            </span><span class="p">}),</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">                </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="mf">500</span><span class="p">,</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">                </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="w">                    </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="w">                </span><span class="p">},</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">        </span><span class="p">);</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29"></a>
+<a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">;</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="p">}</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32"></a>
+<a id="__codelineno-4-33" name="__codelineno-4-33"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">forceRegion</span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="nx">Request</span><span class="p">,</span><span class="w"> </span><span class="nx">env</span><span class="o">:</span><span class="w"> </span><span class="nx">Env</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Response</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35"></a><span class="w">        </span><span class="p">...</span><span class="nx">request</span><span class="p">,</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36"></a><span class="w">        </span><span class="nx">redirect</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;manual&#39;</span><span class="p">,</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37"></a><span class="w">        </span><span class="nx">cf</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38"></a><span class="w">            </span><span class="nx">resolveOverride</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gb.mydomain.com&#39;</span><span class="p">,</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41"></a><span class="p">}</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42"></a>
+<a id="__codelineno-4-43" name="__codelineno-4-43"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44"></a><span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="nx">Request</span><span class="p">,</span><span class="w"> </span><span class="nx">env</span><span class="o">:</span><span class="w"> </span><span class="nx">Env</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Response</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">cf</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;MAN&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;EDI&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;LHR&#39;</span><span class="p">].</span><span class="nx">includes</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">cf</span><span class="p">.</span><span class="nx">colo</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">proxy</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">forceRegion</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span><span class="w"> </span><span class="nx">env</span><span class="p">);</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47"></a><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>回答： You can probably use the <a href="https://github.com/P3TERX/GeoLite.mmdb/">Geolite databases</a> and filter by the ASN (13335) + Subnet (8.0.0.0/8) on ASN database to get the set of global subnets and then use the City database to narrow it down to a city or country.</p>
+<p>You may need to ping the final list of subnets to get some usable IPs.</p>
+<p>Running the same command gives me:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>sudo<span class="w"> </span>nmap<span class="w"> </span>-n<span class="w"> </span>-sP<span class="w"> </span><span class="m">8</span>.41.7.0/2
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>Nmap<span class="w"> </span><span class="k">done</span>:<span class="w"> </span><span class="m">256</span><span class="w"> </span>IP<span class="w"> </span>addresses<span class="w"> </span><span class="o">(</span><span class="m">26</span><span class="w"> </span>hosts<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">11</span>.20<span class="w"> </span>seconds
+</code></pre></div></td></tr></table></div>
+<p><a href="https://community.cloudflare.com/t/how-to-force-region-in-cloudflare-workers/557016">原文</a></p>
+<h2 id="vercel-function"><code>为 Vercel function 配置区域</code><a class="headerlink" href="#vercel-function" title="Permanent link">&para;</a></h2>
+<p>在全球分布式应用程序中，函数与其数据源之间的物理距离可能会影响延迟和响应时间。因此，Vercel 允许您指定函数执行的区域，最好靠近数据源,(例如<a href="https://vercel.com/guides/using-databases-with-vercel">数据库</a>)。</p>
+<h3 id="_5"><a href="https://vercel.com/docs/functions/configuring-functions/region#available-configurations">可用配置</a><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><strong>对于 Serverless function</strong></p>
+<ul>
+<li>默认情况下，所有新项目的无服务器函数在_美国华盛顿特区_( <code>iad1</code>)执行，以确保它们靠近大多数托管在美国东海岸的外部数据源。<a href="https://vercel.com/docs/functions/configuring-functions/region#select-a-default-serverless-region"> project's settings on Vercel</a></li>
+<li>在<code>vercel.json</code><a href="https://vercel.com/docs/functions/configuring-functions/region#project-configuration">regions setting</a>中设置您的区域</li>
+<li>在<a href="https://vercel.com/docs/functions/configuring-functions/region#vercel-cli">Vercel CLI</a>中设置您的区域</li>
+</ul>
+<p><strong>对于 Edge function</strong></p>
+<ul>
+<li>默认情况下，边缘函数在最接近传入请求的区域中执行</li>
+<li>您可以使用<a href="https://vercel.com/docs/functions/configuring-functions/region#setting-regions-in-your-function">路由段配置</a> <code>preferredRegions</code>来设置一个或多个首选区域，或者在配置对象中指定一个<code>regions</code>键来设置一个或多个区域供您的函数执行</li>
+</ul>
+<h3 id="_6"><a href="https://vercel.com/docs/functions/configuring-functions/region#setting-regions-in-your-function">在函数中设置区域</a><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><strong>只能为边缘功能设置此项</strong></p>
+<p>默认情况下，边缘函数在地理位置最接近传入请求的区域执行，从而减少网络请求时间。但是，如果您的函数依赖于数据源，您可能希望它靠近该源以实现快速响应。</p>
+<p>要配置您希望函数在哪个区域（或多个区域）执行，请按以下方式<a href="https://vercel.com/docs/edge-network/regions#region-list">您的首选区域的 ID ：</a></p>
+<p>该<code>preferredRegion</code>选项可用于使用字符串值指定单个区域，或使用字符串数组指定多个区域。有关更多信息，请参阅<a href="https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#preferredregion">Next.js 文档</a></p>
+<p><code>app/api/regional-example/route.ts</code>    <br />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">runtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;edge&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// &#39;nodejs&#39; is the default</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="c1">// execute this function on iad1 or hnd1, based on the connecting client location</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">preferredRegion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;iad1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;hnd1&#39;</span><span class="p">];</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">dynamic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;force-dynamic&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// no caching</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">GET</span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="kt">Request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Response</span><span class="p">(</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="sb">`I am an Edge Function! (executed on </span><span class="si">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">VERCEL_REGION</span><span class="si">}</span><span class="sb">)`</span><span class="p">,</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">      </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="kt">200</span><span class="p">,</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">  </span><span class="p">);</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>在区域中断期间，Vercel 会自动故障转移到下一个最近的区域以维持正常运行时间。这适用于全局和区域指定的边缘函数。有关更多信息，请参阅<a href="https://vercel.com/docs/edge-network/regions#outage-resiliency">outage resiliency </a></p>
+<h3 id="_7"><a href="https://vercel.com/docs/functions/configuring-functions/region#setting-your-default-region">设置您的默认区域</a><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>所有新项目的默认功能区域是_美国华盛顿特区_( <code>iad1</code>) </p>
+<h4 id="dashboard"><a href="https://vercel.com/docs/functions/configuring-functions/region#dashboard">Dashboard</a><a class="headerlink" href="#dashboard" title="Permanent link">&para;</a></h4>
+<p>要更改仪表板中的默认区域：</p>
+<ol>
+<li>从Vercel 上的<a href="https://vercel.com/dashboard">仪表板</a>中选择适当的项目</li>
+<li>导航至“设置”选项卡</li>
+<li>从左侧选择功能</li>
+<li>使用“功能区域”下拉列表选择项目的默认区域：</li>
+</ol>
+<p><img alt="The Function Region setting in a Vercel project's dashboard" src="images/function-region-selection-light.avif" title="The Function Region setting in a Vercel project's dashboard" /></p>
+<h4 id="_8"><a href="https://vercel.com/docs/functions/configuring-functions/region#project-configuration">项目配置</a><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>只能为 Serverless Functions 设置</p>
+<p><a href="https://vercel.com/docs/projects/project-configuration#regions">更改<code>vercel.json</code>配置文件</a>中的默认区域，请将区域代码添加到<code>"regions"</code>键：</p>
+<p><code>vercel.json</code> <br />
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;regions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sfo1&quot;</span><span class="p">]</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>企业用户还可以用来<a href="https://vercel.com/docs/projects/project-configuration#functionfailoverregions"><code>functionFailoverRegions</code></a>指定无服务器功能在默认区域停止服务时应故障转移到的区域。</p>
+<h3 id="vercel-cli"><a href="https://vercel.com/docs/functions/configuring-functions/region#vercel-cli">Vercel CLI</a><a class="headerlink" href="#vercel-cli" title="Permanent link">&para;</a></h3>
+<p><strong>只能为 Serverless Functions 设置</strong></p>
+<p>使用<code>vercel --regions</code>项目根目录中的命令来设置区域。<a href="https://vercel.com/docs/cli/deploy#regions">CLI docs</a><code>vercel --regions</code>中的命令设置区域的更多信息</p>
+<h4 id="_9"><a href="https://vercel.com/docs/functions/configuring-functions/region#serverless-functions-failover">无服务器功能故障转移</a><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p><strong>Setting failover regions are available on Enterprise plans</strong></p>
+<p>为了确保在发生中断时自动故障转移到后备区域，在<code>vercel.json</code>配置中，您可以将一个或多个区域传递给文件<a href="https://vercel.com/docs/projects/project-configuration#functionfailoverregions"><code>functionFailoverRegions</code></a></p>
+<p><code>vercel.json</code>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="nt">&quot;functionFailoverRegions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;dub1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;fra1&quot;</span><span class="p">]</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p><code>functionFailoverRegions</code>属性中设置的区域必须与属性中指定的默认区域不同<a href="https://vercel.com/docs/projects/project-configuration#regions"><code>regions</code></a>。</p>
+<p>在自动故障转移期间，Vercel 会将应用程序流量重新路由到下一个最近的区域，这意味着区域的顺序<code>functionFailoverRegions</code>并不重要。有关故障转移路由如何工作的更多信息，请参阅<a href="https://vercel.com/docs/projects/project-configuration#functionfailoverregions"><code>functionFailoverRegions</code></a>。</p>
+<p><a href="https://vercel.com/docs/deployments/overview#deployment-summary">您可以通过部署摘要</a>查看默认区域和故障转移区域：</p>
+<h2 id="_10">参考资料<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://blog.misaka.rest/2023/07/29/cf-pages-vless/">在 CloudFlare Pages 部署 vless 节点</a></li>
+<li><a href="https://vercel.com/docs/functions/configuring-functions/region">Configuring Regions for Vercel Functions</a></li>
+</ul>
 <p>Any text/graphics/videos and other articles on this website that indicate "Source: xxx" are reprinted on this website for the purpose of transmitting more information, which does not mean that we agree with their views or confirm the authenticity of their content. If you are involved in the content of the work, copyright and other issues, please contact this website, we will delete the content in the first time! <br />
 Author: MisakaNo   <br />
 Source: <a href="https://blog.cloudflare.com/cloudflare-workers-unleashed-zh-cn">https://blog.cloudflare.com/cloudflare-workers-unleashed-zh-cn</a>, <a href="https://blog.misaka.rest/2023/07/29/cf-wkrs-vless/">https://blog.misaka.rest/2023/07/29/cf-wkrs-vless/</a> , </p>
