@@ -5700,6 +5700,11 @@
 <li>输入你想要绑定的域名（备注：一级域名需要绑定在CloudFlare账号里面）</li>
 </ol>
 <p><img alt="绑定域名" src="images/11.png" title="绑定域名" /></p>
+<p>参考资料:</p>
+<p><a href="https://github.com/Misaka-blog/cf-wkrs-pages-vless">在 CloudFlare Workers 或 Pages 部署 vless 节点</a></p>
+<p><a href="https://github.com/3Kmfi6HP/EDtunnel">Use Cloudflare pages and worker serverless to implement VLESS protocol</a></p>
+<p><a href="https://blog.misaka.rest/2023/07/29/cf-wkrs-vless/">workers</a></p>
+<p><a href="https://blog.misaka.rest/2023/07/29/cf-pages-vless/">pages</a></p>
 <h2 id="cloudflare-workersworker"><code>Cloudflare Workers中强制设置worker区域</code><a class="headerlink" href="#cloudflare-workersworker" title="Permanent link">&para;</a></h2>
 <p>问：构建一个与 API 交互的系统，该系统期望 API key被地理锁定到某个区域(例如英国)。</p>
 <p>回答： Setup an A record <code>gb.yourdomain.com</code> for the IP of one of Cloudflare’s United Kingdom datacenters, such as <code>8.41.7.4</code> which I confirmed working just now. You can use various IP tools to find all the IP’s for Cloudflare’s ASN in which location.</p>
