@@ -5340,6 +5340,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    网络测速
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#usbmac" class="md-nav__link">
     小米手机通过USB连接MAC电脑
   </a>
@@ -5630,6 +5637,35 @@ find /var/lib/psa/dumps -name 'backup*' -type f -ctime +90 -exec rm -rf {} +;</p
 <p>参考资料:  <br />
 <a href="https://blog.csdn.net/sailor201211/article/details/24554383">很多命令行</a> <br />
 <a href="https://support.plesk.com/hc/en-us/articles/115002557954-How-to-remove-Plesk-backup-files-and-their-logs">清理 /var/lib/psa/dumps</a></p>
+<h2 id="_3">网络测速<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><strong>speedtest</strong> 是一个知名的工具。它是用 Python 写成的，可以使用 apt 或 pip 命令来安装。你可以在命令行下使用，也可以直接将其导入到你的 Python 项目。
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>speedtest-cli
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>或者
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>$<span class="w"> </span>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>speedtest-cli
+</code></pre></div></td></tr></table></div></p>
+<p>使用的时候，可以直接运行 speedtest 命令即可：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>$<span class="w"> </span>speedtest
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>Retrieving<span class="w"> </span>speedtest.net<span class="w"> </span>configuration...
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>Testing<span class="w"> </span>from<span class="w"> </span>CAIW<span class="w"> </span>Internet<span class="w"> </span><span class="o">(</span><span class="m">62</span>.45.67.200<span class="o">)</span>...
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>Retrieving<span class="w"> </span>speedtest.net<span class="w"> </span>server<span class="w"> </span>list...
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>Selecting<span class="w"> </span>best<span class="w"> </span>server<span class="w"> </span>based<span class="w"> </span>on<span class="w"> </span>ping...
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>Hosted<span class="w"> </span>by<span class="w"> </span>Electro<span class="w"> </span><span class="o">(</span>Karaj<span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">4050</span>.79<span class="w"> </span>km<span class="o">]</span>:<span class="w"> </span><span class="m">88</span>.71<span class="w"> </span>ms
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>Testing<span class="w"> </span>download<span class="w"> </span>speed................................................................................
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>Download:<span class="w"> </span><span class="m">125</span>.47<span class="w"> </span>Mbit/s
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>Testing<span class="w"> </span>upload<span class="w"> </span>speed......................................................................................................
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>Upload:<span class="w"> </span><span class="m">8</span>.73<span class="w"> </span>Mbit/s
+</code></pre></div></td></tr></table></div></p>
 <h2 id="usbmac">小米手机通过USB连接MAC电脑<a class="headerlink" href="#usbmac" title="Permanent link">&para;</a></h2>
 <p>1、手机端拿到“开发者权限”后，打开“USB调试”开关并将USB的用途设置为传输文件。</p>
 <p>2、如果你已经安装过homebrew可以直接执行如下命令安装 安卓插件</p>
@@ -5642,21 +5678,21 @@ find /var/lib/psa/dumps -name 'backup*' -type f -ctime +90 -exec rm -rf {} +;</p
 <p>systemd-resolve --status
 运行这些命令中的任何一个都会向您显示每个网络接口正在使用的 DNS 服务器。</p>
 <p><code>sudo systemd-resolve --status | grep 'DNS Servers' -A2</code></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>DNS Servers: 8.8.8.8
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>DNS Servers: 8.8.8.8
 </code></pre></div></td></tr></table></div>
 <p><code>dig myfreax.com | grep SERVER</code></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>;; SERVER: 8.8.8.8#53(8.8.8.8)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>;; SERVER: 8.8.8.8#53(8.8.8.8)
 </code></pre></div></td></tr></table></div>
 <h3 id="2-dns">第 2 步：临时更改 DNS（进行测试）<a class="headerlink" href="#2-dns" title="Permanent link">&para;</a></h3>
 <p>在永久更改 DNS 设置之前，最好临时更改它并查看结果, 如果结果符合预期，我们将永久保留。</p>
 <p>要临时更改 DNS 服务器，请编辑该/etc/resolv.conf文件。</p>
 <p>在/etc/resolv.conf中，以关键字开头的行nameserver涉及 DNS 服务器。</p>
 <p><strong>不要删除说nameserver 127.0.0.53. 通过在该行的开头放置井号/井号来注释掉它。</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>#nameserver 127.0.0.53
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a>nameserver 8.8.8.8
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a>nameserver 8.8.4.4
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>#nameserver 127.0.0.53
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>nameserver 8.8.8.8
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>nameserver 8.8.4.4
 </code></pre></div></td></tr></table></div>
 <p>第一行是您的主要 DNS 服务器，第二行是备用 DNS 服务器。当 <strong>由于某种原因</strong> 主 DNS 服务器不可用时，使用备用 DNS 服务器。</p>
 <p>将这两行添加到您的/etc/resolv.conf文件后，您应该会立即看到结果。</p>
@@ -5667,9 +5703,9 @@ find /var/lib/psa/dumps -name 'backup*' -type f -ctime +90 -exec rm -rf {} +;</p
 要永久更改您的 DNS 服务器，请resolvconf使用以下命令安装软件包：</p>
 <p><code>sudo apt-get install resolvconf</code></p>
 <p>安装后，编辑文件并像这样向其中/etc/resolvconf/resolv.conf.d/head添加相同的行（假设Cloudflare作为 DNS 提供商）：nameserver</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
-<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>nameserver 8.8.8.8
-<a id="__codelineno-3-2" name="__codelineno-3-2"></a>nameserver 8.8.4.4
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>nameserver 8.8.8.8
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>nameserver 8.8.4.4
 </code></pre></div></td></tr></table></div>
 <p>完成后，resolvconf.service使用以下命令启动：</p>
 <p><code>sudo systemctl enable --now resolvconf.service</code></p>
