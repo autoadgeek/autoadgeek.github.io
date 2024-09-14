@@ -5340,6 +5340,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#find" class="md-nav__link">
+    Find 命令
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#plesk-apache2-vhosts" class="md-nav__link">
     plesk apache2 vhosts 错误
   </a>
@@ -5641,6 +5648,8 @@ find /var/log/plesk/PMM/ -name 'backup*' -type d -ctime +90 -exec rm -rf {} +;</
 find /var/lib/psa/dumps -name 'backup*' -type f -ctime +90 -exec rm -rf {} +;</p>
 <h2 id="_2">文件系统<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><code>ls -l | grep "^-" | wc -l</code>  列出目录下文件数量</p>
+<h2 id="find">Find 命令<a class="headerlink" href="#find" title="Permanent link">&para;</a></h2>
+<p><code>find . -type d -exec chmod 755 {} \;</code> 递归修改目录权限</p>
 <p>参考资料:  <br />
 <a href="https://blog.csdn.net/sailor201211/article/details/24554383">很多命令行</a> <br />
 <a href="https://support.plesk.com/hc/en-us/articles/115002557954-How-to-remove-Plesk-backup-files-and-their-logs">清理 /var/lib/psa/dumps</a></p>
